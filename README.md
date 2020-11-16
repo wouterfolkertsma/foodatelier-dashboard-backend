@@ -36,6 +36,10 @@ php artisan migrate
 ```
 
 ```shell script
+php artisan db:seed
+```
+
+```shell script
 npm install
 ```
 
@@ -71,5 +75,3 @@ npm run production
 ```
 The last command above will compile the assets in a way that the total package is a lot smaller in size, which is 
 something you want for production environments. This commando should only be run on the produciton server.
-
- 
