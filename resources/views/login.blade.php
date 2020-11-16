@@ -9,9 +9,9 @@
 
 @section('title', 'Login')
 
-{{--@section('sidebar')--}}
+@section('sidebar')
 {{--    @parent--}}
-{{--@endsection--}}
+@endsection
 
 @section('content')
     <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>

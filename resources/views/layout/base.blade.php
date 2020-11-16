@@ -8,13 +8,9 @@
     <title>App Name - @yield('title')</title>
 </head>
 <body>
-{{--    @section('sidebar')--}}
-
-{{--    @show--}}
+    @yield('sidebar')
 
     <div class="container">
-        <span uk-icon="icon: check"></span>
-
         @yield('content')
     </div>
 
