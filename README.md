@@ -75,3 +75,16 @@ npm run production
 ```
 The last command above will compile the assets in a way that the total package is a lot smaller in size, which is 
 something you want for production environments. This commando should only be run on the produciton server.
+
+### Tools
+
+Sometimes edits to the database are needed, and you need to reset your database. The following .sh command runs everythin needed for that. It wipes the db, migrates, seeds and creates a new admin account.
+
+If are running this command for the first time, make sure the the file is executable:
+```shell script
+chmod +x reseed.sh 
+```
+Now you can run:
+```shell script
+./reseed.sh
+```
