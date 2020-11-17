@@ -16,6 +16,7 @@ use Illuminate\Notifications\Notifiable;
  * @property mixed profile_type
  * @property mixed last_name
  * @package App\Models
+ * @method static factory()
  */
 class User extends Model
 {

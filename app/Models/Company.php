@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static where(string $string, string $company)
+ * @method static factory()
  */
 class Company extends Model
 {

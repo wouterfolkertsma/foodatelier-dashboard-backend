@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -17,7 +20,7 @@ class RoleSeeder extends Seeder
     public function run()
     {
         foreach (self::$roles as $role) {
-            factory(App\Models\Role::class)->create([
+            Role::factory()->create([
                 'name' => $role,
             ]);
         }

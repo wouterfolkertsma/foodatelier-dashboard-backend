@@ -1,14 +1,32 @@
 <?php
 
+namespace Database\Factories;
+
 /** @var Factory $factory */
 
 use App\Models\Client;
 use App\Models\Company;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Client::class, function (Faker $faker) {
-    return [
-        'company_id' => factory(Company::class)
-    ];
-});
+class ClientFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Client::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+
+        return [
+            'company_id' => Company::where('id', rand(1, 2))->first()->id
+        ];
+    }
+}

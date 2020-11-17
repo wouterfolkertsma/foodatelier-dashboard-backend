@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
+/**
+ * @method static factory()
+ */
 class Employee extends Model
 {
 

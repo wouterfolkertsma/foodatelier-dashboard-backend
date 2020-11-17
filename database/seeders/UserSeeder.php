@@ -1,8 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Client;
 use App\Models\Company;
 use App\Models\Employee;
-use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -16,17 +19,17 @@ class UserSeeder extends Seeder
     {
         foreach (CompanySeeder::$companies as $company) {
             for ($i = 0; $i < 5; $i++) {
-                factory(App\Models\User::class)->create([
-                    'profile_id' => factory(App\Models\Client::class)->create([
+                User::factory()->create([
+                    'profile_id' => Client::factory()->create([
                         'company_id' => Company::where('name', $company)->first()->id
                     ])
                 ]);
             }
         }
 
-        factory(App\Models\User::class, 1)->state( 'admin')->create([
+        User::factory()->count(1)->admin()->create([
             'profile_type' => 'employee',
-            'profile_id' => factory(Employee::class)
+            'profile_id' => Employee::factory()->create()
         ]);
     }
 }

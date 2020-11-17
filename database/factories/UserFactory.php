@@ -1,34 +1,57 @@
 <?php
 
-/** @var Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Client;
 use App\Models\Role;
 use App\Models\User;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-$factory->define(User::class, function (Faker $faker) {
-    return [
-        'first_name' => $faker->firstName,
-        'infix' => null,
-        'last_name' => $faker->lastName,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => bcrypt('secret'),
-        'profile_type' => 'client',
-        'profile_id' => factory(Client::class),
-        'role_id' => function () {
-            return Role::where('name', 'Client')->first()->id;
-        },
-        'remember_token' => Str::random(10),
-    ];
-});
+class UserFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
 
-$factory->state(App\Models\User::class, 'admin', [
-    'email' => 'admin@foodatelier.nl',
-    'role_id' => function () {
-        return Role::where('name', 'Admin')->first()->id;
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'first_name' => $this->faker->firstName,
+            'infix' => null,
+            'last_name' => $this->faker->lastName,
+            'email' => $this->faker->unique()->safeEmail,
+            'email_verified_at' => now(),
+            'password' => bcrypt('secret'),
+            'profile_type' => 'client',
+            'profile_id' => Client::factory()->make(),
+            'role_id' => function () {
+                return Role::where('name', 'Client')->first()->id;
+            },
+            'remember_token' => Str::random(10),
+        ];
     }
-]);
+
+    /**
+     * @return UserFactory
+     */
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'email' => 'admin@foodatelier.nl',
+                'role_id' => function () {
+                    return Role::where('name', 'Admin')->first()->id;
+                }
+            ];
+        });
+    }
+}

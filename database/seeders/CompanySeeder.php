@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 
 class CompanySeeder extends Seeder
@@ -17,7 +20,7 @@ class CompanySeeder extends Seeder
     public function run()
     {
         foreach (self::$companies as $company) {
-            factory(App\Models\Company::class)->create([
+            Company::factory()->create([
                 'name' => $company,
             ]);
         }

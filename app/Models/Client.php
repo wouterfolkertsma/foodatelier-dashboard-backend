@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
+/**
+ * @method static factory()
+ */
 class Client extends Model
 {
     /**

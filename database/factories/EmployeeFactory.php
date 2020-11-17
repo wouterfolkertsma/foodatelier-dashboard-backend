@@ -1,15 +1,30 @@
 <?php
 
-/** @var Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Employee;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Employee::class, function (Faker $faker) {
-    return [
-        'consulting_phone' => $faker->phoneNumber,
-        'consulting_email' => $faker->companyEmail,
-        'job_description' => $faker->jobTitle,
-    ];
-});
+class EmployeeFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Employee::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'consulting_phone' => $this->faker->phoneNumber,
+            'consulting_email' => $this->faker->companyEmail,
+            'job_description' => $this->faker->jobTitle,
+        ];
+    }
+}

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Scopes\OrderByScope;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 /**
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
  */
 abstract class Model extends BaseModel
 {
+    use HasFactory;
+
     /**
      * @var array
      */
