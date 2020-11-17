@@ -1,10 +1,6 @@
-@extends('layout.base')
+@extends('layout.base-logged-out')
 
 @section('title', 'Login')
-
-@section('sidebar')
-{{--    @parent--}}
-@endsection
 
 @section('content')
     <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>

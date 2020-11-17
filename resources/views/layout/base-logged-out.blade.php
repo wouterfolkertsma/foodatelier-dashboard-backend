@@ -8,9 +8,6 @@
     <title>App Name - @yield('title')</title>
 </head>
 <body>
-    @if (auth()->user()->isEmployee())
-        @include('sidebar.admin')
-    @endif
     <div class="container">
         @yield('content')
     </div>

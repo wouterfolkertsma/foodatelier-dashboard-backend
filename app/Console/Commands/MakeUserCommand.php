@@ -55,6 +55,7 @@ class MakeUserCommand extends Command
 
         if ($type == 'employee') {
             $data['role_id'] = 1;
+
             try {
                 $employeeRepository->save($data);
             } catch (\Throwable $e) {

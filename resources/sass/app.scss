@@ -1,5 +1,9 @@
 @import "vendor";
 @import "fonts";
+@import "colors";
+
+// Components
+@import "components/sidebar";
 
 * {
   font-family: MetropolisRegular;
@@ -7,4 +11,9 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: MetropolisBold;
+}
+
+body {
+  min-height: 100vh;
+  background-color: $color-main;
 }

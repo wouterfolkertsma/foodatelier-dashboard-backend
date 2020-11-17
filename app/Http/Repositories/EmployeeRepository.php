@@ -25,7 +25,7 @@ class EmployeeRepository extends Repository
     private $user;
 
     /**
-     * StudentsRepository constructor.
+     * EmployeeRepository constructor.
      *
      * @param Employee $model
      * @param User $user
@@ -58,7 +58,7 @@ class EmployeeRepository extends Repository
         $success = parent::fill($employeeData, $model);
 
         if (!$success) {
-            throw new RuntimeException('Invalid state: could not create a student object');
+            throw new RuntimeException('Invalid state: could not create a employee object');
         }
 
         if (is_null($model)) {
@@ -79,7 +79,7 @@ class EmployeeRepository extends Repository
         $success = (bool) $model->user()->delete();
 
         if (!$success) {
-            throw new RuntimeException('Invalid state: could not delete a student object');
+            throw new RuntimeException('Invalid state: could not delete a employee object');
         }
 
         return $model->delete();
@@ -90,6 +90,6 @@ class EmployeeRepository extends Repository
      */
     protected function getType()
     {
-        return 'student';
+        return 'employee';
     }
 }
