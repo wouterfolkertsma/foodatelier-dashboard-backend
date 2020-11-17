@@ -1,0 +1,11 @@
+.container {
+  background-color: white;
+
+  &-main {
+    left: 250px;
+    top: 10px;
+    position: absolute;
+    min-height: calc(100vh - 10px);
+    min-width: calc(100vw - 260px);
+  }
+}
