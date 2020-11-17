@@ -5,6 +5,6 @@
         <h2>{{ auth()->user()->first_name }}</h2>
     </div>
     <ul>
-        <li tabindex="0" class="icon-dashboard"><span>Dashboard</span></li>
+        @yield('links')
     </ul>
 </nav>

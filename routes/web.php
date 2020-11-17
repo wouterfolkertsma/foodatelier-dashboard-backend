@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::view('/', 'welcome')->name('home');
+    Route::get('/manage/employees', 'EmployeeController@employeesManager')->name('employee-manager');
+    Route::get('/manage/clients', 'EmployeeController@clientsManager')->name('client-manager');
 });
 
 Route::get('/import','ImportController@importFile');

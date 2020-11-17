@@ -8,8 +8,7 @@ use Validator;
 
 class ImportController extends Controller
 {
-    //
-    public function importFile(){
+    public function importFile() {
         return view('excel');
     }
 
@@ -18,7 +17,7 @@ class ImportController extends Controller
             'file' => 'required|max:5000|mimes:xlsx,xls,csv'
         ]);
 
-        if($validator->passes()){
+        if ($validator->passes()) {
 
             $dateTime = date('Ymd_His');
             $file = $request->file('file');
