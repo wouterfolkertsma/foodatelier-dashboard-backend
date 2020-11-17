@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 /**
  * @method static factory()
  */
-class Client extends Model
+class Client extends User
 {
     /**
      * @return BelongsTo

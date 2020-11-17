@@ -17,11 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login','AuthenticationController@index');
-Route::post('login','AuthenticationController@login');
-
-Route::get('backend','AdminAuthenticationController@index');
-Route::post('backend','AdminAuthenticationController@login');
+Route::middleware(['auth'])->group(function () {
+    Route::view('/', 'welcome')->name('home');
+});
 
 Route::get('/import','ImportController@importFile');
 Route::post('/import','ImportController@importExcel');

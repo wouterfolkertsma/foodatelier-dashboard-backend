@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 /**
  * @method static factory()
  */
-class Employee extends Model
+class Employee extends User
 {
 
     /**

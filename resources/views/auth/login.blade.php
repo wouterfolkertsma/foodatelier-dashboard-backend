@@ -1,10 +1,3 @@
-{{--<form action="login" method="post">--}}
-{{--<input type="text" name="user">--}}
-{{--<input type="text" name="password">--}}
-{{--@csrf--}}
-{{--<button type="submit" >login</button>--}}
-{{--</form>--}}
-
 @extends('layout.base')
 
 @section('title', 'Login')
@@ -21,12 +14,17 @@
                     <div class="uk-width-1-1@m">
                         <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
                             <h3 class="uk-card-title uk-text-center">Welcome back!</h3>
-                            {{ Form::open(['action' => $postAction]) }}
+                            {{ Form::open() }}
                                 <div class="uk-margin">
                                     <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                        {{ Form::text('username', '', ['class' => 'uk-input']) }}
+                                        {{ Form::text('email', '', ['class' => 'uk-input']) }}
                                     </div>
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="uk-margin">
                                     <div class="uk-inline uk-width-1-1">

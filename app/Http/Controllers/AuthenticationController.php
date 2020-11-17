@@ -23,8 +23,6 @@ class AuthenticationController extends Controller
      */
     public function index(Request $request)
     {
-        return view('login', [
-            'postAction' => 'AuthenticationController@login'
-        ]);
+        return view('auth.login');
     }
 }

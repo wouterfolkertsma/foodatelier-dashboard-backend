@@ -8,6 +8,11 @@ use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
 /**
  * Class User
@@ -18,9 +23,12 @@ use Illuminate\Notifications\Notifiable;
  * @package App\Models
  * @method static factory()
  */
-class User extends Model
+class User extends Model implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
-    use Authenticatable, MustVerifyEmail, Notifiable;
+    use Authenticatable, Authorizable, MustVerifyEmail, CanResetPassword, Notifiable;
 
     /**
      * The attributes that should be hidden for arrays.
