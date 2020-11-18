@@ -33,7 +33,7 @@ abstract class Model extends BaseModel
     }
 
     /**
-     * @return \App\Scopes\OrderByScope
+     * @return OrderByScope
      */
     public static function getOrderByScope(): OrderByScope
     {

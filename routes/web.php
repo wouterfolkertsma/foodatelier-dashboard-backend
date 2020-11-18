@@ -12,13 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('/', 'welcome')->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Admin Routes
 Route::middleware(['auth'])->group(function () {
-    Route::view('/', 'welcome')->name('home');
     Route::get('/manage/employees', 'EmployeeController@employeesManager')->name('employee-manager');
     Route::get('/manage/clients', 'EmployeeController@clientsManager')->name('client-manager');
 });

@@ -90,6 +90,6 @@ class ClientRepository extends Repository
      */
     protected function getType()
     {
-        return 'employee';
+        return 'client';
     }
 }
