@@ -3,43 +3,102 @@ $menu-width-tablet: 90px;
 $menu-width-smartphone: 230px;
 
 .menu {
-  background: $color-sidebar;
-  height: 100vh;
-  width: $menu-width-desktop;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  outline: none;
+    background-image: linear-gradient(315deg, $color-sidebar-up 10%, $color-sidebar-down 74%),url(/../images/sidebarbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    width: $menu-width-desktop;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    outline: none;
+    /* Head-------------------------------------------------- */
+  .avatar {
+        background: rgba(0,0,0,0.1);
+        padding: 2em 0.5em;
+        text-align: center;
+
+        img {
+            width: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid $color-sidebar;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
+        }
+
+        h2 {
+            font-weight: normal;
+            margin-bottom: 0;
+            color: $color-text-white;
+        }
+  }
+
+    /* Links-------------------------------------------------- */
 
   &-link {
     text-decoration: none;
-    color: black;
-
+    color: $color-text-white;
+    img {
+       width: 35px;
+       padding: 1em 0.5em;
+       position: center;
+    }
     &:hover {
       text-decoration: none;
-      color: black;
+      color: $color-text-white;
+      transition: all 0.3s ease;
+    }
+    span{
+        &:hover {
+            text-decoration: none;
+            color: $color-underline;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        &:before {
+            content: "";
+            position: absolute;
+            width: 75%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 15px;
+            left: 35px;
+            background-color: white;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        &:hover::before{
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
     }
   }
-
-  .avatar {
-    background: rgba(0,0,0,0.1);
-    padding: 2em 0.5em;
-    text-align: center;
-
-    img {
-      width: 100px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid $color-sidebar;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
-    }
-
-    h2 {
-      font-weight: normal;
-      margin-bottom: 0;
-    }
+  .sublink{
+        border-radius: 30px;
+        span{
+            &:hover {
+                text-decoration: none;
+                color: $color-underline;
+                position: relative;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            &:before {
+                width: 100%;
+                height: 2px;
+                bottom: 0px;
+                left: 0px;
+            }
+            &:hover::before{
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+        }
   }
+
 
   ul {
     list-style: none;
@@ -47,7 +106,7 @@ $menu-width-smartphone: 230px;
     margin: 0;
 
     li {
-      padding: 0.5em 1em 0.5em 3em;
+      padding: 0.5em 1em 0.5em 2em;
       font-size: 0.95em;
       background-repeat: no-repeat;
       background-position: left 15px center;
@@ -56,7 +115,7 @@ $menu-width-smartphone: 230px;
       cursor: pointer;
 
       &:hover {
-        background-color: rgba(0,0,0,0.1);
+        background-color: rgba(0,0,0,0.5);
       }
 
       &:focus {
@@ -64,6 +123,15 @@ $menu-width-smartphone: 230px;
       }
 
     }
+  }
+    /* Label-------------------------------------------------- */
+  .label{
+      position: fixed;
+      bottom: 50px;
+      img {
+          width: $menu-width-desktop - ($menu-width-desktop/10);
+          filter: drop-shadow(5px 5px 10px rgba(0,0,0,.8));
+      }
   }
 }
 

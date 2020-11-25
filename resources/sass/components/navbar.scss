@@ -1,0 +1,88 @@
+$logout-button-diameter: 65px;
+$navbar-hight: 85px;
+.navbar-border{
+
+    height: $navbar-hight;
+    width:100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    outline: none;
+    border-bottom:0px solid rgba(100,100,100,0.0);
+    align-items: center;
+    background: rgba(255,255,255,1.00);
+
+    box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+
+    display: flex;
+
+    justify-content: center;
+    transition: all 0.5s ease;
+
+}
+
+
+.sticky{
+    .navbar-border {
+        box-shadow: none;
+        list-style:none;
+        border-bottom:1px solid black;
+        transition: all 0.5s ease;
+    }
+    .morph-drop-shadow{
+        box-shadow: none;
+        transition: all 0.5s ease;
+    }
+
+}
+.navbar{
+    background: rgba(255,255,255,0.82);
+    height: $navbar-hight;
+    width:100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    outline: none;
+
+    display: flex;
+
+    justify-content: right;
+}
+
+.button-logout{
+    margin-top: ($navbar-hight - $logout-button-diameter) /2;
+    margin-right: 30px;
+    height: $logout-button-diameter;
+    width: $logout-button-diameter;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 6;
+}
+.morph-button-round{
+    border-radius: $logout-button-diameter /2;
+}
+
+.morph-drop-shadow{
+    margin: 0px;
+
+    height: $logout-button-diameter - 16px;
+    width:$logout-button-diameter - 16px;
+    box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+    background-color: $color-underline;
+    transition: all 1.3s ease;
+}
+
+.morph-insert-shadow{
+    margin: 0px;
+
+    background-color: $color-underline;
+    height: $logout-button-diameter - 25px;
+    width: $logout-button-diameter - 25px;
+    box-shadow: inset 4px 4px 5px 0 rgba(0, 0, 0, 0.1),
+    inset -4px -4px 5px 0 rgba(255, 255, 255, 0.3);
+}

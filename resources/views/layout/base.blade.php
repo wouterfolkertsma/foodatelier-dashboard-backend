@@ -11,6 +11,7 @@
 
     @if (auth()->user()->isEmployee())
         @include('sidebar.admin')
+        @include('navbar.base')
     @endif
 
     @if (auth()->user()->isClient())
