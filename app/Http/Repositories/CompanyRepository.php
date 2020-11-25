@@ -19,7 +19,7 @@ use RuntimeException;
 class CompanyRepository extends Repository
 {
     /**
-     * EmployeeRepository constructor.
+     * CompanyRepository constructor.
      *
      * @param Company $model
      */
@@ -44,12 +44,6 @@ class CompanyRepository extends Repository
      */
     protected function fill(array $data, Model $model = null): bool
     {
-        $success = parent::fill($data, $model);
-
-        if (!$success) {
-            throw new RuntimeException('Invalid state: could not create a employee object');
-        }
-
         if (is_null($model)) {
             return $this->createNewCompany($data);
         }
@@ -88,7 +82,6 @@ class CompanyRepository extends Repository
      */
     private function createNewCompany(array $data)
     {
-        $model = $this->getModel()->newInstance($data);
-        return $model->save();
+        return $this->getModel()->newInstance($data)->save();
     }
 }

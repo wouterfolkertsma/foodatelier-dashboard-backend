@@ -8,6 +8,7 @@
             <span uk-search-icon></span>
             <input class="uk-search-input" type="search" placeholder="">
         </div>
+        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('company.new') }}">New company</a>
     </div>
     <div class="uk-card uk-card-body">
         <table class="uk-table uk-table-striped">

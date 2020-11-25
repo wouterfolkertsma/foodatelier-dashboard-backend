@@ -11,7 +11,10 @@
             {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
         {{ Form::close() }}
     </div>
+    <hr class="uk-divider-icon">
     <div class="uk-card uk-card-body">
+        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('client.new') }}">New User</a>
+
         <h4>Users from {{ $company->name }}</h4>
         <table class="uk-table uk-table-striped">
             <thead>
