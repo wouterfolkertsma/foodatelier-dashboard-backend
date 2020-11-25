@@ -1,6 +1,13 @@
 @font-face {
   font-family: MetropolisRegular;
+    font-weight: normal;
   src: url('../fonts/Metropolis-Regular.otf');
+}
+
+@font-face {
+    font-family: MetropolisRegular;
+    font-weight: bold;
+    src: url('../fonts/Metropolis-Bold.otf');
 }
 
 @font-face {

@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Employee;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -17,7 +18,8 @@ class EmployeeController extends Controller
      */
     public function employeesManager(Request $request)
     {
-        return view('admin.employee-management');
+        $employees = Employee::with('user')->get();
+        return view('admin.employee-management', ['employees' => $employees]);
     }
 
     /**

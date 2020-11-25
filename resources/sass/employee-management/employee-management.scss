@@ -1,0 +1,33 @@
+.em-field {
+    background-color: #ff9090;
+    max-width: 1280px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.em-row {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0.25em;
+}
+
+/*new*/
+
+.em-id {
+    display: inline-block;
+    width: 8%;
+    vertical-align: top;
+}
+
+.em-phone, .em-email, .em-desc, .em-created, .em-updated {
+    display: inline-block;
+    width: 15%;
+    vertical-align: top;
+}
+
+.em-button {
+    vertical-align: top;
+    float: right;
+}

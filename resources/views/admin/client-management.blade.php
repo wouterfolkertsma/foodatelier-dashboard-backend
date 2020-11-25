@@ -3,5 +3,7 @@
 @section('title', 'Client Management')
 
 @section('content')
-    Yeet
+    <div style="color: red">
+    Yeets Client
+    </div>
 @endsection
