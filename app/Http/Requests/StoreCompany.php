@@ -19,12 +19,8 @@ class StoreCompany extends FormRequest
      */
     public static function rules()
     {
-        $rules = [
+        return [
             'name' => 'required|unique:App\Models\Company,name'
         ];
-
-        $rules['email'][] = Rule::unique('users', 'email');
-
-        return $rules;
     }
 }
