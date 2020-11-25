@@ -31,10 +31,12 @@
                                 <div class="uk-margin">
                                     <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
                                 </div>
-                                <div class="uk-text-small uk-text-center">
-                                    Forgot password?
+
+                                <div  class="uk-text-small uk-text-center">
+                                    <a class ="sublink" href="{{ route('password.request') }}"  tabindex="0" class="icon-dashboard"><span>Forgot password?</span></a>
                                 </div>
                             {{ Form::close() }}
+
                         </div>
                     </div>
                 </div>
