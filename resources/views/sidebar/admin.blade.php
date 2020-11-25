@@ -2,7 +2,10 @@
 
 @section('links')
     <a class="menu-link" href="{{ route('employee-manager') }}">
-        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-controlpanel.svg">Controlpanel</span></li>
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-controlpanel.svg">Employees</span></li>
+    </a>
+    <a class="menu-link" href="{{ route('client-manager') }}">
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-controlpanel.svg">Clients</span></li>
     </a>
     <a class="menu-submenu" href="{{ route('client-manager') }}">
         <a class="menu-link" href="{{ route('client-manager') }}">

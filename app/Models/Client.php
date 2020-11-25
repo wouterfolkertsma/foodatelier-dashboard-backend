@@ -14,7 +14,7 @@ class Client extends User
     /**
      * @return BelongsTo
      */
-    public function group(): BelongsTo
+    public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
@@ -22,7 +22,7 @@ class Client extends User
     /**
      * @return MorphOne
      */
-    public function user(): MorphOne
+    public function user()
     {
         return $this->morphOne(User::class, 'profile');
     }

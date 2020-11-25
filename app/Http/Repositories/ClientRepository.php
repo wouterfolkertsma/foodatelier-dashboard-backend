@@ -2,7 +2,7 @@
 
 namespace App\Http\Repositories;
 
-use App\Models\Employee;
+use App\Models\Client;
 use App\Models\User;
 use App\Traits\CreatesUsers;
 use Exception;
@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 use RuntimeException;
 
 /**
- * Class EmployeeRepository
+ * Class ClientRepository
  *
  * @package App\Http\Repositories
  */
-class EmployeeRepository extends Repository
+class ClientRepository extends Repository
 {
     use CreatesUsers;
 
@@ -27,10 +27,10 @@ class EmployeeRepository extends Repository
     /**
      * EmployeeRepository constructor.
      *
-     * @param Employee $model
+     * @param Client $model
      * @param User $user
      */
-    public function __construct(Employee $model, User $user)
+    public function __construct(Client $model, User $user)
     {
         parent::__construct($model);
 
@@ -53,9 +53,9 @@ class EmployeeRepository extends Repository
      */
     protected function fill(array $data, Model $model = null): bool
     {
-        [$userData, $employeeData] = $this->splitData($data);
+        [$userData, $clientData] = $this->splitData($data);
 
-        $success = parent::fill($employeeData, $model);
+        $success = parent::fill($clientData, $model);
 
         if (!$success) {
             throw new RuntimeException('Invalid state: could not create a employee object');
@@ -90,6 +90,6 @@ class EmployeeRepository extends Repository
      */
     protected function getType()
     {
-        return Employee::class;
+        return Client::class;
     }
 }

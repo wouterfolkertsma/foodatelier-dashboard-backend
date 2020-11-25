@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         }
 
         User::factory()->count(1)->admin()->create([
-            'profile_type' => 'employee',
+            'profile_type' => Employee::class,
             'profile_id' => Employee::factory()->create()
         ]);
     }
