@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => bcrypt('secret'),
-            'profile_type' => 'client',
+            'profile_type' => Client::class,
             'profile_id' => Client::factory()->make(),
             'role_id' => function () {
                 return Role::where('name', 'Client')->first()->id;

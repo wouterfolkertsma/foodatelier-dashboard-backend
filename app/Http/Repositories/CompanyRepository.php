@@ -36,25 +36,33 @@ class CompanyRepository extends Repository
         return $this->getModel()::all();
     }
 
+//    /**
+//     * @param  array  $data
+//     * @param Model|null  $model
+//     *
+//     * @return bool
+//     */
+//    protected function fill(array $data, Model $model = null): bool
+//    {
+//        $success = parent::fill($data, $model);
+//
+//        if (!$success) {
+//            throw new RuntimeException('Invalid state: could not create a employee object');
+//        }
+//
+//        if (is_null($model)) {
+//            return $this->createNewCompany($data);
+//        }
+//
+//        return $model->user->update($userData);
+//    }
+
     /**
-     * @param  array  $data
-     * @param Model|null  $model
-     *
-     * @return bool
+     * @param Company $company
      */
-    protected function fill(array $data, Model $model = null): bool
+    public function getUsers(Company $company)
     {
-        $success = parent::fill($data, $model);
-
-        if (!$success) {
-            throw new RuntimeException('Invalid state: could not create a employee object');
-        }
-
-        if (is_null($model)) {
-            return $this->createNewCompany($data);
-        }
-
-        return $model->user->update($userData);
+        return $company->users()->with('user')->get();
     }
 
     /**

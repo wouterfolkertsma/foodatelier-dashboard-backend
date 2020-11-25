@@ -90,6 +90,6 @@ class EmployeeRepository extends Repository
      */
     protected function getType()
     {
-        return 'employee';
+        return Employee::class;
     }
 }
