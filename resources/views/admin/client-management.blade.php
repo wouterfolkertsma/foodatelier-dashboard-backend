@@ -28,7 +28,7 @@
                     <td>{{ $company->created_at }}</td>
                     <td>{{ $company->updated_at }}</td>
                     <td>
-                        <a href="{{ route('edit-company', ['id' => $company->id]) }}">Edit</a>
+                        <a href="{{ route('company.edit', ['id' => $company->id]) }}">Edit</a>
                     </td>
                 </tr>
             @endforeach

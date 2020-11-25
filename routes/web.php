@@ -19,7 +19,8 @@ Route::view('/', 'welcome')->name('home');
 Route::middleware(['auth'])->group(function () {
     Route::get('/manage/employees', 'EmployeeController@employeesManager')->name('employee-manager');
     Route::get('/manage/clients', 'EmployeeController@clientsManager')->name('client-manager');
-    Route::get('/manage/{id}/company', [EmployeeController::class, 'editCompany'])->name('edit-company');
+    Route::get('/manage/{id}/company', [EmployeeController::class, 'editCompany'])->name('company.edit');
+    Route::post('/manage/{id}/company', [EmployeeController::class, 'updateCompany'])->name('company.update');
 });
 
 Route::get('/import','ImportController@importFile');

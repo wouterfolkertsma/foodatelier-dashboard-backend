@@ -7,9 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\ClientRepository;
 use App\Http\Repositories\CompanyRepository;
 use App\Http\Repositories\EmployeeRepository;
-use App\Models\Client;
 use App\Models\Company;
-use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -62,6 +60,32 @@ class EmployeeController extends Controller
         $companies = Company::all();
 
         return view('admin.client-management', ['companies' => $companies]);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return Application|Factory|View
+     * @throws \Throwable
+     */
+    public function updateCompany(\Illuminate\Http\Request $request, int $id)
+    {
+        try {
+            /** @var Company $company */
+            $company = Company::findOrFail($id);
+        } catch (\Exception $exception) {
+            abort(404);
+        }
+
+        $this->companyRepository->save($request->all(), $company);
+
+        /** @var User[] $users */
+        $users = $this->companyRepository->getUsers($company);
+
+        return view('admin.edit-company', [
+            'users' => $users,
+            'company' => $company
+        ]);
     }
 
     /**

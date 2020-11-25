@@ -4,9 +4,15 @@
 
 @section('content')
     <div class="uk-card uk-card-body">
+        {{ Form::model($company, ['route' => ['company.update', $company->id]]) }}
+            {{ Form::label('name', 'Name:') }}
+            {{ Form::text('name', '', ['class' => 'uk-input uk-form-width-medium']) }}
 
+            {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+        {{ Form::close() }}
     </div>
     <div class="uk-card uk-card-body">
+        <h4>Users from {{ $company->name }}</h4>
         <table class="uk-table uk-table-striped">
             <thead>
             <tr>
@@ -27,7 +33,7 @@
                     <td>{{ $user->created_at }}</td>
                     <td>{{ $user->updated_at }}</td>
                     <td>
-                        <a href="{{ route('edit-company', ['id' => $company->id]) }}">Edit</a>
+                        <a href="{{ route('company.update', ['id' => $company->id]) }}">Edit</a>
                     </td>
                 </tr>
             @endforeach
