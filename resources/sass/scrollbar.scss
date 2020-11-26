@@ -1,0 +1,81 @@
+.scroll_container {
+    background-color:$color-main;
+    width:calc(100% - 21px);
+    height:420px;
+
+    border:2px solid $color-main;
+    border-radius:10px;
+    overflow:hidden;
+    text-align:justify;
+}
+
+
+
+.scroll_content {
+    position:relative;
+    width:calc(100% - 41px);
+    height:414px;
+    top:-17px;
+    padding:20px 10px 20px 10px;
+    overflow-y:auto;
+}
+
+
+.top_bottom_mask {
+
+    left:calc(100% - 55px);
+    position:absolute;
+    overflow:hidden;
+    width:17px;
+    height:10px;
+}
+
+.left_right_mask {
+    position:absolute;
+    width:0px;
+    border:2px solid $color-main;
+}
+.slider {
+    position:absolute;
+    width:40px;
+    z-index: 6;
+
+}
+
+.morph-drop-shadows{
+    pointer-events: none;
+    margin: 0px;
+    width:16px;
+    box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 1.0);
+
+    transition: all 1.3s ease;
+}
+
+
+
+.corner_top_mask, .corner_bottom_mask {
+    position:relative;
+
+    border:8px solid $color-main;
+    height:20px;
+    width:11px;
+    border-radius:14px;
+}
+.top_mask{
+    top:1px
+}
+.corner_top_mask {
+    top:-3px;
+    left:-5px;
+}
+
+.bottom_mask{
+    top:412px;
+}
+
+.corner_bottom_mask {
+
+    top:-18px;
+    left:-5px;
+}

@@ -1,7 +1,7 @@
 @import "vendor";
 @import "fonts";
 @import "colors";
-
+@import "scrollbar";
 // Components
 @import "components/grid";
 @import "components/sidebar";
@@ -9,7 +9,17 @@
 
 * {
   font-family: MetropolisRegular;
+    scrollbar-color: $color-underline $color-text-grey;
+    ::-webkit-scrollbar-track{
+        background-color: $color-text-grey;
+
+    }
+    ::-webkit-scrollbar-thumb{
+        background-color: $color-underline;
+
+    }
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: MetropolisBold;
@@ -19,3 +29,12 @@ body {
   min-height: 100vh;
   background-color: $color-main;
 }
+
+.container-main{
+    background-color: $color-main;
+}
+::-webkit-scrollbar{
+    background-color: red;
+}
+
+
