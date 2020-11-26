@@ -14,20 +14,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('/', 'welcome')->name('home');
 
 // Admin Routes
 Route::middleware(['auth'])->group(function () {
+    Route::view('/', 'welcome')->name('home');
+
     Route::get('/manage/employees', 'EmployeeController@employeesManager')->name('employee-manager');
     Route::get('/manage/clients', [EmployeeController::class, 'clientsManager'])->name('client-manager');
 
-    Route::post('/manage/new/client', [CompanyController::class, 'saveClient'])->name('client.save');
-    Route::get('/manage/new/client', [CompanyController::class, 'newClient'])->name('client.new');
-
     Route::get('/manage/new/company', [CompanyController::class, 'newCompany'])->name('company.new');
     Route::post('/manage/new/company', [CompanyController::class, 'saveCompany'])->name('company.save');
+
     Route::get('/manage/{id}/company', [CompanyController::class, 'editCompany'])->name('company.edit');
     Route::post('/manage/{id}/company', [CompanyController::class, 'updateCompany'])->name('company.update');
+
+    Route::post('/manage/{id}/company/add-client', [CompanyController::class, 'saveClient'])->name('client.save');
+    Route::get('/manage/{id}/company/add-client', [CompanyController::class, 'newClient'])->name('client.new');
+
+    Route::get('/manage/{id}/client', [CompanyController::class, 'editClient'])->name('client.edit');
+    Route::post('/manage/{id}/client', [CompanyController::class, 'updateClient'])->name('client.update');
+    Route::get('/manage/{id}/client/delete', [CompanyController::class, 'deleteClient'])->name('client.delete');
 });
 
 

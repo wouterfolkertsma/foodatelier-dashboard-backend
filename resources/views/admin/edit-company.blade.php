@@ -4,16 +4,24 @@
 
 @section('content')
     <div class="uk-card uk-card-body">
-        {{ Form::model($company, ['route' => ['company.update', $company->id]]) }}
-            {{ Form::label('name', 'Name:') }}
-            {{ Form::text('name', '', ['class' => 'uk-input uk-form-width-medium']) }}
+        {{ Form::model($company, ['route' => ['company.update', $company->id], 'class' => 'uk-form-stacked']) }}
+
+        <fieldset class="uk-fieldset">
+            <legend class="uk-legend">Edit {{ $company->name }}</legend>
+
+            <div class="uk-margin">
+                {{ Form::label('name', 'Name:', ['class' => 'uk-form-label']) }}
+                {{ Form::text('name', $company->name, ['class' => 'uk-input uk-form-width-medium']) }}
+            </div>
 
             {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+        </fieldset>
+
         {{ Form::close() }}
     </div>
     <hr class="uk-divider-icon">
     <div class="uk-card uk-card-body">
-        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('client.new') }}">New User</a>
+        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('client.new', $company->id) }}">New User</a>
 
         <h4>Users from {{ $company->name }}</h4>
         <table class="uk-table uk-table-striped">
@@ -36,7 +44,7 @@
                     <td>{{ $user->created_at }}</td>
                     <td>{{ $user->updated_at }}</td>
                     <td>
-                        <a href="{{ route('company.update', ['id' => $company->id]) }}">Edit</a>
+                        <a href="{{ route('client.edit', ['id' => $user->id]) }}">Edit</a>
                     </td>
                 </tr>
             @endforeach

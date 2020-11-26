@@ -22,6 +22,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
  * @property mixed last_name
  * @package App\Models
  * @method static factory()
+ * @method static where(string $key, string $value)
  */
 class User extends Model implements
     AuthenticatableContract,

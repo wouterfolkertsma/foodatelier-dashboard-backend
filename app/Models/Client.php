@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * @method static factory()
+ * @method static find(int $clientId)
  */
 class Client extends User
 {
