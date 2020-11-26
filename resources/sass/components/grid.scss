@@ -2,10 +2,10 @@
   background-color: white;
 
   &-main {
-    left: 250px;
-    top: 10px;
+    left: 240px;
     position: absolute;
-    min-height: calc(100vh - 10px);
-    min-width: calc(100vw - 260px);
+    top: 85px;
+    min-height: calc(100vh - 85px);
+    min-width: calc(100vw - 240px);
   }
 }

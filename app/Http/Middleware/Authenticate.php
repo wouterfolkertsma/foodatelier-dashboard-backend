@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 
@@ -18,5 +19,19 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+    }
+
+    /**
+     * @param $request
+     * @param Closure $next
+     * @return mixed|void
+     */
+    public function handle($request, Closure $next)
+    {
+        if (!auth()->user()->isEmployee()) {
+            abort(404);
+        }
+
+        return $next($request);
     }
 }

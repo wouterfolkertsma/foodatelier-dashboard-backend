@@ -3,8 +3,6 @@
 namespace App\Traits;
 
 use App\Http\Requests\StoreUser;
-
-use App\Notifications\CreatePassword;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;

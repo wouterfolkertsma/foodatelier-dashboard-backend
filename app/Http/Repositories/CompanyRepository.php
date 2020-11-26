@@ -2,7 +2,8 @@
 
 namespace App\Http\Repositories;
 
-use App\Models\Employee;
+use App\Models\Client;
+use App\Models\Company;
 use App\Models\User;
 use App\Traits\CreatesUsers;
 use Exception;
@@ -11,30 +12,20 @@ use Illuminate\Database\Eloquent\Model;
 use RuntimeException;
 
 /**
- * Class EmployeeRepository
+ * Class CompanyRepository
  *
  * @package App\Http\Repositories
  */
-class EmployeeRepository extends Repository
+class CompanyRepository extends Repository
 {
-    use CreatesUsers;
-
     /**
-     * @var User
-     */
-    private $user;
-
-    /**
-     * EmployeeRepository constructor.
+     * CompanyRepository constructor.
      *
-     * @param Employee $model
-     * @param User $user
+     * @param Company $model
      */
-    public function __construct(Employee $model, User $user)
+    public function __construct(Company $model)
     {
         parent::__construct($model);
-
-        $this->user = $user;
     }
 
     /**
@@ -42,7 +33,7 @@ class EmployeeRepository extends Repository
      */
     public function all(): Collection
     {
-        return $this->getModel()->with('user')->get();
+        return $this->getModel()::all();
     }
 
     /**
@@ -53,19 +44,19 @@ class EmployeeRepository extends Repository
      */
     protected function fill(array $data, Model $model = null): bool
     {
-        [$userData, $employeeData] = $this->splitData($data);
-
-        $success = parent::fill($employeeData, $model);
-
-        if (!$success) {
-            throw new RuntimeException('Invalid state: could not create a employee object');
-        }
-
         if (is_null($model)) {
-            return $this->createNewUser($userData, $this->getModel()->id);
+            return $this->createNewCompany($data);
         }
 
-        return $model->user->update($userData);
+        return $model->update($data);
+    }
+
+    /**
+     * @param Company $company
+     */
+    public function getUsers(Company $company)
+    {
+        return $company->users()->with('user')->get();
     }
 
     /**
@@ -86,10 +77,11 @@ class EmployeeRepository extends Repository
     }
 
     /**
-     * @return string
+     * @param array $data
+     * @return bool
      */
-    protected function getType()
+    private function createNewCompany(array $data)
     {
-        return Employee::class;
+        return $this->getModel()->newInstance($data)->save();
     }
 }
