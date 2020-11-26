@@ -22,6 +22,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
  * @property mixed last_name
  * @package App\Models
  * @method static factory()
+ * @method static where(string $key, string $value)
  */
 class User extends Model implements
     AuthenticatableContract,
@@ -74,9 +75,9 @@ class User extends Model implements
     /**
      * @return string
      */
-    public function getFullNameAttribute(): string
+    public function getFullName(): string
     {
-        return $this->first_name . $this->last_name;
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     /**
@@ -84,7 +85,7 @@ class User extends Model implements
      */
     public function isEmployee(): bool
     {
-        return $this->profile_type === 'employee';
+        return $this->profile_type === Employee::class;
     }
 
     /**
@@ -92,6 +93,6 @@ class User extends Model implements
      */
     public function isClient(): bool
     {
-        return $this->profile_type === 'client';
+        return $this->profile_type === Client::class;
     }
 }

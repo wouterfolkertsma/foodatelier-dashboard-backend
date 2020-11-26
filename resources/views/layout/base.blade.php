@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
-    <title>App Name - @yield('title')</title>
+    <title>Foodatelier - @yield('title')</title>
 </head>
 <body>
 
@@ -19,6 +19,17 @@
     @endif
 
     <div class="container container-main">
+        @if ($errors->any())
+            <div class="uk-alert-danger" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         @yield('content')
     </div>
 

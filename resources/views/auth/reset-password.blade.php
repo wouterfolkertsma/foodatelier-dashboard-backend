@@ -9,7 +9,7 @@
                 <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
                     <div class="uk-width-1-1@m">
                         <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
-                            <h3 class="uk-card-title uk-text-center">Reset password!</h3>
+                            <h3 class="uk-card-title uk-text-center">Enter a new password</h3>
                             {{ Form::open(['route' => 'password.update']) }}
                                 @csrf
                                 <input type="hidden" name="token" value="{{$request->route('token')}}">

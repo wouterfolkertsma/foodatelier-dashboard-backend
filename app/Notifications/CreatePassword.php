@@ -18,11 +18,9 @@ class CreatePassword extends Notification
      * Create a new notification instance.
      *
      * @param User $user
-     * @param string $password
      */
-    public function __construct(User $user, string $password)
+    public function __construct(User $user)
     {
-        $this->password =  $password;
         $this->user = $user;
     }
 
@@ -41,15 +39,15 @@ class CreatePassword extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Beste ' . $this->user->full_name)
-            ->subject('Maak een wachtwoord aan voor Foodatelier');
-
-        // TODO: Create Mail template for password making
+            ->greeting('Beste ' . $this->user->first_name)
+            ->subject('Maak een wachtwoord aan voor Foodatelier')
+            ->line('Test')
+        ;
     }
 
     /**
