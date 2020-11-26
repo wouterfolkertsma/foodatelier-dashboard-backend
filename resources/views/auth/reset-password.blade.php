@@ -19,7 +19,7 @@
                                         {{ Form::text('email', $request->email, ['class' => 'uk-input']) }}
                                     </div>
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
+                                        <span class="alert uk-alert-danger" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -30,18 +30,18 @@
                                         {{ Form::password('password', ['class' => 'uk-input']) }}
                                     </div>
                                     @error('password')
-                                        <span class="invalid-feedback" role="alert">
+                                        <span class="alert uk-alert-danger" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="uk-margin">
                                     <div class="uk-inline uk-width-1-1">
-                                        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                        <span class="alert uk-form-icon" uk-icon="icon: lock"></span>
                                     {{ Form::password('password_confirmation', ['class' => 'uk-input']) }}
                                     </div>
                                     @error('password_confirmation')
-                                        <span class="invalid-feedback" role="alert">
+                                        <span class=".uk-alert-danger" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
