@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage/{id}/client', [CompanyController::class, 'editClient'])->name('client.edit');
     Route::post('/manage/{id}/client', [CompanyController::class, 'updateClient'])->name('client.update');
     Route::get('/manage/{id}/client/delete', [CompanyController::class, 'deleteClient'])->name('client.delete');
-    Route::get('/manage/clients', 'EmployeeController@clientsManager')->name('client-manager');
+
     Route::get('/dashboard', 'ClientController@dashboard')->name('client-dashboard');
     Route::get('/personalinsights', 'ClientController@personalinsights')->name('client-personal-insights');
     Route::get('/socialmedia', 'ClientController@socialmedia')->name('client-social-media');
