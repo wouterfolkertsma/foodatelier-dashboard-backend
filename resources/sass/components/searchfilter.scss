@@ -1,0 +1,98 @@
+.fa-search{
+    width: 200px;
+    position: relative;
+    height: 70px;
+    overflow: hidden;
+    background: none;
+}
+
+.fa-search input{
+    width: 100%;
+    height: 100%;
+    color: black;
+    padding-top: 30px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: larger;
+}
+
+.fa-search label{
+    position: absolute;
+    bottom: 5px;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom:  1px solid black;
+}
+.fa-search label::after{
+    content:"";
+    position: absolute;
+    left: 0px;
+    bottom: -1px;
+    height:100%;
+    width: 100%;
+    border-bottom: 3px solid $color-underline;
+    background: none;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.content-name {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    margin-right: 100px;
+    transition: all 0.3s ease;
+}
+.search-icon {
+    position: absolute;
+    bottom: 10px;
+    left: 80%;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.refresh-icon {
+    position: absolute;
+    opacity: 0;
+    bottom: 12px;
+    left: 89%;
+    transition: all 0.3s ease;
+}
+
+.fa-search span + span {
+    margin-left: 20px;
+}
+
+.fa-search input:focus + .label-name .content-name,
+.fa-search input:valid + .label-name .content-name {
+    transform: translateY(-150%);
+    font-size: 14px;
+    color: black;
+}
+
+
+.fa-search input:valid + .label-name .search-icon {
+    opacity: 0;
+}
+.fa-search input:valid + .label-name .refresh-icon {
+    opacity: 1;
+    color: $color-underline;
+    pointer-events: visible;
+}
+
+.fa-search input:focus + .label-name::after,
+.fa-search input:valid + .label-name::after{
+    transform: translateY(0%);
+}
+
+.fa-search input:valid + .search-icon::after{
+    opacity: 1;
+}
+.fa-search input:valid + .refresh-icon::after{
+    opacity: 0;
+    pointer-events: none;
+}
+
+
