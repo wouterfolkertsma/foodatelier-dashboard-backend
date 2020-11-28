@@ -4,14 +4,31 @@
 
 @section('content')
     <div class="uk-card uk-card-body">
-        <div class="uk-search uk-search-default">
-            <span uk-search-icon></span>
-            <input class="uk-search-input" type="search" placeholder="">
+
+    <!--SEARCH-FILTER-->
+        <div class="fa-search">
+            <input id="query" onkeyup="tablefilter()" type="search" placeholder="" name="name" autocomplete="off" required />
+            <label for="name" class="label-name">
+                <span class="content-name">Search</span>
+                <span class="search-icon" uk-search-icon></span>
+                <button class="refresh-icon" uk-icon="refresh" onclick="tablefilterRefresh()" ></button>
+            </label>
         </div>
+
+    <!--ADD-BUTTON-->
         <a class="uk-button uk-button-primary uk-align-right" href="{{ route('company.new') }}">New company</a>
     </div>
+
+
+
+
     <div class="uk-card uk-card-body">
-        <table class="uk-table uk-table-striped">
+        <!--ZERO-RESULTS-ALERT-->
+        <div class="uk-alert-warning" uk-alert  id="noresultsalert" style="visibility: hidden">
+            <p>No Results.</p>
+        </div>
+        <!--TABLE-->
+        <table class="uk-table uk-table-striped" id="tableForm">
             <thead>
             <tr>
                 <th>ID</th>
@@ -21,7 +38,7 @@
                 <th>Action</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="resultsTable">
             @foreach($companies as $company)
                 <tr>
                     <td>{{ $company->id }}</td>
@@ -37,4 +54,42 @@
             </tbody>
         </table>
     </div>
+
+
+    <!--TABLE-FILTER-FUNCTIONS-->
+    <script>
+        function tablefilter() {
+            var input, filter, table, tr, td, i, txtValue, count;
+            count = 0;
+            input = document.getElementById("query");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("resultsTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        count++;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+            if(count < 1){
+                document.getElementById("noresultsalert").style.visibility='visible';
+                document.getElementById("tableForm").style.visibility='hidden';
+            }else{
+                document.getElementById("noresultsalert").style.visibility='hidden';
+                document.getElementById("tableForm").style.visibility='visible';
+            }
+        }
+
+        function tablefilterRefresh(){
+            document.getElementById('query').value = '';
+            tablefilter();
+        }
+    </script>
+
 @endsection
