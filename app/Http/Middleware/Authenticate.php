@@ -28,8 +28,8 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next)
     {
-        if (!auth()->user()->isEmployee()) {
-            abort(404);
+        if (!auth()->user()) {
+            return redirect()->route('login');
         }
 
         return $next($request);
