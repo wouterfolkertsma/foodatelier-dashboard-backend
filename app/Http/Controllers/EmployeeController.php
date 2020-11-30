@@ -47,8 +47,8 @@ class EmployeeController extends Controller
      */
     public function employeesManager(Request $request)
     {
-        $employees = Employee::with('user')->get();
-        return view('admin.employee-management', ['employees' => $employees]);
+        $employees = Employee::all();
+        return view('admin.employee-management',['employees' => $employees]);
     }
 
     /**
