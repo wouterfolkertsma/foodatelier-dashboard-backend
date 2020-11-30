@@ -18,9 +18,6 @@
         @include('sidebar.client')
     @endif
 
-    <div class="container">
-        <img src="/../images/contentbg.svg">
-    </div>
         
     <div class="container container-main">
         @yield('content')
