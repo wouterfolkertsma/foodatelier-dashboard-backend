@@ -3,12 +3,15 @@
 @section('title', 'Login')
 
 @section('content')
-    <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+    <img class="logo uk-animation-fade" src="/../images/LG_foodatelier zonder pay off-image.png">
+
+    <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade uk-background-default uk-background-cover" uk-height-viewport>
         <div class="uk-width-1-1">
-            <div class="uk-container">
+            <div class="uk-container uk-text-center">
+                <h1 class= "uk-text-bold">App Name</h1>
                 <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
                     <div class="uk-width-1-1@m">
-                        <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                        <div class="uk-margin uk-width-large uk-margin-auto uk-card-default uk-card-body">
                             <h3 class="uk-card-title uk-text-center">Welcome back!</h3>
                             {{ Form::open() }}
                                 <div class="uk-margin">
@@ -43,5 +46,6 @@
             </div>
         </div>
     </div>
+
 @endsection
 
