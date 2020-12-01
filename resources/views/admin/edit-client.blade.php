@@ -19,8 +19,20 @@
                 {{ Form::label('email', 'Email:', ['class' => 'uk-form-label']) }}
                 {{ Form::email('email', $client->user->email, ['class' => 'uk-input uk-form-width-large']) }}
             </div>
-
-            {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+            <!--SAVE-BUTTON-->
+            <div class="save_button_area">
+                <div class="save_button">
+                    {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+                </div>
+                <div class="flash-message">
+                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                        @if(Session::has('alert-' . $msg))
+                            <p class="alert uk-alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                        @endif
+                    @endforeach
+                </div> <!-- end .flash-message -->
+            </div>
+            <!--DELETE-BUTTON-->
             <a class="uk-button uk-button-danger" onclick="return confirm('Are you sure? This can not be undone')"
                href="{{ route('client.delete', ['id' => $client->id]) }}">Delete user
             </a>
