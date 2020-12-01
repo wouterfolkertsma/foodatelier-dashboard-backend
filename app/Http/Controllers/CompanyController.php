@@ -177,8 +177,11 @@ class CompanyController extends Controller
 
         if ($success) {
             $company = Company::where('name', $request->input('name'))->firstOrFail();
+            $successDashboard = $this->companyRepository->createDashboard($company);
 
-            return redirect()->route('company.edit', ['id' => $company->id]);
+            if ($successDashboard) {
+                return redirect()->route('company.edit', ['id' => $company->id]);
+            }
         }
     }
 

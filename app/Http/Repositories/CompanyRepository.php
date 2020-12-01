@@ -4,6 +4,7 @@ namespace App\Http\Repositories;
 
 use App\Models\Client;
 use App\Models\Company;
+use App\Models\Dashboard;
 use App\Models\User;
 use App\Traits\CreatesUsers;
 use Exception;
@@ -83,5 +84,18 @@ class CompanyRepository extends Repository
     private function createNewCompany(array $data)
     {
         return $this->getModel()->newInstance($data)->save();
+    }
+
+    /**
+     * @param Company $company
+     * @return bool
+     */
+    public function createDashboard(Company $company)
+    {
+       $dashBoard = new Dashboard();
+       $dashBoard->company_id = $company->id;
+       $dashBoard->name = $company->name . ' Dashboard';
+
+       return $dashBoard->save();
     }
 }

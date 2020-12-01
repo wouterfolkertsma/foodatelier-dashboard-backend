@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Class StoreUser
+ * Class StoreCompany
  *
  * @package App\Http\Requests
  */
