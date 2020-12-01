@@ -1,0 +1,64 @@
+.account-type-selection{
+    display: flex;
+    justify-content: center;
+
+    padding-top: 10px;
+}
+
+.options{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    z-index: 4;
+    margin-top: ($navbar-hight - $logout-button-diameter) /2;
+    margin-left: 240px;
+    height: $logout-button-diameter;
+
+    align-items: center;
+    justify-content: left;
+    display: flex;
+    color: black;
+
+    /* Links-------------------------------------------------- */
+
+    &-link {
+        text-decoration: none;
+        color: $color-text-black;
+        margin-left: 20px;
+        img {
+            width: 35px;
+            padding: 1em 0.5em;
+            position: center;
+        }
+        &:hover {
+            text-decoration: none;
+            color: $color-text-black;
+            transition: all 0.3s ease;
+        }
+        span{
+            &:hover {
+                text-decoration: none;
+                color: $color-underline;
+                position: relative;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            &:before {
+                content: "";
+                position: absolute;
+                width: 75%;
+                transform: scaleX(0);
+                height: 2px;
+                bottom: 15px;
+                left: 35px;
+                background-color: black;
+                transform-origin: bottom right;
+                transition: transform 0.25s ease-out;
+            }
+            &:hover::before{
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+        }
+    }
+}
