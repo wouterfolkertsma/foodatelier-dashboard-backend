@@ -15,7 +15,7 @@
 
 
 
-    <footer>
+    <footer class= "uk-animation-fade">
 
         <div class="logo_company">
             <B>Developed By:</B><br><br>

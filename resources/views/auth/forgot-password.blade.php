@@ -10,7 +10,7 @@
             <div class="uk-container">
                 <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
                     <div class="uk-width-1-1@m">
-                        <div class="uk-margin uk-width-large uk-margin-auto uk-card-default uk-card-body">
+                        <div class="uk-margin-large uk-width-large uk-margin-auto uk-card-default uk-card-body">
                             <h3 class="uk-card-title uk-text-center">Reset password!</h3>
                             @if(session('status'))
                                 <div class="alert uk-alert-success" role="alert">
@@ -20,7 +20,7 @@
                             @csrf
                             {{ Form::open(['route' => 'password.request']) }}
                                 <div class="uk-margin">
-                                    <div class="uk-inline uk-width-1-1 uk-margin">
+                                    <div class="uk-inline uk-width-1-1 uk-margin-large">
                                         <span class="uk-form-icon" uk-icon="icon: mail"></span>
                                         {{ Form::text('email', '', ['class' => 'uk-input']) }}
                                     </div>

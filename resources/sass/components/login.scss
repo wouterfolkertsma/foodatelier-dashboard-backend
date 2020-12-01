@@ -8,6 +8,317 @@
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
 
+/*----------------------------------------UIKit----------------------------------------*/
+
+/*GLOBAL VARIABLES*/
+
+/*MARGIN*/
+$global-medium-margin: 40px !default;
+$global-large-margin: 70px !default;
+$global-margin: 20px !default;
+
+/*FORM*/
+$form-height: $global-control-height !default;
+$global-control-height: 40px !default;
+$global-muted-color: #999 !default;
+
+/*SECTION*/
+$global-muted-background: #f8f8f8 !default;
+
+/*LINKS*/
+$global-link-color:rgba(255,103,91) !default;
+$base-link-color: $global-link-color !default;
+$base-link-text-decoration: none !default;
+$global-link-hover-color: rgba(255,75,60) !default;
+$base-link-hover-color: $global-link-hover-color !default;
+$base-link-hover-text-decoration: underline !default;
+
+/*FONT*/
+$global-font-size: 16px !default;
+$global-large-font-size: 1.5rem !default;
+
+/*BUTTON*/
+$global-primary-background: rgba(255,103,91) !default;
+$global-inverse-color: #fff !default;
+$global-control-large-height: 55px !default;
+$global-medium-font-size: 1.25rem !default;
+$global-gutter: 30px !default;
+$global-medium-gutter: 40px !default;
+
+
+
+/*-----------------------BACKGROUND-----------------------*/
+$background-default-background:                    url(/../images/loginbg.jpg);
+
+.uk-background-default{
+  background-image: linear-gradient(to bottom,rgba(52, 52, 54, 0.5)35%,rgba(22, 16, 14, 0.65)74%), $background-default-background;
+  background-repeat: no-repeat;}
+
+  .uk-background-cover{
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+  }
+
+
+/*-----------------------CARD-----------------------*/
+$card-body-padding-horizontal:                     $global-gutter !default;
+$card-body-padding-vertical:                       $global-gutter !default;
+$card-title-font-size:                             $global-large-font-size !default;
+$card-title-line-height:                           1.0 !default;
+
+.uk-card-default{
+    background: url(/../images/contentbg.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.uk-card-body {
+  display: flow-root;
+  padding: $card-body-padding-vertical $card-body-padding-horizontal;
+}
+
+.uk-card-title {
+  font-size: $card-title-font-size;
+  line-height: $card-title-line-height;
+}
+
+
+/*-----------------------TEXT-----------------------*/
+$text-small-font-size:                           $global-small-font-size !default;
+$text-small-line-height:                         1.5 !default;
+
+.uk-text-center{
+  text-align: center !important;
+}
+
+.uk-text-small {
+  font-size: $text-small-font-size;
+  line-height: $text-small-line-height;
+}
+
+/*-----------------------SUBLINK-----------------------*/
+
+
+/*-----------------------CONTAINER-----------------------*/
+$container-max-width:                              1200px !default;
+$container-padding-horizontal:                     15px !default;
+
+.uk-container {
+  display: flow-root;
+  /* 1 */
+  box-sizing: content-box;
+  max-width: $container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-padding-horizontal;
+  padding-right: $container-padding-horizontal;
+}
+
+
+/*-----------------------SECTION-----------------------*/
+$section-padding-vertical:                         $global-medium-margin !default;
+$section-padding-vertical-m:                       $global-large-margin !default;
+$breakpoint-medium:                                960px !default;
+$section-muted-background:                         $global-muted-background !default;
+
+.uk-section{
+  display: flow-root;
+  box-sizing: border-box; /* 1 */
+  padding-top: $section-padding-vertical;
+  padding-bottom: $section-padding-vertical;
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-medium) {
+
+  .uk-section {
+      padding-top: $section-padding-vertical-m;
+      padding-bottom: $section-padding-vertical-m;
+  }
+
+}
+
+.uk-section-muted {
+  background: $section-muted-background;
+}
+
+/*-----------------------FLEX-----------------------*/
+
+.uk-flex{
+  display: flex;
+ }
+
+.uk-flex-middle{
+  align-items: center;
+ }
+
+
+/*-----------------------ANIMATION-----------------------*/
+$animation-fade-duration:                          0.8s !default;
+
+.uk-animation-fade{
+  animation-name: uk-fade;
+  animation-duration: $animation-fade-duration;
+  animation-timing-function: linear;
+}
+
+
+/*-----------------------HEIGHT/WIDTH-----------------------*/
+$width-large-width:                                450px !default;
+
+.uk-height-viewport { min-height: 100vh; }
+
+.uk-width-1-1\@m { width: 100%; }
+
+.uk-width-large { width: $width-large-width; }
+
+
+/*-----------------------MARGIN-----------------------*/
+$margin-margin:                                    $global-margin !default;
+
+.uk-margin-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.uk-margin { margin-bottom: $margin-margin; }
+* + .uk-margin { margin-top: $margin-margin !important; }
+
+.uk-margin-large{
+  margin-bottom: $global-large-margin
+}
+
+
+/*-----------------------INLINE-----------------------*/
+[class*='uk-inline'] {
+  /* 1 */
+  display: inline-block;
+  /* 2 */
+  position: relative;
+  /* 3 */
+  max-width: 100%;
+  /* 4 */
+  vertical-align: middle;
+  /* 5 */
+  -webkit-backface-visibility: hidden;
+}
+
+
+/*-----------------------FORM-----------------------*/
+$form-icon-width:                                $form-height !default;
+$form-icon-color:                                $global-muted-color !default;
+
+.uk-form-icon {
+  /* 1 */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  /* 2 */
+  width: $form-icon-width;
+  /* 3 */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  /* 4 */
+  color: $form-icon-color;
+}
+
+
+/*-----------------------BUTTON-----------------------*/
+$button-padding-horizontal:                      $global-gutter !default;
+$button-line-height:                             $global-control-height !default;
+$button-font-size:                               $global-font-size !default;
+$button-primary-background:                      $global-primary-background !default;
+$button-primary-color:                           $global-inverse-color !default;
+$button-primary-hover-background:                darken($button-primary-background, 5%) !default;
+$button-primary-hover-color:                     $global-inverse-color !default;
+$button-primary-active-background:               darken($button-primary-background, 10%) !default;
+$button-primary-active-color:                    $global-inverse-color !default;
+$button-large-line-height:                       $global-control-large-height !default;
+$button-large-font-size:                         $global-medium-font-size !default;
+$button-large-padding-horizontal:                $global-medium-gutter !default;
+
+.uk-button {
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  border: none;
+  /* 3 */
+  overflow: visible;
+  /* 4 */
+  font: inherit;
+  color: inherit;
+  /* 5 */
+  text-transform: none;
+  /* 6 */
+  -webkit-appearance: none;
+  border-radius: 0;
+  /* 7 */
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 $button-padding-horizontal;
+  vertical-align: middle;
+  font-size: $button-font-size;
+  /* 8 */
+  line-height: $button-line-height;
+  /* 9 */
+  text-align: center;
+  /* 10 */
+  text-decoration: none;
+}
+
+.uk-button:not(:disabled) { cursor: pointer; }
+
+/*
+* Remove the inner border and padding in Firefox.
+*/
+
+.uk-button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* Hover */
+.uk-button:hover {
+  /* 9 */
+  text-decoration: none;
+}
+
+/* Focus */
+.uk-button:focus {
+  outline: none;
+}
+
+.uk-button-primary {
+  background-color: $button-primary-background;
+  color: $button-primary-color;
+}
+
+/* Hover + Focus */
+.uk-button-primary:hover,
+.uk-button-primary:focus {
+  background-color: $button-primary-hover-background;
+  color: $button-primary-hover-color;
+}
+
+/* OnClick + Active */
+.uk-button-primary:active,
+.uk-button-primary.uk-active {
+  background-color: $button-primary-active-background;
+  color: $button-primary-active-color;
+}
+
+.uk-button-large {
+  padding: 0 $button-large-padding-horizontal;
+  line-height: $button-large-line-height;
+  font-size: $button-large-font-size;
+}
+
+
+
+
 
 /*------Footer-------*/
 
@@ -22,17 +333,7 @@ B{
   color: rgb(167, 167, 167);
 }
 
-.footer_address{
-  color: rgba(255,103,91);
-  flex: 1;
-}
-
-.footer_details{
-  color: rgba(255,103,91);
-  flex: 1;
-}
-
-.footer_project{
+.footer_address, .footer_details, .footer_project{
   color: rgba(255,103,91);
   flex: 1;
 }
