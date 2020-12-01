@@ -112,7 +112,7 @@ class CompanyController extends Controller
             ->firstOrFail();
 
         $this->clientRepository->save($request->all(), $client);
-
+        $request->session()->flash('alert-success', 'Client was successful updated!');
         return view('admin.edit-client', [
             'client' => $client,
         ]);

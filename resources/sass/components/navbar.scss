@@ -1,5 +1,8 @@
 $logout-button-diameter: 65px;
 $navbar-hight: 85px;
+
+
+
 .navbar-border{
 
     height: $navbar-hight;
@@ -44,11 +47,9 @@ $navbar-hight: 85px;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 4;
+    z-index: 3;
     outline: none;
-
     display: flex;
-
     justify-content: flex-end;
 }
 

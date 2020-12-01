@@ -18,6 +18,7 @@
         @include('sidebar.client')
     @endif
 
+        
     <div class="container container-main">
         @if ($errors->any())
             <div class="uk-alert-danger" uk-alert>
@@ -32,6 +33,7 @@
 
         @yield('content')
     </div>
+    
 
     <!------------- scrips --------------->
     <script src="{{ asset('js/app.js') }}"></script>
