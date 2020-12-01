@@ -19,26 +19,40 @@ class ClientController extends Controller
     {
         return view('client.dashboard');
     }
+
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function newsfeed(Request $request)
     {
         return view('client.newsfeed');
-    }
-    public function socialmedia(Request $request)
-    {
-        return view('client.social-media');
-    }
-    public function personalinsights(Request $request)
-    {
-        return view('client.personal-insights');
-    }
-    public function trends(Request $request)
-    {
-        return view('client.trends');
     }
 
     /**
      * @param Request $request
      * @return Application|Factory|View
      */
+    public function socialmedia(Request $request)
+    {
+        return view('client.social-media');
+    }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function personalinsights(Request $request)
+    {
+        return view('client.personal-insights');
+    }
+
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function trends(Request $request)
+    {
+        return view('client.trends');
+    }
 }
