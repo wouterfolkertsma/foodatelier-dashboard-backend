@@ -38,9 +38,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/add-employee', [EmployeeController::class, 'saveEmployee'])->name('employee.save');
     Route::get('/manage/add-employee', [EmployeeController::class, 'newEmployee'])->name('employee.new');
 
-    Route::get('/manage/{id}/client', [EmployeeController::class, 'editEmployee'])->name('employee.edit');
-    Route::post('/manage/{id}/client', [EmployeeController::class, 'updateEmployee'])->name('employee.update');
-    Route::get('/manage/{id}/client/delete', [EmployeeController::class, 'deleteEmployee'])->name('employee.delete');
+    Route::get('/manage/{id}/employee', [EmployeeController::class, 'editEmployee'])->name('employee.edit');
+    Route::post('/manage/{id}/employee', [EmployeeController::class, 'updateEmployee'])->name('employee.update');
+    Route::get('/manage/{id}/employee/delete', [EmployeeController::class, 'deleteEmployee'])->name('employee.delete');
 
     Route::get('/dashboard', 'ClientController@dashboard')->name('client-dashboard');
     Route::get('/personalinsights', 'ClientController@personalinsights')->name('client-personal-insights');
