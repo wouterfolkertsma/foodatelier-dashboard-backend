@@ -24,7 +24,7 @@ class ClientController extends Controller
      * @param Request $request
      * @return Application|Factory|View
      */
-    public function newsfeed(Request $request)
+    public function newsFeed(Request $request)
     {
         return view('client.newsfeed');
     }
@@ -33,7 +33,7 @@ class ClientController extends Controller
      * @param Request $request
      * @return Application|Factory|View
      */
-    public function socialmedia(Request $request)
+    public function socialMedia(Request $request)
     {
         return view('client.social-media');
     }
@@ -42,7 +42,7 @@ class ClientController extends Controller
      * @param Request $request
      * @return Application|Factory|View
      */
-    public function personalinsights(Request $request)
+    public function personalInsights(Request $request)
     {
         return view('client.personal-insights');
     }

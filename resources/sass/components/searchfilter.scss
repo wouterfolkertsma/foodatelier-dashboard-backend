@@ -1,12 +1,13 @@
-.fa-search{
+.fa-search {
     width: 200px;
     position: relative;
     height: 70px;
     overflow: hidden;
     background: none;
+    display: inline-block;
 }
 
-.fa-search input{
+.fa-search input {
     width: 100%;
     height: 100%;
     color: black;
