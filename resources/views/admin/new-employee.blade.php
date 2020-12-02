@@ -3,7 +3,7 @@
 @section('title', 'new Employee')
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default uk-card-body">
         {{ Form::open(['route' => ['employee.save'], 'class' => 'uk-form-stacked']) }}
         <fieldset class="uk-fieldset">
             <legend class="uk-legend">New employee</legend>
@@ -24,7 +24,7 @@
 
             {{ Form::hidden('role_id', $role->id) }}
 
-            {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+            {{ Form::submit('Save', ['class' => 'uk-button uk-button-primary']) }}
         </fieldset>
         {{ Form::close() }}
     </div>

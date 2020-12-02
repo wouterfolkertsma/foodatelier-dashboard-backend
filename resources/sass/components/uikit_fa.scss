@@ -13,16 +13,17 @@ a:hover, .uk-link:hover, .uk-link-toggle:hover .uk-link, .uk-link-toggle:focus .
 
 .uk-text-bold{
   color: #ff4b3c;
-  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.2));
 }
 
 
 /*-----------------------CARD-----------------------*/
 
 .uk-card-default{
-  border-radius: 25px;
+  border-radius: 20px;
   background: #E9E9E9;
-  box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+  box-shadow: 5px 5px 10px rgba(0,0,0,.2);
+  margin: 35px;
 }
 
 
@@ -52,8 +53,15 @@ a:hover, .uk-link:hover, .uk-link-toggle:hover .uk-link, .uk-link-toggle:focus .
 
 .uk-input:focus{
   border: 1px solid rgba(219,66,50);
-  color: rgba(219,66,50);
 }
+
+/*-----------------------DIVIDER-----------------------*/
+
+.uk-divider-icon{
+  margin: 35px;
+}
+
+
 
 
 
