@@ -1,30 +1,30 @@
 @extends('sidebar.base')
 
 @section('links')
-
     <a class="menu-submenu" href="{{ route('client-manager') }}">
         <a class="menu-link" href="{{ route('client-dashboard') }}">
-            <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-dashboard.svg">Dashboard</span>
+            <span tabindex="0" class="icon-dashboard"><img src="/../images/icons/icon-dashboard.svg">Dashboard</span>
         </a>
         <ul>
-            <a class="menu-link" href="{{ route('client-personal-insights') }}">
-                <li class ="sublink" tabindex="0" class="icon-dashboard"><span>Personal Insights</span></li>
-            </a>
+            <li tabindex="0" class="icon-dashboard sublink">
+                <a class="menu-link" href="{{ route('client-personal-insights') }}">Personal insights</a>
+            </li>
 
-            <a class="menu-link" href="{{ route('client-newsfeed') }}">
-                <li class ="sublink" tabindex="0" class="icon-dashboard"><span>Newsfeed</span></li>
-            </a>
+            <li tabindex="0" class="icon-dashboard sublink">
+                <a class="menu-link" href="{{ route('client-newsfeed') }}">Newsfeed</a>
+            </li>
 
-            <a class="menu-link" href="{{ route('client-trends') }}">
-                <li class ="sublink" tabindex="0" class="icon-dashboard"><span>Trends</span></li>
-            </a>
+            <li tabindex="0" class="icon-dashboard sublink">
+                <a class="menu-link" href="{{ route('client-trends') }}">Trends</a>
+            </li>
 
-            <a class="menu-link" href="{{ route('client-social-media') }}">
-                <li class ="sublink" tabindex="0" class="icon-dashboard"><span>Social Media</span></li>
-            </a>
+            <li tabindex="0" class="icon-dashboard sublink">
+                <a class="menu-link" href="{{ route('client-social-media') }}">Social Media</a>
+            </li>
+
+            <li tabindex="0" class="icon-dashboard sublink">
+                <a class="menu-link" href="{{ route('client-files') }}">Files</a>
+            </li>
         </ul>
-        </li>
     </a>
-
-
 @endsection

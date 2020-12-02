@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * Trait GeneratesLinks
+ * Trait CreatesUsers
  *
  * @package App\Traits
  */
@@ -49,9 +49,6 @@ trait CreatesUsers
             'profile_id' => $profileId,
             'password' => Hash::make($password)
         ]))->save();
-
-        // TODO: Make email template etc working
-//        $user->notify(new CreatePassword($user, $password));
 
         return $user !== null;
     }

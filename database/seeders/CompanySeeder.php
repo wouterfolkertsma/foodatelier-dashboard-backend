@@ -10,7 +10,7 @@ class CompanySeeder extends Seeder
     /**
      * @var string[]
      */
-    public static $companies = ['Beemster', 'Body & Fit'];
+    public static $companies = ['Beemster', 'Body & Fit', "Unilever"];
 
     /**
      * Run the database seeds.

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/socialmedia', 'ClientController@socialmedia')->name('client-social-media');
     Route::get('/trends', 'ClientController@trends')->name('client-trends');
     Route::get('/newsfeed', 'ClientController@newsfeed')->name('client-newsfeed');
+
+    Route::get('/files', [ClientController::class, 'files'])->name('client-files');
 });
 
 

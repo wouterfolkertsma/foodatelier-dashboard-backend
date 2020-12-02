@@ -6,13 +6,15 @@ export default class SearchBar {
         this.noResultsAlert = document.getElementById("no-results-alert");
         this.tableForm = document.getElementById("tableForm");
 
-        this.refreshInput.addEventListener('click', (e) => {
-            this.refreshTable()
-        });
+        if (this.refreshInput && this.input) {
+            this.refreshInput.addEventListener('click', (e) => {
+                this.refreshTable()
+            });
 
-        this.input.addEventListener('keyup', (e) => {
-            this.searchTable(e);
-        })
+            this.input.addEventListener('keyup', (e) => {
+                this.searchTable(e);
+            })
+        }
     }
 
     searchTable(e) {
