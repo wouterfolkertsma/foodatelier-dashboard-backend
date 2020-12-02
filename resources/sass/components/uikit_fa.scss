@@ -1,0 +1,63 @@
+/*-----------------------LINK-----------------------*/
+
+a, .uk-link {
+  color: #ff675b;
+}
+
+a:hover, .uk-link:hover, .uk-link-toggle:hover .uk-link, .uk-link-toggle:focus .uk-link {
+  color: #ff4b3c;
+}
+
+
+/*-----------------------TEXT-----------------------*/
+
+.uk-text-bold{
+  color: #ff4b3c;
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
+}
+
+
+/*-----------------------CARD-----------------------*/
+
+.uk-card-default{
+  border-radius: 25px;
+  background: #E9E9E9;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+}
+
+
+/*-----------------------BUTTON-----------------------*/
+
+.uk-button-primary {
+  background-color: $color-button-background-default;
+  color: $button-primary-color;
+}
+
+/* Hover + Focus */
+.uk-button-primary:hover,
+.uk-button-primary:focus {
+  background-color: $color-button-background-hover;
+  color: $button-primary-color;
+}
+
+/* OnClick + Active */
+.uk-button-primary:active,
+.uk-button-primary.uk-active {
+  background-color: $color-button-background-default;
+  color: $button-primary-color;
+}
+
+
+/*-----------------------INPUT-----------------------*/
+
+.uk-input:focus{
+  border: 1px solid rgba(219,66,50);
+  color: rgba(219,66,50);
+}
+
+
+
+
+
+
+
