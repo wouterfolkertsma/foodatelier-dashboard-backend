@@ -5,7 +5,7 @@
 @section('content')
     <img class="logo uk-animation-fade" src="/../images/LG_foodatelier zonder pay off-image.png">
 
-    <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade uk-background-default uk-background-cover" uk-height-viewport>
+    <div class="uk-section uk-flex uk-flex-middle uk-animation-fade uk-background-default uk-background-cover" uk-height-viewport>
         <div class="uk-width-1-1">
             <div class="uk-container">
                 <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
