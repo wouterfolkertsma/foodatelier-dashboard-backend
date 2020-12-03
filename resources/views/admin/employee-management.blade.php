@@ -3,17 +3,13 @@
 @section('title', 'Employee Management')
 
 @section('content')
-    <div class="account-type-selection">
-        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('client-manager') }}">Client-Manager</a>
-    </div>
     <div class="uk-card uk-card-body">
         <!--SEARCH-FILTER-->
         @include('includes/search-bar')
 
         <!--ADD-BUTTON-->
         <a class="uk-button uk-button-primary uk-align-right" href="{{ route('employee.new') }}">New Employee</a>
-    </div>
-    <div class="uk-card uk-card-body">
+
         <!--ZERO-RESULTS-ALERT-->
         <div class="uk-alert-warning" uk-alert id="no-results-alert" style="display: none">
             <p>No Results.</p>

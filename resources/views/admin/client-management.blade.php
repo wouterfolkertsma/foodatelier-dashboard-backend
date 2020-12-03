@@ -3,10 +3,6 @@
 @section('title', 'Client Management')
 
 @section('content')
-    <div class="account-type-selection">
-        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('employee-manager') }}">Employee-Manager</a>
-    </div>
-
     <div class="uk-card uk-card-body">
         <!--SEARCH-FILTER-->
         @include('includes/search-bar')
