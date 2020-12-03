@@ -31,7 +31,7 @@
 
         <div class= "footer_details">
             <B>Client Details:</B><br><br>
-            <a class ="sublink" href="https://hetfoodatelier.nl/">hetfoodatelier.nl</a><br>
+            <a class ="sublink" href="https://hetfoodatelier.nl/"target="_blank">hetfoodatelier.nl</a><br>
             info@hetfoodatelier.nl
         </div>
 
