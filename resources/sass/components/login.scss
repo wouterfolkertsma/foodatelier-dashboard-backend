@@ -1,3 +1,5 @@
+/*-----------------------FA_LOGO-----------------------*/
+
 .logo{
   width: 110px;
   height: 200px;
@@ -7,6 +9,18 @@
   left: 180px;
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
+
+
+/*-----------------------BACKGROUND-----------------------*/
+
+.uk-background-default{
+  background-image: linear-gradient(to bottom,rgba(52, 52, 54, 0.5)35%,rgba(22, 16, 14, 0.65)74%), url(/../images/loginbg.jpg);
+  background-repeat: no-repeat;}
+
+  .uk-background-cover{
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+  }
 
 
 /*------Footer-------*/
@@ -22,17 +36,7 @@ B{
   color: rgb(167, 167, 167);
 }
 
-.footer_address{
-  color: rgba(255,103,91);
-  flex: 1;
-}
-
-.footer_details{
-  color: rgba(255,103,91);
-  flex: 1;
-}
-
-.footer_project{
+.footer_address, .footer_details, .footer_project{
   color: rgba(255,103,91);
   flex: 1;
 }

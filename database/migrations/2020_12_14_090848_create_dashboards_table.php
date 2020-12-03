@@ -15,12 +15,13 @@ class CreateDashboardsTable extends Migration
     {
         Schema::create('dashboards', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('name');
 
             $table->foreignId('company_id')
                 ->constrained('companies')
                 ->onDelete('restrict');
+
+            $table->timestamps();
         });
     }
 

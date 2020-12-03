@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
@@ -42,15 +43,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/add-employee', [EmployeeController::class, 'saveEmployee'])->name('employee.save');
     Route::get('/manage/add-employee', [EmployeeController::class, 'newEmployee'])->name('employee.new');
 
-    Route::get('/manage/{id}/client', [EmployeeController::class, 'editEmployee'])->name('employee.edit');
-    Route::post('/manage/{id}/client', [EmployeeController::class, 'updateEmployee'])->name('employee.update');
-    Route::get('/manage/{id}/client/delete', [EmployeeController::class, 'deleteEmployee'])->name('employee.delete');
+    Route::get('/manage/{id}/employee', [EmployeeController::class, 'editEmployee'])->name('employee.edit');
+    Route::post('/manage/{id}/employee', [EmployeeController::class, 'updateEmployee'])->name('employee.update');
+    Route::get('/manage/{id}/employee/delete', [EmployeeController::class, 'deleteEmployee'])->name('employee.delete');
 
     Route::get('/dashboard', 'ClientController@dashboard')->name('client-dashboard');
     Route::get('/personalinsights', 'ClientController@personalinsights')->name('client-personal-insights');
     Route::get('/socialmedia', 'ClientController@socialmedia')->name('client-social-media');
     Route::get('/trends', 'ClientController@trends')->name('client-trends');
     Route::get('/newsfeed', 'ClientController@newsfeed')->name('client-newsfeed');
+
+    Route::get('/files', [ClientController::class, 'files'])->name('client-files');
 });
 
 

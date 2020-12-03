@@ -15,11 +15,11 @@
 
 
 
-    <footer>
+    <footer class= "uk-animation-fade">
 
         <div class="logo_company">
             <B>Developed By:</B><br><br>
-            <img src="/../images/company-logo.png" width= "160px" height="auto">
+            <img src="/images/company-logo.png" width= "160px" height="auto">
         </div>
 
         <div class= "footer_address">
