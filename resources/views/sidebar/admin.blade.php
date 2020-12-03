@@ -5,6 +5,9 @@
     <a class="menu-link" href="{{ route('client-manager') }}">
         <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-controlpanel.svg">Control-Panel</span></li>
     </a>
+    <a class="menu-link" href="{{ route('dashboard-manager') }}">
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">Dashboard overview</span></li>
+    </a>
     <a class="menu-submenu" href="{{ route('client-manager') }}">
         <a class="menu-link" href="{{ route('client-manager') }}">
             <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-dashboard.svg">Dashboard</span>
