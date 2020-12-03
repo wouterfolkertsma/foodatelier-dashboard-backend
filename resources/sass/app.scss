@@ -11,6 +11,8 @@
 @import "components/uikit_fa";
 @import "components/controlpanel";
 
+@import "vendors/bootstrap/bootstrap-grid";
+
 * {
   font-family: MetropolisRegular;
     scrollbar-color: $color-underline $color-text-grey;

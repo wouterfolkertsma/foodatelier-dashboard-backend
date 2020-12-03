@@ -26,7 +26,7 @@ class FileFactory extends Factory
         $originalFileName = str_replace('resources/images/', '', $randomFile);
 
         return [
-            'file_name' => $originalFileName,
+            'name' => $originalFileName,
             'file_path' => Storage::putFile('storage', $randomFile)
         ];
     }
