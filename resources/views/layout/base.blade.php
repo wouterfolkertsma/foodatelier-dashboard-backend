@@ -18,7 +18,6 @@
         @include('sidebar.client')
     @endif
 
-        
     <div class="container container-main">
         @if ($errors->any())
             <div class="uk-alert-danger" uk-alert>
@@ -33,9 +32,29 @@
 
         @yield('content')
     </div>
-    
+
 
     <!------------- scrips --------------->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <!------------- alerts --------------->
+    @if (\Session::has('success'))
+    <script type="application/javascript">
+        window.jsAlertSuccess('{{ \Session::get('success') }}')
+    </script>
+    @endif
+
+    @if (\Session::has('error'))
+        <script type="application/javascript">
+            window.jsAlertError('{{ \Session::get('error') }}')
+        </script>
+    @endif
+
+    @if (\Session::has('successToast'))
+        <script type="application/javascript">
+            window.jsAlertSuccessToast('{{ \Session::get('successToast') }}')
+        </script>
+    @endif
+
 </body>
 </html>

@@ -33,12 +33,16 @@ class EmployeeController extends Controller
     /** @var CompanyRepository */
     private $companyRepository;
 
+    /**  @var PasswordResetLinkController */
+    private $passwordResetLinkController;
+
     /**
      * EmployeeController constructor.
      *
      * @param EmployeeRepository $employeeRepository
      * @param CompanyRepository $companyRepository
      * @param ClientRepository $clientRepository
+     * @param PasswordResetLinkController $passwordResetLinkController
      */
     public function __construct(
         EmployeeRepository $employeeRepository,
@@ -52,6 +56,16 @@ class EmployeeController extends Controller
         $this->passwordResetLinkController = $passwordResetLinkController;
     }
 
+    public function fileManager(Request $request)
+    {
+        $files = null;
+
+
+        return view('admin.file-management', [
+            'files' => $files
+        ]);
+    }
+
     /**
      * @param Request $request
      * @return Application|Factory|View
@@ -59,6 +73,7 @@ class EmployeeController extends Controller
     public function employeesManager(Request $request)
     {
         $employees = Employee::all();
+
         return view('admin.employee-management',['employees' => $employees]);
     }
 
@@ -104,10 +119,11 @@ class EmployeeController extends Controller
         try {
             $this->employeesRepository->delete($employee);
         } catch (Exception $exception) {
+            redirect()->back()->with('error', 'Something went wrong');
             dd($exception);
         }
 
-        return redirect()->route('employee-manager');
+        return redirect()->route('employee-manager')->with('success', 'Employee-Account deleted');
     }
 
     /**
@@ -129,7 +145,7 @@ class EmployeeController extends Controller
     /**
      * @param \Illuminate\Http\Request $request
      * @param int $employeeId
-     * @return Application|Factory|View
+     * @return RedirectResponse
      * @throws Throwable
      */
     public function updateEmployee(\Illuminate\Http\Request $request, int $employeeId)
@@ -138,11 +154,10 @@ class EmployeeController extends Controller
             ->with('user')
             ->firstOrFail();
 
+
         $this->employeesRepository->save($request->all(), $employee);
-        $request->session()->flash('alert-success', 'Employee was successful updated!');
-        return view('admin.edit-employee', [
-            'employee' => $employee,
-        ]);
+
+        return redirect()->route('employee.edit', ['id' => $employee->id])->with('success', 'Employee-Account updated');
     }
 
     /**
@@ -155,13 +170,13 @@ class EmployeeController extends Controller
         try {
             $success = $this->employeesRepository->save($request->all());
         } catch (Exception $exception) {
-            dd($exception);
+            redirect()->back()->with('error', 'Something went wrong');
         }
 
         if ($success) {
             $this->passwordResetLinkController->store($request);
 
-            return redirect()->route('employee-manager');
+            return redirect()->route('employee-manager')->with('success', 'Employee-Account created');
         }
     }
 
