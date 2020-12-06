@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'Client Management')
+@section('title', 'Dashboard Management')
 
 @section('content')
     <div class="uk-card uk-card-body">
@@ -8,10 +8,10 @@
         @include('includes/search-bar')
 
         <!--ADD-BUTTON-->
-        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('company.new') }}">New company</a>
+        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('employee.new') }}">New dashboard</a>
 
         <!--ZERO-RESULTS-ALERT-->
-        <div class="uk-alert-warning" uk-alert id="no-results-alert" style="display: none">
+        <div class="uk-alert-warning" uk-alert  id="no-results-alert" style="display: none">
             <p>No Results.</p>
         </div>
         <!--TABLE-->
@@ -26,14 +26,14 @@
             </tr>
             </thead>
             <tbody id="resultsTable">
-            @foreach($companies as $company)
+            @foreach($dashboards as $dashboard)
                 <tr>
-                    <td>{{ $company->id }}</td>
-                    <td data-type="name">{{ $company->name }}</td>
-                    <td>{{ $company->created_at }}</td>
-                    <td>{{ $company->updated_at }}</td>
+                    <td>{{ $dashboard->id }}</td>
+                    <td data-type="name">{{ $dashboard->name }}</td>
+                    <td>{{ $dashboard->created_at }}</td>
+                    <td>{{ $dashboard->updated_at }}</td>
                     <td>
-                        <a href="{{ route('company.edit', ['id' => $company->id]) }}">Edit</a>
+                        <a href="{{ route('dashboard.edit', ['id' => $dashboard->id]) }}">Edit</a>
                     </td>
                 </tr>
             @endforeach

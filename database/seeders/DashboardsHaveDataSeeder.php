@@ -16,8 +16,16 @@ class DashboardsHaveDataSeeder extends Seeder
      */
     public function run()
     {
-        Dashboard::all()->each(function ($dashboard) {
-            Data::all()->each(function ($data) use ($dashboard) {
+        $dataCount = Data::all()->count();
+
+        Dashboard::all()->each(function ($dashboard) use ($dataCount) {
+            $randomNumber = rand(0, $dataCount);
+
+            Data::all()->each(function ($data, $index) use ($dashboard, $randomNumber) {
+                if ($index >= $randomNumber) {
+                    return;
+                }
+
                 DB::table('dashboard_data')->insert([
                     ['dashboard_id' => $dashboard->id, 'data_id' => $data->id],
                 ]);

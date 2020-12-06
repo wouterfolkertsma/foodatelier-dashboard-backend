@@ -7,7 +7,4 @@
     <ul>
         @yield('links')
     </ul>
-    <div class="label">
-        <img src="/../images/falabel.svg">
-    </div>
 </div>

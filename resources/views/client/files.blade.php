@@ -19,7 +19,7 @@
             @foreach($files as $file)
                 <tr>
                     <td>{{ $file->data->id }}</td>
-                    <td data-type="name">{{ $file->data->file_name }}</td>
+                    <td data-type="name">{{ $file->data->name }}</td>
                     <td>{{ $file->data->file_path }}</td>
                     <td>{{ $file->data->created_at }}</td>
                     <td>

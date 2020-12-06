@@ -1,13 +1,9 @@
 .container {
-
-
-
-
   &-main {
     left: 240px;
     position: absolute;
     top: 85px;
     min-height: calc(100vh - 85px);
-    min-width: calc(100vw - 240px);
+    min-width: calc(100% - 240px);
   }
 }

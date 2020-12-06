@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/manage/new/company', [CompanyController::class, 'newCompany'])->name('company.new');
     Route::post('/manage/new/company', [CompanyController::class, 'saveCompany'])->name('company.save');
+
+    Route::get('/manage/dashboards', 'DashboardController@dashboardsManager')->name('dashboard-manager');
+    Route::get('/manage/{id}/dashboards', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
+    Route::post('/manage/{id}/dashboards', [DashboardController::class, 'updateDashboard'])->name('dashboard.update');
+    Route::get('/manage/{dashboard}/dashboards/{data}/add', [DashboardController::class, 'addDataToDashboard'])->name('dashboard.data.add');
+    Route::get('/manage/{dashboard}/dashboards/{data}/remove', [DashboardController::class, 'removeDataFromDashboard'])->name('dashboard.data.remove');
 
     Route::get('/manage/{id}/company', [CompanyController::class, 'editCompany'])->name('company.edit');
     Route::post('/manage/{id}/company', [CompanyController::class, 'updateCompany'])->name('company.update');
