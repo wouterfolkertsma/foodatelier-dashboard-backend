@@ -32,6 +32,13 @@ class ImportController extends Controller
                 ->with(['errors' =>$validator->errors()->all()]);
         }
     }
+
+    public function fileUpload(Request $request){
+
+        $file = $request->file('file');
+
+        return redirect()->route('file-manager')->with('success', 'File uploaded successfully');
+    }
 }
 
 
