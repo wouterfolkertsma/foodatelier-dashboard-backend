@@ -25,7 +25,7 @@
                 <li class ="sublink" tabindex="0" class="icon-dashboard"><span>Newsfeed</span></li>
             </a>
 
-            <a class="menu-link" href="{{ route('client-manager') }}">
+            <a class="menu-link" href="{{ route('trends-manager') }}">
                 <li class ="sublink" tabindex="0" class="icon-dashboard"><span>Trends</span></li>
             </a>
 
