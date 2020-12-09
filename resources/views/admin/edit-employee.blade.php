@@ -38,11 +38,7 @@
                 {{ Form::text('job_description', $employee->user->job_description, ['class' => 'uk-input uk-form-width-large']) }}
             </div>
             <!--SAVE-BUTTON-->
-            <div class="save_button_area">
-                <div class="save_button">
-                    {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
-                </div>
-            </div>
+            {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
             <!--DELETE-BUTTON-->
             <a class="uk-button uk-button-danger"   onclick="window.jsAlertDeleteConfirm('{{ route('employee.delete', ['id' => $employee->id]) }}')">Delete Employee-Account
             </a>
