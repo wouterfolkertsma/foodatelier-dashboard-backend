@@ -25,12 +25,18 @@ window.jsAlertSuccess = function (message){
     })
     console.log(message);
 }
-window.jsAlertSuccessHTML = function (htmlMessage){
+window.jsAlertSuccessHTMLConfirm = function (htmlMessage, confirmRoute){
     Swal.fire({
         icon: 'success',
         title: 'SUCCESS',
         html: htmlMessage,
         showConfirmButton: true,
+        showCloseButton: false,
+        showCancelButton: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = confirmRoute;
+        }
     })
     console.log(htmlMessage);
 }

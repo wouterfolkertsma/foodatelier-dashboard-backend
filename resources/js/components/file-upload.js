@@ -72,7 +72,7 @@ export default class FileUpload {
                 successMessage = successMessage.concat(currentUploadedFiles);
 
                 if (response.success) {
-                    jsAlertSuccessHTML(successMessage)
+                    jsAlertSuccessHTMLConfirm(successMessage, "files" )
                 }else{
                     jsAlertError('something went wrong')
                 }
