@@ -1,4 +1,5 @@
-<div class="uk-card uk-card-body">
+<div class="uk-card-default uk-card-body">
+    <h3>Upload</h3>
     <div class="js-upload uk-placeholder uk-text-center">
 
 

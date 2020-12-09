@@ -3,10 +3,10 @@
 @section('title', 'Edit employee')
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default-small uk-card-body">
         {{ Form::model($employee, ['route' => ['employee.update', $employee->id], 'class' => 'uk-form-stacked']) }}
         <fieldset class="uk-fieldset">
-            <legend class="uk-legend">Edit {{ $employee->user->first_name }}</legend>
+            <legend class="uk-legend">Edit: {{ $employee->user->first_name }}</legend>
             <div class="uk-margin">
                 {{ Form::label('first_name', 'First name:', ['class' => 'uk-form-label']) }}
                 {{ Form::text('first_name', $employee->user->first_name, ['class' => 'uk-input uk-form-width-large']) }}
@@ -38,15 +38,15 @@
                 {{ Form::text('job_description', $employee->user->job_description, ['class' => 'uk-input uk-form-width-large']) }}
             </div>
             <!--SAVE-BUTTON-->
-            <div class="save_button_area">
+            <div class="button_area">
                 <div class="save_button">
-                    {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+                    {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary']) }}
                 </div>
+            
+                <!--DELETE-BUTTON-->
+                <a class="delete_button uk-button uk-button-primary"   onclick="window.jsAlertDeleteConfirm('{{ route('employee.delete', ['id' => $employee->id]) }}')">Delete Employee-Account
+                </a>
             </div>
-            <!--DELETE-BUTTON-->
-            <a class="uk-button uk-button-danger"   onclick="window.jsAlertDeleteConfirm('{{ route('employee.delete', ['id' => $employee->id]) }}')">Delete Employee-Account
-            </a>
-
         </fieldset>
         {{ Form::close() }}
     </div>

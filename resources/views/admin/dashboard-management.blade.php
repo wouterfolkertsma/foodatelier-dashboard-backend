@@ -3,7 +3,8 @@
 @section('title', 'Dashboard Management')
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default uk-card-body">
+        <h3>Dashboard overview</h3>
         <!--SEARCH-FILTER-->
         @include('includes/search-bar')
 

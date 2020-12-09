@@ -3,7 +3,8 @@
 @section('title', 'Client Management')
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default uk-card-body">
+        <h3>Clients</h3>
         <!--SEARCH-FILTER-->
         @include('includes/search-bar')
 
