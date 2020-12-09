@@ -2,8 +2,23 @@
   &-main {
     left: 240px;
     position: absolute;
-    top: 85px;
+    top: 65px;
     min-height: calc(100vh - 85px);
     min-width: calc(100% - 240px);
+  }
+
+  &--full {
+    padding: 0;
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    &--full {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+      max-width: 100% !important;
+    }
   }
 }

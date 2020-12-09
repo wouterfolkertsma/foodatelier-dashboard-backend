@@ -143,7 +143,6 @@ class CompanyController extends Controller
             $success = $this->clientRepository->save($request->all());
         } catch (Exception $exception) {
             redirect()->back()->with('error', 'Something went wrong');
-            dd($exception);
         }
 
         if ($success) {
