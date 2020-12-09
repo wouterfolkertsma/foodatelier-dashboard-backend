@@ -3,18 +3,20 @@ export default class FileUpload {
         var bar = document.getElementById('js-progressbar');
         var tokenElement = document.body.querySelector('meta[name="csrf-token"]');
         var token;
+        var currentUploadedFiles;
 
         if (tokenElement) {
             token = tokenElement.content;
+            console.log('uploader is ready');
         } else {
             console.error('CSRF token not found!');
         }
-        console.log('token:' , token);
-        console.log('uploader is ready');
+
+
         UIkit.upload('.js-upload', {
 
             url: '/manage/files/upload',
-            multiple: false,
+            multiple: true,
 
 
             beforeSend: function (environment) {
@@ -24,6 +26,7 @@ export default class FileUpload {
             },
             beforeAll: function () {
                 console.log('beforeAll', arguments);
+                currentUploadedFiles = '<div><h4>Uploaded Files:</h4><ul class="uk-list uk-list-disc uk-list-primary">'
             },
             load: function () {
                 console.log('load', arguments);
@@ -31,8 +34,11 @@ export default class FileUpload {
             error: function () {
                 console.log('error', arguments);
             },
-            complete: function () {
+            complete: function (e) {
+                let response = JSON.parse(e.response);
                 console.log('complete', arguments);
+
+                currentUploadedFiles = currentUploadedFiles.concat("<li>",response.file.name,"</li>");
             },
 
             loadStart: function (e) {
@@ -57,13 +63,23 @@ export default class FileUpload {
                 bar.value = e.loaded;
             },
 
-            completeAll: function () {
-                console.log('completeAll', arguments);
+            completeAll: function (e) {
+                let response = JSON.parse(e.response);
+
+                console.log(response);
+                let successMessage = "Upload Complete!"
+                currentUploadedFiles = currentUploadedFiles.concat('</ul></div>');
+                successMessage = successMessage.concat(currentUploadedFiles);
+
+                if (response.success) {
+                    jsAlertSuccessHTML(successMessage)
+                }else{
+                    jsAlertError('something went wrong')
+                }
 
                 setTimeout(function () {
                     bar.setAttribute('hidden', 'hidden');
                 }, 1000);
-
 
             }
 

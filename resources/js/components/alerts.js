@@ -25,6 +25,15 @@ window.jsAlertSuccess = function (message){
     })
     console.log(message);
 }
+window.jsAlertSuccessHTML = function (htmlMessage){
+    Swal.fire({
+        icon: 'success',
+        title: 'SUCCESS',
+        html: htmlMessage,
+        showConfirmButton: true,
+    })
+    console.log(htmlMessage);
+}
 window.jsAlertSuccessToast = function (message){
     const Toast = Swal.mixin({
         toast: true,

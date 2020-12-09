@@ -10,6 +10,7 @@ use App\Http\Repositories\EmployeeRepository;
 use App\Http\Requests\StoreEmployee;
 use App\Models\Client;
 use App\Models\Company;
+use App\Models\Data\Data;
 use App\Models\Employee;
 use App\Models\Role;
 use Illuminate\Contracts\Foundation\Application;
@@ -56,13 +57,25 @@ class EmployeeController extends Controller
         $this->passwordResetLinkController = $passwordResetLinkController;
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function fileManager(Request $request)
     {
-        $files = null;
-
+        $allData = Data::all();
 
         return view('admin.file-management', [
-            'files' => $files
+            'data' => $allData
+        ]);
+    }
+
+    public function trendsManager(Request $request){
+
+        $trends = null;
+
+        return view('admin.trends-management', [
+            'trends' => $trends
         ]);
     }
 

@@ -4,7 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ImportController;
+use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,9 +60,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/files', [ClientController::class, 'files'])->name('client-files');
 
     Route::get('/manage/files', [EmployeeController::class, 'fileManager'])->name('file-manager');
-    Route::post('/manage/files/upload', [ImportController::class, 'fileUpload'])->name('file-upload');
+    Route::post('/manage/files/upload', [DataController::class, 'fileUpload'])->name('file-upload');
+    Route::get('/manage/files/delete', [DataController::class, 'fileDelete'])->name('file.delete');
+
+
+    Route::get('/manage/trends', [EmployeeController::class, 'trendsManager'])->name('trends-manager');
 });
 
 
-Route::get('/import','ImportController@importFile');
-Route::post('/import','ImportController@importExcel');
+Route::get('/import','DataController@importFile');
+Route::post('/import','DataController@importExcel');

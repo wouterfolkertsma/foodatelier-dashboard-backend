@@ -19,8 +19,11 @@ class DataSeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i++) {
             Data::factory()->create([
+                /**
                 'frontend_renderer' => FileBlock::class,
                 'backend_renderer' => FileRenderer::class,
+                 * */
+
                 'data_type' => File::class,
                 'data_id' => File::factory()->create()
             ]);
