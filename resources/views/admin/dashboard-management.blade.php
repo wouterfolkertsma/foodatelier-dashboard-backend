@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="uk-card-default uk-card-body">
-        <h3>Dashboard overview</h3>
         <!--SEARCH-FILTER-->
         @include('includes/search-bar')
 

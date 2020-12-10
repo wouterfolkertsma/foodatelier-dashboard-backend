@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'Trends')
+@section('title', 'Files')
 
 @section('content')
     <div class="uk-card-default uk-card-body">

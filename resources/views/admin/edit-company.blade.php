@@ -1,13 +1,13 @@
 @extends('layout.base')
 
-@section('title', 'Edit company')
+@section('title', 'Edit: Company')
 
 @section('content')
     <div class="uk-card-default uk-card-body">
         {{ Form::model($company, ['route' => ['company.update', $company->id], 'class' => 'uk-form-stacked']) }}
 
         <fieldset class="uk-fieldset">
-            <legend class="uk-legend">Edit: {{ $company->name }}</legend>
+            <legend class="uk-legend">Edit {{ $company->name }}</legend>
 
             <div class="uk-margin">
                 {{ Form::label('name', 'Name:', ['class' => 'uk-form-label']) }}

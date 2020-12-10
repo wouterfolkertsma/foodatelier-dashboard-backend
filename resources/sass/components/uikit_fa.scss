@@ -16,10 +16,11 @@ a:hover, .uk-link:hover, .uk-link-toggle:hover .uk-link, .uk-link-toggle:focus .
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
 
-h3{
+h4{
   text-decoration: underline;
   text-underline-position: under;
   text-decoration-color: #ff4b3c;
+  font-size: 2em;
 }
 
 
@@ -38,6 +39,14 @@ h3{
   box-shadow: 5px 5px 10px rgba(0,0,0,.4);
   margin: 30px;
   width: 35%;
+}
+
+.uk-card-default-tiny{
+  border-radius: 25px;
+  background: #E9E9E9;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+  margin: 30px;
+  width: 28%;
 }
 
 

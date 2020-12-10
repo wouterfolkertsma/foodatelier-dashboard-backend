@@ -4,6 +4,14 @@
     padding-top: 10px;
 }
 
+.button_area{
+    display: flex;
+}
+
+.save_button{
+    flex: 1;
+}
+
 .options {
     display: flex;
     width: 100%;

@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'new Employee')
+@section('title', 'Edit: Employee')
 
 @section('content')
     <div class="uk-card-default-small uk-card-body">

@@ -16,6 +16,7 @@
 
     @if (auth()->user()->isClient())
         @include('sidebar.client')
+        @include('navbar.base')
     @endif
 
     <div class="container container-main">

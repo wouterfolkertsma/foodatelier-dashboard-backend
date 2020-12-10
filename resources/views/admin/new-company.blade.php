@@ -1,14 +1,17 @@
 @extends('layout.base')
 
-@section('title', 'Edit company')
+@section('title', 'Edit: Company')
 
 @section('content')
-    <div class="uk-card-default-small uk-card-body">
+    <div class="uk-card-default-tiny uk-card-body uk-margin">
         {{ Form::open(['route' => 'company.save']) }}
-            {{ Form::label('name', 'Name:') }}
-            {{ Form::text('name', '', ['class' => 'uk-input uk-form-width-medium']) }}
+            <legend class="uk-legend">New Company</legend>
+            <div class="uk-margin">
+                {{ Form::label('name', 'Name:') }}
+                {{ Form::text('name', '', ['class' => 'uk-input uk-form-width-medium']) }}
 
-            {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary']) }}
+                {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary']) }}
+            </div>
         {{ Form::close() }}
     </div>
 @endsection
