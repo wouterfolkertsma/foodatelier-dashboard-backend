@@ -3,7 +3,8 @@
 @section('title', 'Trends')
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default uk-card-body">
+        <h3>Uploaded files</h3>
         <!--TABLE-->
         <table class="uk-table uk-table-striped" id="tableForm">
             <thead>
@@ -25,10 +26,11 @@
                     <td>
                         @if($file->data->imageable())
                             <div uk-lightbox>
-                                <a class="uk-button uk-button-default" href="{{ $file->data->file_path }}">View</a>
+                                <a class="uk-button uk-button-secondary" href="{{ $file->data->file_path }}">View</a>
                             </div>
                         @endif
-                        <a href="{{ $file->data->file_path }}" download>Download</a>
+                        <br>
+                        <a class="uk-button uk-button-primary" href="{{ $file->data->file_path }}" download>Download</a>
                     </td>
                 </tr>
             @endforeach

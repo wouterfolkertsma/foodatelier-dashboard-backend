@@ -3,7 +3,7 @@
 @section('title', 'Newsfeed')
 
 @section('content')
-
-            <h2>newsfeed</h2>
-
+    <div class="uk-card-default uk-card-body">
+        <h3>Newsfeed</h3>
+    </div>
 @endsection
