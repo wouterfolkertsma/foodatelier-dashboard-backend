@@ -7,6 +7,7 @@ use App\Blocks\File as FileBlock;
 use App\Models\Data\Data;
 use App\Models\Data\File;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +42,7 @@ class DataController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function fileUpload(Request $request){
         $files = $request->file('files');

@@ -1,32 +1,19 @@
-.account-type-selection{
+.account-type-selection {
     display: flex;
     justify-content: center;
-
     padding-top: 10px;
 }
 
-.button_area{
-    display: flex;
-}
-
-.save_button{
-    flex: 1;
-}
-
-.options{
+.options {
     display: flex;
     width: 100%;
-    justify-content: center;
     z-index: 4;
-    margin-top: ($navbar-hight - $logout-button-diameter) /2;
+    margin-top: ($navbar-height - $logout-button-diameter) /2;
     margin-left: 240px;
     height: $logout-button-diameter;
-
     align-items: center;
     justify-content: left;
-    display: flex;
     color: black;
-
 
     /* Links-------------------------------------------------- */
 

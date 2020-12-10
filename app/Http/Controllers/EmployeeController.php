@@ -8,17 +8,18 @@ use App\Http\Repositories\ClientRepository;
 use App\Http\Repositories\CompanyRepository;
 use App\Http\Repositories\EmployeeRepository;
 use App\Http\Requests\StoreEmployee;
-use App\Models\Client;
 use App\Models\Company;
 use App\Models\Data\Data;
 use App\Models\Employee;
 use App\Models\Role;
+use http\Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Request;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use Throwable;
 
 class EmployeeController extends Controller
 {
@@ -102,8 +103,7 @@ class EmployeeController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param int $companyId
+     * @param Request $request
      * @return Application|Factory|View
      */
     public function newEmployee(Request $request)
@@ -116,7 +116,7 @@ class EmployeeController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $employeeId
      * @return RedirectResponse
      * @throws Throwable
@@ -174,7 +174,7 @@ class EmployeeController extends Controller
     }
 
     /**
-     * @param StoreClient $request
+     * @param StoreEmployee $request
      * @return RedirectResponse
      * @throws Throwable
      */
