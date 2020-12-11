@@ -1,9 +1,9 @@
 @extends('layout.base')
 
-@section('title', "Edit $dashboard->name")
+@section('title', "Edit: $dashboard->name")
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default uk-card-body">
         {{ Form::model($dashboard, ['route' => ['dashboard.update', $dashboard->id], 'class' => 'uk-form-stacked']) }}
         <fieldset class="uk-fieldset">
             <div class="uk-margin">
@@ -12,13 +12,14 @@
             </div>
             <!--SAVE-BUTTON-->
             <div class="save_button">
-                {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+                {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary']) }}
             </div>
         </fieldset>
         {{ Form::close() }}
     </div>
 
-    <div class="uk-card uk-card-body">
+    <hr class="uk-divider-icon">
+    <div class="uk-card-default uk-card-body">
         <div class="col-xs-12">
             <h3>Existing data</h3>
             <table class="uk-table uk-table-striped">
@@ -50,6 +51,10 @@
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <hr class="uk-divider-icon">
+    <div class="uk-card-default uk-card-body">
         <div class="col-xs-12">
             <h3>Available data</h3>
             <table class="uk-table uk-table-striped" id="tableForm">

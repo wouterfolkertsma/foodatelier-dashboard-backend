@@ -1,9 +1,9 @@
 @extends('layout.base')
 
-@section('title', 'Edit company')
+@section('title', 'Edit: Company')
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default uk-card-body">
         {{ Form::model($company, ['route' => ['company.update', $company->id], 'class' => 'uk-form-stacked']) }}
 
         <fieldset class="uk-fieldset">
@@ -14,16 +14,16 @@
                 {{ Form::text('name', $company->name, ['class' => 'uk-input uk-form-width-medium']) }}
             </div>
 
-            {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+            {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary']) }}
         </fieldset>
 
         {{ Form::close() }}
     </div>
     <hr class="uk-divider-icon">
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default uk-card-body">
         <a class="uk-button uk-button-primary uk-align-right" href="{{ route('client.new', $company->id) }}">New User</a>
 
-        <h4>Users from {{ $company->name }}</h4>
+        <h3>Users from {{ $company->name }}</h3>
         <table class="uk-table uk-table-striped">
             <thead>
             <tr>

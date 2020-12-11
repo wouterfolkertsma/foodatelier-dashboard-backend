@@ -1,5 +1,5 @@
 <nav class="navbar" tabindex="0">
-    <h3 class="page-title uk-legend">@yield('title')</h3>
+    <h4 class="page-title">@yield('title')</h4>
     <div class="navbar-buttons">
         <div class="button-logout">
             <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -1,9 +1,9 @@
 @extends('layout.base')
 
-@section('title', 'Edit company')
+@section('title', 'Edit: Client')
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default-small uk-card-body">
         {{ Form::model($client, ['route' => ['client.update', $client->id], 'class' => 'uk-form-stacked']) }}
         <fieldset class="uk-fieldset">
             <legend class="uk-legend">Edit {{ $client->user->first_name }}</legend>
@@ -20,11 +20,15 @@
                 {{ Form::email('email', $client->user->email, ['class' => 'uk-input uk-form-width-large']) }}
             </div>
             <!--SAVE-BUTTON-->
-            {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
-            <!--DELETE-BUTTON-->
-            <a class="uk-button uk-button-danger" onclick="window.jsAlertDeleteConfirm('{{ route('client.delete', ['id' => $client->id]) }}')">Delete Client-Account
-            </a>
+            <div class="button_area">
+                <div class="save_button">
+                    {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary']) }}
+                </div>
 
+                <!--DELETE-BUTTON-->
+                <a class="delete_button uk-button uk-button-primary" onclick="window.jsAlertDeleteConfirm('{{ route('client.delete', ['id' => $client->id]) }}')">Delete Client-Account
+                </a>
+            </div>
         </fieldset>
         {{ Form::close() }}
     </div>

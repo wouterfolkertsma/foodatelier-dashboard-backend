@@ -16,6 +16,13 @@ a:hover, .uk-link:hover, .uk-link-toggle:hover .uk-link, .uk-link-toggle:focus .
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
 
+h4{
+  text-decoration: underline;
+  text-underline-position: under;
+  text-decoration-color: #ff4b3c;
+  font-size: 2em;
+}
+
 
 /*-----------------------CARD-----------------------*/
 
@@ -23,11 +30,29 @@ a:hover, .uk-link:hover, .uk-link-toggle:hover .uk-link, .uk-link-toggle:focus .
   border-radius: 25px;
   background: #E9E9E9;
   box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+  margin: 30px;
+}
+
+.uk-card-default-small{
+  border-radius: 25px;
+  background: #E9E9E9;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+  margin: 30px;
+  width: 35%;
+}
+
+.uk-card-default-tiny{
+  border-radius: 25px;
+  background: #E9E9E9;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+  margin: 30px;
+  width: 28%;
 }
 
 
 /*-----------------------BUTTON-----------------------*/
 
+// GENERAL buttons
 .uk-button-primary {
   background-color: $color-button-background-default;
   color: $button-primary-color;
@@ -38,6 +63,7 @@ a:hover, .uk-link:hover, .uk-link-toggle:hover .uk-link, .uk-link-toggle:focus .
 .uk-button-primary:focus {
   background-color: $color-button-background-hover;
   color: $button-primary-color;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.4);
 }
 
 /* OnClick + Active */
@@ -47,12 +73,24 @@ a:hover, .uk-link:hover, .uk-link-toggle:hover .uk-link, .uk-link-toggle:focus .
   color: $button-primary-color;
 }
 
+// ADD + SAVE button
+.uk-button-secondary:hover{
+  box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+}
+
+
 
 /*-----------------------INPUT-----------------------*/
 
 .uk-input:focus{
-  border: 1px solid rgba(219,66,50);
-  color: rgba(219,66,50);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+}
+
+/*-----------------------DIVIDER-----------------------*/
+
+.uk-divider-icon{
+  margin: 30px;
 }
 
 
