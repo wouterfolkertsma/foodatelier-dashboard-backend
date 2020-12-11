@@ -1,4 +1,5 @@
-<div class="uk-card uk-card-body">
+<div class="uk-card-default uk-card-body">
+    <h3>Upload</h3>
     <div class="js-upload uk-placeholder uk-text-center">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <span uk-icon="icon: cloud-upload"></span>

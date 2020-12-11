@@ -1,9 +1,9 @@
 @extends('layout.base')
 
-@section('title', 'new Employee')
+@section('title', 'Edit: Employee')
 
 @section('content')
-    <div class="uk-card uk-card-body">
+    <div class="uk-card-default-small uk-card-body">
         {{ Form::open(['route' => ['employee.save'], 'class' => 'uk-form-stacked']) }}
         <fieldset class="uk-fieldset">
             <legend class="uk-legend">New employee</legend>
@@ -24,7 +24,7 @@
 
             {{ Form::hidden('role_id', $role->id) }}
 
-            {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
+            {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary']) }}
         </fieldset>
         {{ Form::close() }}
     </div>
