@@ -34,6 +34,14 @@ $navbar-height: 75px;
         display: flex;
     }
 }
+.nav-link{
+    float: right;
+    width: 200px;
+    margin-right: 3.33333%;
+    color: black;
+    padding: 25px;
+    box-sizing: border-box;
+}
 
 .button-logout {
     width: $logout-button-diameter;

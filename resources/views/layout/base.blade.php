@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Foodatelier - @yield('title')</title>
 </head>
 <body>
@@ -55,6 +56,8 @@
             window.jsAlertSuccessToast('{{ \Session::get('successToast') }}')
         </script>
     @endif
+
+
 
 </body>
 </html>
