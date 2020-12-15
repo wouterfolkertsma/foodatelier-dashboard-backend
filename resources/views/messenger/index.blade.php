@@ -1,5 +1,4 @@
 <div class="message-wrapper">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <ul class="messages">
         @foreach($messages as $message)
             <li class="message clearfix">

@@ -4,14 +4,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use App\Models\User;
 use DB;
-use http\Exception;
 use Pusher\Pusher;
-
 use Illuminate\Support\Facades\Auth;
-use Pusher\PusherException;
 
 
 /**
@@ -20,22 +19,32 @@ use Pusher\PusherException;
 class MessengerController extends Controller
 {
 
+    /**
+     * @return Application|Factory|View
+     */
     public function messengerInbox()
     {
-        //EmployeeVersion (Can see All!)
         //$users = User::all();
-
-        $users = DB::select("select users.id, users.first_name, users.last_name, users.email, count(is_read) as unread
-        from users LEFT JOIN messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id(). "
-        where users.id != " . Auth::id() . "
-        group by users.id, users.first_name, users.last_name, users.email ");
+        $users = DB::select(
+            "SELECT u2.id,
+                   u2.first_name,
+                   u2.last_name,
+                   u2.email,
+                   count(m.id) AS unread
+            FROM users_messages um
+            INNER JOIN users u ON u.id = um.user_id_from
+            INNER JOIN users u2 ON u2.id = um.user_id_to
+            INNER JOIN messages m ON um.message_id = m.id
+            AND m.is_read = 0
+            WHERE u.id = ". Auth::id() ."
+            GROUP BY u2.id");
 
         return view('messenger.inbox', [
             'users' => $users
         ]);
     }
 
-    public function messengerMessage($user_id){
+    public function messengerMessage($user_id) {
         $my_id = Auth::id();
 
         Message::where(['from' => $user_id, 'to' => $my_id])->update(['is_read' => 1]);
@@ -46,10 +55,10 @@ class MessengerController extends Controller
             $query->where('from', $user_id)->where('to', $my_id);
         })->get();
 
-        return view('messenger.index', ['messages' =>$messages])->with('success', 'NEW MESSAGE');;
+        return view('messenger.index', ['messages' =>$messages])->with('success', 'NEW MESSAGE');
     }
 
-    public function sendMessage(Request $request){
+    public function sendMessage(Request $request) {
         $from = Auth::id();
         $to = $request->receiver_id;
         $message = $request->message;
@@ -75,8 +84,5 @@ class MessengerController extends Controller
 
         $data = ['from' => $from, 'to' => $to];
         $pusher->trigger('my-channel', 'my-event', $data);
-
     }
-
-
 }

@@ -18,14 +18,6 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 250; $i++) {
-            Message::factory()->create([
-                /**
-                'frontend_renderer' => FileBlock::class,
-                'backend_renderer' => FileRenderer::class,
-                 * */
-
-            ]);
-        }
+        Message::factory()->count(250)->create();
     }
 }

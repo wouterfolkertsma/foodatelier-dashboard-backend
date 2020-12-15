@@ -15,10 +15,8 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger( 'from');
-            $table->bigInteger( 'to');
             $table->text( 'message');
-            $table->tinyInteger('is_read');
+            $table->boolean('is_read');
             $table->timestamps();
         });
     }
