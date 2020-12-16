@@ -54,7 +54,7 @@ export default class Messenger {
 
     scrollToBottom() {
         $('.message-wrapper').animate({
-            scrollTop: $('.message-wrapper').get(0).scrollHeight
+            //scrollTop: $('.message-wrapper').get(0).scrollHeight
         }, 50);
     }
 
