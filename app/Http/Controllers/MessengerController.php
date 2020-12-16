@@ -19,100 +19,87 @@ use Illuminate\Support\Facades\Auth;
  */
 class MessengerController extends Controller
 {
+    /** @var Pusher */
+    private $pusher;
+
+    public function __construct()
+    {
+        $options = [
+            'cluster' => 'eu',
+            'useTLS' => true
+        ];
+
+        $this->pusher = new Pusher(
+            env( 'PUSHER_APP_KEY'),
+            env( 'PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+    }
 
     /**
      * @return Application|Factory|View
      */
     public function messengerInbox()
     {
-        //$users = User::all();
-        $users = DB::select(
-            "SELECT u2.id,
-                   u2.first_name,
-                   u2.last_name,
-                   u2.email,
-                   count(m.id) AS unread
-            FROM users_messages um
-            INNER JOIN users u ON u.id = um.user_id_from
-            INNER JOIN users u2 ON u2.id = um.user_id_to
-            INNER JOIN messages m ON um.message_id = m.id
-            AND m.is_read = 0
-            WHERE u.id = ". Auth::id() ."
-            GROUP BY u2.id");
+        $users = DB::table('users_messages')
+            ->where('user_id_to', Auth::id())
+            ->leftJoin('messages', function ($join) {
+                $join->on('messages.id', '=', 'users_messages.message_id')
+                    ->where('messages.is_read', '=', 0);
+            })
+            ->join('users', 'user_id_from', '=', 'users.id')
+            ->select('users.id', 'users.email', 'users.first_name', 'users.last_name', DB::raw("count(messages.id) as unread"))
+            ->groupBy('user_id_from')
+            ->get()
+        ;
 
         return view('messenger.inbox', [
             'users' => $users
         ]);
     }
 
-    public function messengerMessage($user_id) {
-        $my_id = Auth::id();
+    /**
+     * @param $user_id
+     * @return Application|Factory|View
+     */
+    public function messengerMessage(int $user_id) {
+        $messages = UsersMessage::where('user_id_from', $user_id)
+            ->where('user_id_to', Auth::id())
+            ->join('messages', 'message_id', '=', 'messages.id')
+            ->get();
 
-        //Message::where(['from' => $user_id, 'to' => $my_id])->update(['is_read' => 1]);
-        DB::table( "SELECT u2.id,
-                   u2.first_name,
-                   u2.last_name,
-                   u2.email,
-                   count(m.id) AS unread
-            FROM users_messages um
-            INNER JOIN users u ON u.id = um.user_id_from
-            INNER JOIN users u2 ON u2.id = um.user_id_to
-            INNER JOIN messages m ON um.message_id = m.id
-            AND m.is_read = 0
-            WHERE (u.id = ". Auth::id() ." AND u2.id = $user_id)
-            UPDATE m.is_read = 1");
+        $messages->each(function ($message) {
+            Message::whereId($message->message_id)
+                ->update(['is_read' => 1]);
+        });
 
-
-        $messages = DB::select("SELECT u2.id,
-                   m.message,
-                   m.created_at,
-                   user_id_from,
-                   user_id_to
-            FROM users_messages um
-            INNER JOIN users u ON u.id = um.user_id_from
-            INNER JOIN users u2 ON u2.id = um.user_id_to
-            INNER JOIN messages m ON um.message_id = m.id
-            WHERE (u.id = ". Auth::id() ." AND    u2.id = $user_id)
-            OR ( u.id = $user_id AND    u2.id = ". Auth::id() .")
-           ");
-
-        //$messages = Message::where(function($query) use ($user_id, $my_id){
-            //$query->where('from', $my_id)->where('to', $user_id);
-        //})->orWhere(function($query) use($user_id, $my_id){
-            //$query->where('from', $user_id)->where('to', $my_id);
-        //})->get();
-
-        return view('messenger.index', ['messages' =>$messages]);
+        return view('messenger.index', ['messages' => $messages]);
     }
 
     public function sendMessage(Request $request) {
         $from = Auth::id();
-        $to = $request->user_id_to;
+        $to = $request->receiver_id;
         $message = $request->message;
 
-        $data = new Message();
-        $data->message = $message;
-        $data->is_read = 0;
-        $data->save();
-        $relationData = new UsersMessage();
-        $relationData->user_id_from = $from;
-        $relationData->user_id_to = $to;
-        $relationData->message_id = $data->id;
-        $relationData->save();
-        //-----PUSHER SETTINGS-------
-        $options = array(
-            'cluster' => 'eu',
-            'useTLS' => true
-        );
+        $message = (new Message())->fill(['message' => $message, 'is_read' => 0]);
+        $message->save();
 
-        $pusher = new Pusher(
-            env( 'PUSHER_APP_KEY'),
-            env( 'PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            $options
-        );
+        $usersMessage = new UsersMessage();
+        $usersMessage->fill([
+            'user_id_from' => $from,
+            'user_id_to' => $to,
+            'message_id' => $message->id
+        ]);
 
-        $data = ['from' => $from, 'to' => $to];
-        $pusher->trigger('my-channel', 'my-event', $data);
+        $usersMessage->save();
+
+        $data = [
+            'from' => $from,
+            'to' => $to,
+            'message' => $message
+        ];
+
+        $this->pusher->trigger('my-channel', 'my-event', $data);
     }
 }

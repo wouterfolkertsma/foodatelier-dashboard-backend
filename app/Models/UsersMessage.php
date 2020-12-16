@@ -4,20 +4,23 @@ namespace App\Models;
 
 
 
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Model as BaseModel;
 
 /**
  * Class Data
  *
  * @package App\Models
+ * @method save()
+ * @method static firstOrCreate(array $array)
+ * @method static where(string $string, $user_id)
  */
-class UsersMessage extends Message
+class UsersMessage extends BaseModel
 {
+    protected $fillable = [
+        'user_id_from',
+        'user_id_to',
+        'message_id'
+    ];
 
-    public function users_message()
-    {
-        return $this->morphToMany(Message::class, 'message');
-    }
-
+    protected $table = 'users_messages';
 }

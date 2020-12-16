@@ -26,7 +26,6 @@
                                     <p class="email">{{$user->email}}</p>
                                 </div>
                             </div>
-
                     </li>
                     @endforeach
 

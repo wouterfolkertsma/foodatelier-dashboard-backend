@@ -25,6 +25,8 @@ class CreateUserHasMessagesTable extends Migration
             $table->foreignId('message_id')
                 ->constrained('messages')
                 ->onDelete('restrict');
+
+            $table->timestamps();
         });
     }
 
