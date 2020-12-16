@@ -25,6 +25,10 @@
             <li tabindex="0" class="icon-dashboard sublink">
                 <a class="menu-link" href="{{ route('client-files') }}">Files</a>
             </li>
+
+            <li tabindex="0" class="icon-dashboard sublink">
+                <a class="menu-link" href="{{ route('rss.index') }}">Files</a>
+            </li>
         </ul>
     </a>
 @endsection

@@ -6,6 +6,9 @@ namespace App\Blocks;
 
 use Illuminate\View\View;
 
+/**
+ * @method static all()
+ */
 class File extends Block
 {
     /**

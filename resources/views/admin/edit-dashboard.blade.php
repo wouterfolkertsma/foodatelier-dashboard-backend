@@ -43,7 +43,7 @@
                         <td>{{ $item->updated_at }}</td>
                         <td>
                             <button class="uk-button uk-button-primary js-dashboard-data-remove"
-                                    data-id="{{ $item->id }}">Remove
+                                data-id="{{ $item->id }}">Remove
                             </button>
                         </td>
                     </tr>
