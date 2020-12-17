@@ -64,10 +64,14 @@ class MessengerController extends Controller
      * @return Application|Factory|View
      */
     public function messengerMessage(int $user_id) {
-        $messages = UsersMessage::where('user_id_from', $user_id)
+
+        $messages = UsersMessage::where('user_id_from', Auth::id())
+            ->where('user_id_to', $user_id)
+            ->orWhere('user_id_from', $user_id)
             ->where('user_id_to', Auth::id())
             ->join('messages', 'message_id', '=', 'messages.id')
             ->get();
+
 
         $messages->each(function ($message) {
             Message::whereId($message->message_id)

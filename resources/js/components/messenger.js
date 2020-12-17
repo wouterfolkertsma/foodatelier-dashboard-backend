@@ -1,7 +1,7 @@
 export default class Messenger {
     constructor() {
         this.receiverId = '';
-        this.senderId = document.getElementById('messenger-inbox');
+        this.senderId = '';
         this.pusher = new Pusher('870703b0ea4e1f8cea6b', {
             cluster: 'eu'
         });
@@ -54,7 +54,7 @@ export default class Messenger {
 
     scrollToBottom() {
         $('.message-wrapper').animate({
-            //scrollTop: $('.message-wrapper').get(0).scrollHeight
+            scrollTop: $('.message-wrapper').get(0).scrollHeight
         }, 50);
     }
 
@@ -78,11 +78,15 @@ export default class Messenger {
 
     bindChannel() {
         this.channel.bind('my-event', function(data) {
-            if (this.senderId === data.from) { //Sender
+
+            this.senderId = $('meta[name="user-id"]').attr('content');
+
+            if (this.senderId == data.from) { //Sender
                 $('#' + data.to).click();//Refresh
-            } else if (this.senderId === data.to) { //Receiver
+
+            } else if (this.senderId == data.to) { //Receiver
                 this.newMessageRecieved();
-                if (this.receiverId  === data.from) {
+                if (this.receiverId  == data.from) {
                     $('#' + data.from).click();//Refresh
                 } else {
                     let pending = parseInt($('#' + data.from).find('.pending').html());
