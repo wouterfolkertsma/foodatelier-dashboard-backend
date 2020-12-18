@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user-id" content="{{ Auth::user()->id }}">
     <title>Foodatelier - @yield('title')</title>
 </head>
 <body>
@@ -36,6 +40,7 @@
 
 
     <!------------- scrips --------------->
+
     <script src="{{ asset('js/app.js') }}"></script>
 
     <!------------- alerts --------------->
@@ -56,6 +61,5 @@
             window.jsAlertSuccessToast('{{ \Session::get('successToast') }}')
         </script>
     @endif
-
 </body>
 </html>

@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\MessengerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +66,10 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/manage/trends', [EmployeeController::class, 'trendsManager'])->name('trends-manager');
+
+    Route::get('/messenger', [MessengerController::class, 'messengerInbox'])->name('messenger-inbox');
+    Route::get('/messenger/{id}', [MessengerController::class, 'messengerMessage'])->name('messenger-message');
+    Route::post('/message', [MessengerController::class, 'sendMessage'])->name('send-message');
 });
 
 

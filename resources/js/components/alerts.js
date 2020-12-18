@@ -41,9 +41,16 @@ window.jsAlertSuccessHTMLConfirm = function (htmlMessage, confirmRoute){
     console.log(htmlMessage);
 }
 window.jsAlertSuccessToast = function (message){
+    setToast('success', message)
+}
+window.jsAlertInfoToast = function (message){
+    setToast('info', message)
+}
+function setToast(type, message){
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
+
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
@@ -52,8 +59,9 @@ window.jsAlertSuccessToast = function (message){
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
+
     Toast.fire({
-        icon: 'success',
+        icon: type,
         title: message
     })
     console.log(message);
