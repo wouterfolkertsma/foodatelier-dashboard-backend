@@ -58,34 +58,14 @@ export default class Messenger {
         }, 50);
     }
 
-    newMessageRecieved() {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-        Toast.fire({
-            icon: 'info',
-            title: "received new message!"
-        })
-    }
-
     bindChannel() {
+        let self = this;
         this.channel.bind('my-event', function(data) {
-
             this.senderId = $('meta[name="user-id"]').attr('content');
-
             if (this.senderId == data.from) { //Sender
                 $('#' + data.to).click();//Refresh
-
             } else if (this.senderId == data.to) { //Receiver
-                this.newMessageRecieved();
+                jsAlertInfoToast('received new message!')
                 if (this.receiverId  == data.from) {
                     $('#' + data.from).click();//Refresh
                 } else {
@@ -107,8 +87,7 @@ export default class Messenger {
 
             if(e.keyCode === 13 && message !== '' && this.receiverId !== '') {
                 $(this).val('');
-
-
+                
                 let datastr = "receiver_id=" + self.receiverId + "&message=" + message;
 
                 $.ajax({

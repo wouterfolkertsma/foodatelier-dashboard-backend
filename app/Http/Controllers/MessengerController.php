@@ -101,7 +101,6 @@ class MessengerController extends Controller
         $data = [
             'from' => $from,
             'to' => $to,
-            'message' => $message
         ];
 
         $this->pusher->trigger('my-channel', 'my-event', $data);
