@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\MessengerController;
+use App\Http\Controllers\RssFeedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +65,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/files/upload', [DataController::class, 'fileUpload'])->name('file-upload');
     Route::get('/manage/files/delete', [DataController::class, 'fileDelete'])->name('file.delete');
 
+    Route::get('/manage/rss', [RssFeedController::class, 'index'])->name('rss.index');
+    Route::get('/manage/rss/{rssFeed}/edit', [RssFeedController::class, 'edit'])->name('rss.edit');
+    Route::post('/manage/rss/{rssFeed}/update', [RssFeedController::class, 'updateRssFeed'])->name('rss.update');
+    Route::get('/manage/rss/{rssFeed}/delete', [RssFeedController::class, 'delete'])->name('rss.delete');
+    Route::get('/manage/rss/new', [RssFeedController::class, 'new'])->name('rss.new');
+    Route::post('/manage/rss/new', [RssFeedController::class, 'saveNewRssFeed'])->name('rss.save');
+    Route::get('/manage/rss/preview', [RssFeedController::class, 'preview'])->name('rss.preview');
+    Route::get('/manage/rss/{rssFeed}/preview', [RssFeedController::class, 'previewExisting'])->name('rss.preview.existing');
 
     Route::get('/manage/trends', [EmployeeController::class, 'trendsManager'])->name('trends-manager');
 
@@ -71,7 +80,3 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/messenger/{id}', [MessengerController::class, 'messengerMessage'])->name('messenger-message');
     Route::post('/message', [MessengerController::class, 'sendMessage'])->name('send-message');
 });
-
-
-Route::get('/import','DataController@importFile');
-Route::post('/import','DataController@importExcel');

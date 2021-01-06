@@ -6,14 +6,15 @@ import TrendsValueChart from '../js/components/trends-charts';
 import DashboardDataManager from "./components/dashboard-data-manager";
 import Messenger from "./components/messenger";
 import Swal from 'sweetalert2';
-
-new Messenger();
 import Chart from 'chart.js/dist/Chart';
-window.Swal = Swal;
 import jsAlerts from "../js/components/alerts";
-window.jsAlerts = jsAlerts;
 import FileUpload from "../js/components/file-upload";
+import RssFeedUploader from '../js/components/rss-feed-manager'
+new Messenger();
+window.Swal = Swal;
+window.jsAlerts = jsAlerts;
 
+new RssFeedUploader();
 new DashboardDataManager();
 let searchBar = new SearchBar();
 let fileUpload = new FileUpload(UIkit);

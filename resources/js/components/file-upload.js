@@ -5,19 +5,10 @@ export default class FileUpload {
         var token;
         var currentUploadedFiles;
 
-        if (tokenElement) {
-            token = tokenElement.content;
-            console.log('uploader is ready');
-        } else {
-            console.error('CSRF token not found!');
-        }
-
-
         UIkit.upload('.js-upload', {
 
             url: '/manage/files/upload',
             multiple: true,
-
 
             beforeSend: function (environment) {
                 console.log('beforeSend', arguments);

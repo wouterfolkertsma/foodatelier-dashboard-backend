@@ -39,5 +39,7 @@
     <a class="menu-link" href="{{ route('file-manager') }}">
         <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">File Management</span></li>
     </a>
-
+    <a class="menu-link" href="{{ route('rss.index') }}">
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">RSS Feeds</span></li>
+    </a>
 @endsection

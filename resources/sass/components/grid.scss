@@ -2,15 +2,22 @@
   &-main {
     left: 240px;
     position: absolute;
-    top: 65px;
+    top: 75px;
     min-height: calc(100vh - 85px);
     min-width: calc(100% - 240px);
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   &--full {
     padding: 0;
     max-width: 100% !important;
   }
+}
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 @media (min-width: 1200px) {
