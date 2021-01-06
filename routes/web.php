@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\MessengerController;
+use App\Http\Controllers\TrendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,7 +66,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage/files/delete', [DataController::class, 'fileDelete'])->name('file.delete');
 
 
-    Route::get('/manage/trends', [EmployeeController::class, 'trendsManager'])->name('trends-manager');
+    Route::get('/manage/trends', [TrendController::class, 'trendsManager'])->name('trends-manager');
 
     Route::get('/messenger', [MessengerController::class, 'messengerInbox'])->name('messenger-inbox');
     Route::get('/messenger/{id}', [MessengerController::class, 'messengerMessage'])->name('messenger-message');

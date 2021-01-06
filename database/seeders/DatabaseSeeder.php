@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(MessageSeeder::class);
         $this->call(UsersHaveMessagesSeeder::class);
+        $this->call(CountrySelectionSeeder::class);
     }
 }

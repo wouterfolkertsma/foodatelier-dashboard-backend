@@ -9,7 +9,7 @@ export default class FileUpload {
             token = tokenElement.content;
             console.log('uploader is ready');
         } else {
-            console.error('CSRF token not found!');
+            //console.error('CSRF token not found!');
         }
 
 
