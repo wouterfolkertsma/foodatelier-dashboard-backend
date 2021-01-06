@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <title>Foodatelier - @yield('title')</title>
 </head>
 <body>
@@ -33,7 +34,6 @@
 
         @yield('content')
     </div>
-
 
     <!------------- scrips --------------->
     <script src="{{ asset('js/app.js') }}"></script>

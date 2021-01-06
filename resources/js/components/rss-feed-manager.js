@@ -1,3 +1,5 @@
+import {html} from "uikit/src/js/util";
+
 export default class RssFeedUploader {
     constructor(props) {
         this.previewButton = document.getElementById('js-preview-rss');
@@ -26,7 +28,7 @@ export default class RssFeedUploader {
                 this.previewContainer.innerHTML = '';
                 let htmlObject = document.createElement('div');
                 htmlObject.innerHTML = response.html;
-                htmlObject.classList.add('row', 'justify-content-between');
+                htmlObject.classList.add('row', 'justify-content-between', 'rss-container');
                 this.previewContainer.insertAdjacentElement('afterbegin', htmlObject);
             })
     }
@@ -38,7 +40,7 @@ export default class RssFeedUploader {
                 this.previewContainer.innerHTML = '';
                 let htmlObject = document.createElement('div');
                 htmlObject.innerHTML = response.html;
-                htmlObject.classList.add('row', 'justify-content-between');
+                htmlObject.classList.add('row', 'justify-content-between', 'rss-container');
                 this.previewContainer.insertAdjacentElement('afterbegin', htmlObject);
             })
     }

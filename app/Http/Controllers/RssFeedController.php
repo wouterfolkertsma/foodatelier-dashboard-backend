@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Throwable;
 
 class RssFeedController extends Controller
@@ -121,9 +122,30 @@ class RssFeedController extends Controller
     public function previewExisting(Request $request, RssFeed $rssFeed): JsonResponse
     {
         $rss = simplexml_load_file($rssFeed->url)->channel;
+        $html = Cache::store('redis')->get('rss_'. $rssFeed->name);
+
+        if ($html) {
+            return new JsonResponse([
+                'html' => $html
+            ]);
+        }
+
+        foreach ($rss->item as $item) {
+            $metaTags = get_meta_tags($item->link);
+            if (isset($metaTags['image'])) {
+                $item->image = $metaTags['image'];
+            } else if (isset($metaTags['twitter:image:src'])) {
+                $item->image = $metaTags['twitter:image:src'];
+            } else if (isset($metaTags['twitter:image'])) {
+                $item->image = $metaTags['twitter:image'];
+            }
+        }
+
         $html = \Illuminate\Support\Facades\View::make('admin.rss.rss-preview', [
             'data' => $rss
         ])->render();
+
+        Cache::store('redis')->put('rss_'. $rssFeed->name, $html, 60 * 60 * 12);
 
         return new JsonResponse([
             'html' => $html
@@ -137,6 +159,8 @@ class RssFeedController extends Controller
     public function preview(Request $request): JsonResponse
     {
         $rss = simplexml_load_file($request->url)->channel;
+
+
         $html = \Illuminate\Support\Facades\View::make('admin.rss.rss-preview', [
             'data' => $rss
         ])->render();
