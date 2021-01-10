@@ -71,14 +71,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function trendsManager(Request $request){
 
-        $trends = null;
-
-        return view('admin.trends-management', [
-            'trends' => $trends
-        ]);
-    }
 
     /**
      * @param Request $request

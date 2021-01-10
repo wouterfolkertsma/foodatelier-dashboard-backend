@@ -1,6 +1,7 @@
 
 export default class TrendsValueChart {
     constructor(Chart) {
+
         let ctx = document.getElementById('myChart');
 
         if (!ctx) {
@@ -46,6 +47,8 @@ export default class TrendsValueChart {
                 scales: {
                     yAxes: [{
                         ticks: {
+                            min:0,
+                            max:100,
                             beginAtZero: true
                         }
                     }]

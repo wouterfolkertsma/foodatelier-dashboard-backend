@@ -3,170 +3,107 @@
 @section('title', 'Trends Management')
 
 @section('content')
+    <div class="uk-card-default uk-card-body">
+        <!--SEARCH-FILTER-->
+    @include('includes/search-bar')
 
+    <!--ADD-BUTTON-->
+    <<a class="uk-button uk-button-primary uk-align-right" href="{{ route('filter.new') }}">New Filter</a>
 
-    <div class="tag-search-container">
-        <div class="tag-container">
-            <input placeholder="Add New Term">
+        <!--ZERO-RESULTS-ALERT-->
+        <div class="uk-alert-warning" uk-alert id="no-results-alert" style="display: none">
+            <p>No Results.</p>
         </div>
-        <div class="filters" style="float: left; padding-right: 8px;">
-            <div class="dropdown-search-container">
-                <div class="select-box" style="z-index:10;">
-                    <div class="options-container" style="z-index:10;">
-                        @foreach($countries as $country)
-                            <div class="option" style="position:relative; z-index:10">
-                                <input
-                                    type="radio"
-                                    class="radio"
-                                    id="{{ $country->id }}"
-                                    name="category"
-                                />
-                                <label for="{{ $country->id }}">{{ $country->country_name }}</label>
-                            </div>
+        <!--TABLE-->
+        <table class="uk-table uk-table-striped" id="tableForm">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Search Terms</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Location</th>
+                <th>Language</th>
+                <th>Web</th>
+                <th>Image</th>
+                <th>News</th>
+                <th>Youtube</th>
+                <th>Shopping</th>
+
+                <th>Date Created</th>
+                <th>Date Updated</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="resultsTable">
+            @foreach($filters as $filter)
+                <tr>
+                    <td>{{ $filter->id }}</td>
+                    <td>{{ $filter->name }}</td>
+                    <td>
+                        @foreach ($filter->search_term as $key => $value)
+
+                            <span uk-icon="icon: tag"></span>{{ $value }}
                         @endforeach
-                    </div>
-                    <div class="selected" uk-icon="icon: chevron-down">
-                        SELECT COUNTRY
-                    </div>
-                    <div class="search-box" >
-                        <input type="text" placeholder="Search..."/>
-                    </div>
-                </div>
-            </div>
+                    </td>
+                    @if($filter->standard_interval)
+                        <td>{{ $filter->standard_interval }}</td>
+                        <td>NOW</td>
+                    @else
+                        <td>{{ $filter->custom_interval_from }}</td>
+                        <td>{{ $filter->custom_interval_to }}</td>
+                    @endif
+                    @if($filter->location)
+                        <td>{{ $filter->location}}</td>
+                    @else
+                        <td>DEFAULT (US)</td>
+                    @endif
+                    @if($filter->language)
+                        <td>{{ $filter->language}}</td>
+                    @else
+                        <td>DEFAULT (US-ENG)</td>
+                    @endif
+                    @if($filter->consider_web_search)
+                        <td><span uk-icon="icon: check"></span></td>
+                    @else
+                        <td><span uk-icon="icon: close"></span></td>
+                    @endif
+                    @if($filter->consider_image_search)
+                        <td><span uk-icon="icon: check"></span></td>
+                    @else
+                        <td><span uk-icon="icon: close"></span></td>
+                    @endif
+                    @if($filter->consider_news_search)
+                        <td><span uk-icon="icon: check"></span></td>
+                    @else
+                        <td><span uk-icon="icon: close"></span></td>
+                    @endif
+                    @if($filter->consider_youtube_search)
+                        <td><span uk-icon="icon: check"></span></td>
+                    @else
+                        <td><span uk-icon="icon: close"></span></td>
+                    @endif
+                    @if($filter->consider_shopping_search)
+                        <td><span uk-icon="icon: check"></span></td>
+                    @else
+                        <td><span uk-icon="icon: close"></span></td>
+                    @endif
 
-        </div>
-
-        <div class="uk-inline">
-            <button class="uk-button uk-button-default" type="button">Time</button>
-            <div uk-dropdown="pos: bottom-left; mode: click">
-                <ul class="uk-nav uk-dropdown-nav">
-                    <li class="uk-active"><a href="#">Worldwide</a></li>
-                    <li class="uk-nav-divider"></li>
-                    <li><a href="#">last hour</a></li>
-                    <li><a href="#">last 4 hours</a></li>
-                    <li><a href="#">last day</a></li>
-                    <li><a href="#">last 7 days</a></li>
-                    <li><a href="#">last 30 days</a></li>
-                    <li><a href="#">last 90 days</a></li>
-                    <li><a href="#">last 5 Years</a></li>
-                    <li><a href="#">2004 - today</a></li>
-                    <li class="uk-nav-divider"></li>
-                    <li><a onclick="timeSetTimeInterval()">custom</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <button class="uk-button uk-button-default">SAVE</button>
+                    <td>{{ $filter->created_at }}</td>
+                    <td>{{ $filter->updated_at }}</td>
+                    <td>
+                        <a href="{{ route('filter.edit', ['id' => $filter->id]) }}">Edit</a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
-    <div class="graph"style="width: 60%; height: 50%; margin-top: 200px; position: absolute; z-index: 0">
-        @include('includes/trends-chart-block')
-    </div>
-
 
     <script>
-        const selected = document.querySelector(".selected");
-        const optionsContainer = document.querySelector(".options-container");
-        const searchBox = document.querySelector(".search-box input");
+        let arr2 = {!! json_encode($filter->search_term) !!};
 
-        const optionsList = document.querySelectorAll(".option");
-
-        selected.addEventListener("click", () => {
-            optionsContainer.classList.toggle("active");
-
-            searchBox.value = "";
-            filterList("");
-
-            if (optionsContainer.classList.contains("active")) {
-                searchBox.focus();
-            }
-        });
-
-        optionsList.forEach(o => {
-            o.addEventListener("click", () => {
-                selected.innerHTML = o.querySelector("label").innerHTML;
-                optionsContainer.classList.remove("active");
-            });
-        });
-
-        searchBox.addEventListener("keyup", function(e) {
-            filterList(e.target.value);
-        });
-
-        const filterList = searchTerm => {
-            searchTerm = searchTerm.toLowerCase();
-            optionsList.forEach(option => {
-                let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
-                if (label.indexOf(searchTerm) != -1) {
-                    option.style.display = "block";
-                } else {
-                    option.style.display = "none";
-                }
-            });
-        };
-        //-------------------------------
-        const tagContainer = document.body.querySelector('.tag-container');
-        const tagInput = document.body.querySelector('.tag-container input');
-
-        let tags = [];
-        function createTag(label) {
-            const div = document.createElement('div');
-            div.setAttribute('class','tag')
-            const span = document.createElement('span');
-            span.innerHTML = label;
-            const closeBtn = document.createElement('i');
-            closeBtn.setAttribute('uk-icon', 'close');
-            closeBtn.setAttribute('data-item', label);
-
-            div.appendChild(span);
-            div.appendChild(closeBtn);
-            return div;
-        }
-        function reset(){
-            document.querySelectorAll('.tag').forEach(function (tag){
-                tag.parentElement.removeChild(tag);
-            })
-        }
-        function addTags(){
-            reset();
-            tags.slice().reverse().forEach(function (tag){
-                const tagInput = createTag(tag);
-                tagContainer.prepend(tagInput);
-            })
-        }
-
-        tagInput.addEventListener('keyup', function (e){
-            if(e.key === 'Enter'){
-                tags.push(tagInput.value);
-                addTags();
-                tagInput.value = '';
-            }
-        })
-
-        document.addEventListener('click', function (e){
-            console.log(e.target.className);
-            if(e.target.tagName === 'I'){
-                const value = e.target.getAttribute('data-item');
-                const index = tags.indexOf(value);
-                tags = [...tags.slice(0,index), ...tags.slice(index+1)];
-                addTags();
-            }
-        })
-
-        async function timeSetTimeInterval() {
-            const {value: formValues} = await Swal.fire({
-                title: 'Multiple inputs',
-                html:
-                    '<input type="date" id="swal-input1" class="swal2-input">' +
-                    '<input type="date" id="swal-input2" class="swal2-input">',
-                focusConfirm: false,
-                preConfirm: () => {
-                    return [
-                        document.getElementById('swal-input1').value,
-                        document.getElementById('swal-input2').value
-                    ]
-                }
-            })
-        }
+        console.log(arr2)
     </script>
 @endsection
