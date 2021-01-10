@@ -32,6 +32,7 @@
                 <th>Name</th>
                 <th>Date Created</th>
                 <th>Date Updated</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -43,6 +44,7 @@
                     <td>{{ $user->user->getFullName() }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td>{{ $user->updated_at }}</td>
+                    <td>{{ $user->status }}-><-SAMPLE</td>
                     <td>
                         <a href="{{ route('client.edit', ['id' => $user->id]) }}">Edit</a>
                     </td>
