@@ -9,7 +9,9 @@
         @include('includes/search-bar')
 
         <!--ADD-BUTTON-->
-        <a class="uk-button uk-button-primary uk-align-right" href="{{ route('rss.new') }}">New Feed</a>
+        @if (auth()->user()->isEmployee())
+            <a class="uk-button uk-button-primary uk-align-right" href="{{ route('rss.new') }}">New Feed</a>
+        @endif
 
         <h3>Available RSS Feeds</h3>
         <table class="uk-table uk-table-striped" id="tableForm">
