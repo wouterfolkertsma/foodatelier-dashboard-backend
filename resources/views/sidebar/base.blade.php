@@ -1,7 +1,13 @@
 <div class="menu" tabindex="0">
     <div class="smartphone-menu-trigger"></div>
     <div class="avatar">
-        <img src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg" />
+        <?php
+        // Get user id
+        $user = Auth::user();
+        ?>
+        <a href="{{ route('user.edit', $user->id) }}">
+            <img src="/{{ $user->avatar_url }}" />
+        </a>
         <h2>{{ auth()->user()->first_name }}</h2>
     </div>
     <ul>

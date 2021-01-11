@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\MessengerController;
 use App\Http\Controllers\RssFeedController;
@@ -23,6 +24,14 @@ use Illuminate\Support\Facades\Route;
 // Admin Routes
 Route::middleware(['auth'])->group(function () {
     Route::view('/', 'welcome')->name('home');
+
+    Route::get('/manage/{user}/user', [UserController::class, 'editUser'])->name('user.edit');
+    Route::get('/manage/{user}/user/settings', [UserController::class, 'editUserSettings'])->name('user.editSettings');
+//    Route::post('user', 'UserController@updateAvatar')->middleware('auth')->name('user.updateAvatar');
+    Route::post('/manage/{user}/user/upload', [UserController::class, 'updateAvatar'])->name('user.updateAvatar');
+    Route::post('/manage/{user}/user/changecontact', [UserController::class, 'updateContact'])->name('user.updateContact');
+    Route::post('/manage/{user}/user/changeName', [UserController::class, 'updateName'])->name('user.updateName');
+    Route::post('/manage/{user}/user/changedesc', [UserController::class, 'updateDesc'])->name('user.updateDesc');
 
     Route::get('/manage/employees', 'EmployeeController@employeesManager')->name('employee-manager');
     Route::get('/manage/clients', [EmployeeController::class, 'clientsManager'])->name('client-manager');
