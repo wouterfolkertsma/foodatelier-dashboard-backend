@@ -1,6 +1,6 @@
 <nav class="navbar" tabindex="0">
-    <h4 class="page-title">@yield('title')</h4>
-    <h3 class="page-title uk-legend">@yield('title')</h3>
+    <h3 class="page-title">@yield('title')</h3>
+{{--    <h3 class="page-title uk-legend">@yield('title')</h3>--}}
     <a class="nav-link" href="{{ route('messenger-inbox') }}">
         <span uk-icon="comments"></span>
         <span>Messenger</span>
