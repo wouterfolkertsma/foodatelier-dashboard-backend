@@ -1,7 +1,7 @@
 
 @extends('layout.base')
 
-@section('title', 'File Management')
+@section('title', 'RSS Feed Management')
 
 @section('content')
     <div class="uk-card-default uk-card-body">
