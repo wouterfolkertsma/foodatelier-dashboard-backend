@@ -11,4 +11,6 @@
     </div>
 </div>
 
-<progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+<div class="uk-progress-margin">
+    <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+</div>

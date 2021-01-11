@@ -27,4 +27,25 @@ class File extends Data
     public function imageable() {
         return preg_match("/^.*\.(jpg|jpeg|png)$/i", $this->file_path);
     }
+
+    /**
+     * @return false|int
+     */
+    public function textable() {
+        return preg_match("/^.*\.(pdf|txt|doc|docx|docm|dotx|dotm|docb)$/i", $this->file_path);
+    }
+
+    /**
+     * @return false|int
+     */
+    public function presentable() {
+        return preg_match("/^.*\.(ppt|pot|pps|pptx)$/i", $this->file_path);
+    }
+
+    /**
+     * @return false|int
+     */
+    public function tableable() {
+        return preg_match("/^.*\.(xlsx|xslx|xml|xlsm|xltx|xltm)$/i", $this->file_path);
+    }
 }
