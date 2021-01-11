@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -58,29 +59,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function updateAvatar(Request $request, User $user){
-//        dd($user);
-        // Logic for user upload of avatar
-        //if($request->hasFile('avatar')){
-//            $avatar = $request->file('avatar');
-//            $filename = time() . '.' . $avatar->getClientOriginalExtension();
-//            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename ) );
-//            $user = Auth::user();
-//            $user->avatar = $filename;
-//            $user->save();
-        //}
-//        if ($request->hasFile('avatar')) {
-//            Storage::putFile('storage', $request->file('avatar'));
-            $user->first_name = $user->first_name;
-            $user->last_name = $user->last_name;
-            $user->avatar_url = Storage::putFile('storage/avatars', $request->file('avatar'));
-            $user->email = $user->email;
-            $user->password = $user->password;
-            $user->profile_type = $user->profile_type;
-            $user->profile_id = $user->profile_id;
-            $user->role_id = $user->role_id;
-            $user->save();
-//        }
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return Application|Factory|View
+     */
+    public function updateAvatar(Request $request, User $user) {
+        $user->avatar_url = Storage::putFile('storage/avatars', $request->file('avatar'));
+        $user->save();
 
         return view('profile', ['user' => Auth::user()] );
     }
