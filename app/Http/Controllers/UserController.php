@@ -71,7 +71,7 @@ class UserController extends Controller
         return view('profile', ['user' => Auth::user()] );
     }
 
-    public function updateContact(Request $request, User $user){
+    public function updateContact(Request $request, User $user) {
         $user->first_name = $user->first_name;
         $user->last_name = $user->last_name;
         $user->avatar_url = $user->avatar_url;

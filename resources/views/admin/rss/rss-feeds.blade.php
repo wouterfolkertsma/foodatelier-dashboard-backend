@@ -33,7 +33,9 @@
                     <td>{{ $item->updated_at }}</td>
                     <td>
                         <a class="uk-button uk-button-primary uk-button-small js-preview-rss" data-id="{{ $item->id }}" download>Preview</a>
-                        <a class="uk-button uk-button-secondary uk-button-small" href="{{ route('rss.edit', ['rssFeed' => $item->id]) }}">Edit</a>
+                        @if (auth()->user()->isEmployee())
+                            <a class="uk-button uk-button-secondary uk-button-small" href="{{ route('rss.edit', ['rssFeed' => $item->id]) }}">Edit</a>
+                        @endif
                     </td>
                 </tr>
             @endforeach
