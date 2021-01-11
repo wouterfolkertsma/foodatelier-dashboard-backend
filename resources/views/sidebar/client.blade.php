@@ -27,7 +27,7 @@
             </li>
 
             <li tabindex="0" class="icon-dashboard sublink">
-                <a class="menu-link" href="{{ route('rss.index') }}">Files</a>
+                <a class="menu-link" href="{{ route('rss.index') }}">RSS Feeds</a>
             </li>
         </ul>
     </a>
