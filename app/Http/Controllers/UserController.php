@@ -82,14 +82,14 @@ class UserController extends Controller
             $user->save();
 //        }
 
-        return view('profile', ['user' => Auth::user()] );
+        return view('edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateContact(Request $request, User $user){
         $user->first_name = $user->first_name;
         $user->last_name = $user->last_name;
         $user->avatar_url = $user->avatar_url;
-        $user->email = $request->input('email');
+        $user->email = $request->Input::all('email');
         $user->password = $user->password;
         $user->profile_type = $user->profile_type;
         $user->profile_id = $user->profile_id;
@@ -97,12 +97,12 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('client.dashboard', ['user' => Auth::user()] );
+        return view('edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateName(Request $request, User $user){
-        $user->first_name = $request->input('first');
-        $user->last_name = $request->input('last');
+        $user->first_name = $request->Input::all('first');
+        $user->last_name = $request->Input::all('last');
         $user->avatar_url = $user->avatar_url;
         $user->email = $user->email;
         $user->password = $user->password;
@@ -112,7 +112,7 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('client.dashboard', ['user' => Auth::user()] );
+        return view('edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateDesc(Request $request, User $user){
@@ -127,7 +127,7 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('client.dashboard', ['user' => Auth::user()] );
+        return view('edit-profile', ['user' => Auth::user()] );
     }
 
 
