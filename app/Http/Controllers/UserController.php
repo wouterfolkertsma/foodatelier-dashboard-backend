@@ -83,7 +83,7 @@ class UserController extends Controller
             $user->save();
 //        }
 
-        return view('edit-profile', ['user' => Auth::user()] );
+        return view('admin.edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateContact(Request $request, User $user){
@@ -97,7 +97,7 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('edit-profile', ['user' => Auth::user()] );
+        return view('admin.edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateName(Request $request, User $user){
@@ -112,7 +112,7 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('edit-profile', ['user' => Auth::user()] );
+        return view('admin.edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateDesc(Request $request, User $user){
@@ -127,7 +127,7 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('edit-profile', ['user' => Auth::user()] );
+        return view('admin.edit-profile', ['user' => Auth::user()] );
     }
 
 
