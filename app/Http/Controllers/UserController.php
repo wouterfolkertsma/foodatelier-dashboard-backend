@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -86,8 +87,7 @@ class UserController extends Controller
     }
 
     public function updateContact(Request $request, User $user){
-        $user->first_name = $user->first_name;
-        $user->last_name = $user->last_name;
+
         $user->avatar_url = $user->avatar_url;
         $user->email = $request->Input::all('email');
         $user->password = $user->password;
