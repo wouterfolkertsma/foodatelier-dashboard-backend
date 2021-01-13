@@ -101,13 +101,13 @@
     </div>
 
     <div class="button-section">
-    <div class="save_button">
-        {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary uk-width-1-1 ']) }}
-    </div>
-    {{ Form::close() }}
-    <div class="uk-button uk-button-secondary uk-width-1-1" onclick="test()">
-        PREVIEW
-    </div>
+        <div class="save_button">
+            {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary uk-width-1-1 ']) }}
+        </div>
+        {{ Form::close() }}
+        <div class="uk-button uk-button-secondary uk-width-1-1" onclick="test()">
+            PREVIEW
+        </div>
     </div>
 
 
@@ -115,11 +115,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 </div>
 
-<div class="graph "style="width: 93%; height: 60%; position: absolute; z-index: 0">
+
+<div class="uk-card-default uk-card-body">
+    @include('includes/trends-related-terms-block')
+</div>
+
+<div class="graph "style="width: 93%; height: 60%; z-index: 0">
     <div class="uk-card-default uk-card-body"style="height: 100%; width: 100%;">
         @include('includes/trends-chart-block')
     </div>
 </div>
+
+
+
+
+
 <script>
     var ctx = document.getElementById("myChart2");
     var myChart = new Chart(ctx, {

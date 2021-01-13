@@ -24,6 +24,10 @@ composer install
 ```shell script
 cp .env.example .env
 ```
+(on Windows:)
+```shell script
+copy .env.example .env
+```
 
 You should now create a database in mysql and add the correct information in the .env file. 
 

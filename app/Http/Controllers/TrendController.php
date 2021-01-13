@@ -89,6 +89,44 @@ class TrendController extends Controller
         }
 
     }
+    public function getRelatedTerms(Request $request, int $filterId){
+        $filter = TrendFilter::where('id', $filterId)
+            ->firstOrFail();
+
+        $location = $filter->country->alpha_2_code;
+        $location = str_replace(' ', '', $location);
+
+        $searchTerms = unserialize($filter->search_term);
+
+        $allResultsRQS = array();
+        for($i = 0; $i < count((array)$searchTerms);$i++) {
+
+            $searchFilter = (new SearchFilter())
+                ->withCategory(0) //All categories
+                ->withSearchTerm($searchTerms[$i])
+                ->withLocation($location)
+                ->withinInterval(
+                    new DateTimeImmutable('now -7 days'),
+                    new DateTimeImmutable('now')
+                )
+                ->withLanguage('en-US')
+                ->considerWebSearch()
+                # ->considerImageSearch() // Consider only image search
+                # ->considerNewsSearch() // Consider only news search
+                # ->considerYoutubeSearch() // Consider only youtube search
+                # ->considerGoogleShoppingSearch() // Consider only Google Shopping search
+                ->withTopMetrics()
+                ->withRisingMetrics();
+
+            $resultRQS = (new RelatedQueriesSearch())
+                ->search($searchFilter)
+                ->jsonSerialize();
+            array_push($allResultsRQS, $resultRQS);
+        }
+
+        return response(['allResults' => $allResultsRQS, 'searchTerms' =>$searchTerms]);
+    }
+
 
     public function getTrend(Request $request, int $filterId){
         $filter = TrendFilter::where('id', $filterId)
