@@ -70,8 +70,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage/trends/filter', [TrendController::class, 'newFilter'])->name('filter.new');
     Route::post('/manage/trends/add-filter', [TrendController::class, 'saveFilter'])->name('filter.save');
     Route::get('/manage/trends/{id}/filter', [TrendController::class, 'editFilter'])->name('filter.edit');
-    Route::get('/manage/trends/{id}/filter/getTrend', [TrendController::class, 'getTrend'])->name('filter.get-trend');
-    Route::get('/manage/trends/{id}/filter/getRelatedTerms', [TrendController::class, 'getRelatedTerms'])->name('filter.get-related-terms');
+    Route::get('/manage/trends/filter/getTrendGraph', [TrendController::class, 'getTrendGraphPreview'])->name('filter.get-trend-graph');
+    Route::get('/manage/trends/filter/getRelatedTerms', [TrendController::class, 'getRelatedTermsPreview'])->name('filter.get-related-terms');
     Route::post('/manage/trends/{id}/filter', [TrendController::class, 'updateFilter'])->name('filter.update');
 
     Route::get('/messenger', [MessengerController::class, 'messengerInbox'])->name('messenger-inbox');

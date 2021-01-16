@@ -5,34 +5,56 @@
 @section('content')
 
 <div class="uk-card-default uk-card-body"style="height: 350px; max-height: 350px;">
-    {{ Form::model($filter, ['route' => ['filter.update', $filter->id], 'class' => 'uk-form-stacked']) }}
+    @isset($filter)
+        {{ Form::model($filter, ['route' => ['filter.update', $filter->id],'id'=>'submitForm', 'class' => 'uk-form-stacked']) }}
+    @else
+        {{ Form::open(['route' => ['filter.save'],'id'=>'submitForm', 'class' => 'uk-form-stacked']) }}
+    @endif
     <div class="headsection">
     <div class="uk-f-name">
         {{ Form::label('name', 'Filter Name:', ['class' => 'uk-form-label']) }}
-        {{ Form::text('name', $filter->name, ['class' => 'uk-input uk-form-width-large']) }}
+        @isset($filter)
+            {{ Form::text('name', $filter->name, ['class' => 'uk-input uk-form-width-large']) }}
+        @else
+            {{ Form::text('name', '', ['class' => 'uk-input uk-form-width-large']) }}
+        @endif
     </div>
     <div class="uk-f-description">
         {{ Form::label('description', 'Filter Description:', ['class' => 'uk-form-label']) }}
-        {{ Form::text('description', $filter->description, ['class' => 'uk-input ']) }}
+        @isset($filter)
+            {{ Form::text('description', $filter->description, ['class' => 'uk-input ']) }}
+        @else
+            {{ Form::text('description', '', ['class' => 'uk-input ']) }}
+        @endif
     </div>
     </div>
+        @isset($filter)
     {{ Form::hidden('search_term', '', array('id' => 'form_search_term')) }}
     {{ Form::hidden('country_id', $filter->country_id, array('id' => 'form_country_id')) }}
 
-    {{ Form::hidden('standard_interval', 2, ['id' => 'form_standard_interval']) }}
+    {{ Form::hidden('standard_interval', $filter->standard_interval_id, ['id' => 'form_standard_interval']) }}
     {{ Form::hidden('custom_interval_from', $filter->custom_interval_from, array('id' => 'form_custom_interval_from')) }}
     {{ Form::hidden('custom_interval_to', $filter->custom_interval_to, array('id' => 'form_custom_interval_to')) }}
 
-    {{ Form::hidden('consider_web_search', $filter->consider_web_search, array('id' => 'form_consider_web_search')) }}
-    {{ Form::hidden('consider_image_search', $filter->consider_image_search, array('id' => 'form_consider_image_search')) }}
-    {{ Form::hidden('consider_news_search', $filter->consider_news_search, array('id' => 'form_consider_news_search')) }}
-    {{ Form::hidden('consider_youtube_search', $filter->consider_youtube_search, array('id' => 'form_consider_youtube_search')) }}
-    {{ Form::hidden('consider_shopping_search', $filter->consider_shopping_search, array('id' => 'form_consider_shopping_search')) }}
+    {{ Form::hidden('search_type', $filter->search_type, array('id' => 'form_search_type')) }}
 
-    {{ Form::hidden('with_top_metric', false, array('id' => 'form_with_top_metric')) }}
-    {{ Form::hidden('with_rising_metric', false, array('id' => 'form_with_rising_metric')) }}
-    {{ Form::hidden('language', 'en-US', array('id' => 'form_standard_interval')) }}
+    {{ Form::hidden('with_top_metric', true, array('id' => 'form_with_top_metric')) }}
+    {{ Form::hidden('with_rising_metric', true, array('id' => 'form_with_rising_metric')) }}
+    {{ Form::hidden('language', 'en-US', array('id' => 'form_language')) }}
+        @else
+            {{ Form::hidden('search_term', '', array('id' => 'form_search_term')) }}
+            {{ Form::hidden('country_id', '', array('id' => 'form_country_id')) }}
 
+            {{ Form::hidden('standard_interval', 2, ['id' => 'form_standard_interval']) }}
+            {{ Form::hidden('custom_interval_from', '', array('id' => 'form_custom_interval_from')) }}
+            {{ Form::hidden('custom_interval_to', '', array('id' => 'form_custom_interval_to')) }}
+
+            {{ Form::hidden('search_type', '', array('id' => 'form_search_type')) }}
+
+            {{ Form::hidden('with_top_metric', true, array('id' => 'form_with_top_metric')) }}
+            {{ Form::hidden('with_rising_metric', true, array('id' => 'form_with_rising_metric')) }}
+            {{ Form::hidden('language', 'en-US', array('id' => 'form_language')) }}
+        @endif
 
     {{ Form::label('filter', 'Filter Settings:', ['class' => 'uk-form-label']) }}
     <div onload="reset()" class="tag-search-container">
@@ -57,7 +79,9 @@
                             @endforeach
                         </div>
                         <div class="selected" uk-icon="icon: chevron-down">
-                            {{$filter->country->country_name}}
+                            @isset($filter)
+                                {{$filter->country->country_name}}
+                            @endif
                         </div>
                         <div class="search-box" >
                             <input type="text" placeholder="Search..."/>
@@ -71,12 +95,9 @@
                             <ul class="uk-nav uk-dropdown-nav">
                                 <li class="uk-active"><a href="#">Worldwide</a></li>
                                 <li class="uk-nav-divider"></li>
-                                <li><a onclick="setStandardInterval(1, 'last day')">last day </a></li>
-                                <li><a onclick="setStandardInterval(2, 'last 7 days')">last 7 days</a></li>
-                                <li><a onclick="setStandardInterval(3, 'last 30 days')">last 30 days</a></li>
-                                <li><a onclick="setStandardInterval(4, 'last 90 days')">last 90 days</a></li>
-                                <li><a onclick="setStandardInterval(5, 'last 5 Years')">last 5 Years</a></li>
-                                <li><a onclick="setStandardInterval(6, '2004 - today')">2004 - today</a></li>
+                                @foreach($filter_intervals as $interval)
+                                    <li><a onclick="setStandardInterval('{{$interval->id}}', '{{$interval->name}}')">{{$interval->name}}</a></li>
+                                @endforeach
                                 <li class="uk-nav-divider"></li>
                                 <li><a onclick="timeSetTimeInterval()">custom</a></li>
                             </ul>
@@ -88,11 +109,11 @@
                         <button id="searchType" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" type="button">Search-Type</button>
                         <div uk-dropdown="pos: bottom-left; mode: click">
                             <ul class="uk-nav uk-dropdown-nav">
-                                <li><a onclick="setSearchType(1, 'Web-Search')">Web-Search</a></li>
-                                <li><a onclick="setSearchType(2, 'Image-Search')">Image-Search</a></li>
-                                <li><a onclick="setSearchType(3, 'News-Search')">News-Search</a></li>
-                                <li><a onclick="setSearchType(4, 'Youtube-Search')">Youtube-Search</a></li>
-                                <li><a onclick="setSearchType(5, 'Shopping-Search')">Shopping-Search</a></li>
+                                <li><a onclick="setSearchType('Web-Search')">Web-Search</a></li>
+                                <li><a onclick="setSearchType('Image-Search')">Image-Search</a></li>
+                                <li><a onclick="setSearchType('News-Search')">News-Search</a></li>
+                                <li><a onclick="setSearchType('Youtube-Search')">Youtube-Search</a></li>
+                                <li><a onclick="setSearchType('Shopping-Search')">Shopping-Search</a></li>
                             </ul>
                         </div>
 
@@ -105,9 +126,6 @@
             {{ Form::submit('Save', ['class' => 'uk-button uk-button-secondary uk-width-1-1 ']) }}
         </div>
         {{ Form::close() }}
-        <div class="uk-button uk-button-secondary uk-width-1-1" onclick="test()">
-            PREVIEW
-        </div>
     </div>
 
 
@@ -120,8 +138,11 @@
     @include('includes/trends-related-terms-block')
 </div>
 
-<div class="graph "style="width: 93%; height: 60%; z-index: 0">
+<div class="graph "style="width: 95%; height: 60%; z-index: 0">
     <div class="uk-card-default uk-card-body"style="height: 100%; width: 100%;">
+        <div class="uk-button uk-button-secondary uk-width-1-1" onclick="updateChart()">
+            LOAD PREVIEW
+        </div>
         @include('includes/trends-chart-block')
     </div>
 </div>
@@ -131,87 +152,7 @@
 
 
 <script>
-    var ctx = document.getElementById("myChart2");
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                data: [],
-                label: "unload",
-                borderColor: "rgba(236,49,46)",
-                backgroundColor : "rgba(219,66,50,0.3)",
 
-            }, {
-                data: [],
-                label: "",
-                borderColor: "",
-
-            }, {
-                data: [],
-                label: "",
-                borderColor: "#3cba9f",
-
-            }, {
-                data: [],
-                label: "",
-                borderColor: "#e8c3b9",
-
-            }, {
-                data: [],
-                label: "",
-                borderColor: "#c45850",
-
-            }
-            ]
-        },
-        options: {
-            scales: {
-                xAxes: [],
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });
-
-    var updateChart = function() {
-        console.log("TrendRequest is send")
-        $.ajax({
-            url: "{{ route('filter.get-trend', ['id' => 1] ) }}",
-            type: 'GET',
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data) {
-                let IOT = data.InterestOverTime.results;
-                let IOTLabels = IOT.map(a => a.interestAt)
-                let IOTValues = IOT.map(a => a.firstValue)
-                myChart.data.labels = IOTLabels;
-                //myChart.data.datasets[0].data = IOTValues;
-
-
-                let AllIOTResults = data.all;
-                var i;
-                for (i = 0; i < AllIOTResults.length; i++) {
-                    let IOTValues = AllIOTResults[i].results.map(a => a.firstValue)
-
-                    myChart.data.datasets[i].label = data.terms[i];
-                    myChart.data.datasets[i].data = IOTValues;
-                    console.log(IOTValues)
-                }
-                myChart.update();
-
-
-            },
-            error: function(data){
-                console.log(data);
-            }
-        });
-    }
 
 
 
@@ -234,30 +175,24 @@
     const formCustomIntervalFrom = document.getElementById("form_custom_interval_from");
     const formCustomIntervalTo = document.getElementById("form_custom_interval_to");
 
-    const formWebSearch = document.getElementById("form_consider_web_search");
-    const formImageSearch = document.getElementById("form_consider_image_search");
-    const formNewsSearch = document.getElementById("form_consider_news_search");
-    const formYoutubeSearch = document.getElementById("form_consider_youtube_search");
-    const formShoppingSearch = document.getElementById("form_consider_shopping_search");
-    const searchTypes = [formWebSearch, formImageSearch, formNewsSearch, formYoutubeSearch, formShoppingSearch];
+    const formSearchType = document.getElementById("form_search_type");
 
     const intervalButton =  document.getElementById("timeInterval");
 
     function setStandardInterval(id, name){
+        console.log("befor: " +  formStandardIntervalId.value)
         intervalButton.innerHTML = name;
         formStandardIntervalId.value = id;
         //UIkit.dropdown(intervalButton).hide
+        console.log("after: " +  formStandardIntervalId.value)
     }
-    let searchType = 0;
-    const searchTypeButton =  document.getElementById("searchType");
-    function setSearchType(id, name){
 
-        searchType = id;
+    const searchTypeButton =  document.getElementById("searchType");
+    function setSearchType(name){
+
+        formSearchType.value = name;
         searchTypeButton.innerHTML = name;
-        searchTypes.forEach(function(item){
-            item.value = 0;
-        });
-        searchTypes[id-1].value = 1;
+
         //console.log(searchTypes);
     }
 
@@ -270,9 +205,10 @@
     const searchBox = document.querySelector(".search-box input");
 
     const optionsList = document.querySelectorAll(".option");
-
+    @isset($filter)
     searchBox.value = '{{ $filter->location }}';
     console.log('{{ $filter->location }}');
+    @endif
 
     selected.addEventListener("click", () => {
         optionsContainer.classList.toggle("active");
@@ -314,9 +250,11 @@
 
     let tags = [];
     //load terms
+    @isset($filter)
     @foreach ($filter->search_term as $key => $value)
         tags.push('{{ $value }}');
     @endforeach
+        @endif
     addTags();
 
 
@@ -390,15 +328,13 @@
 //-------------------------------------------------
     function test(){
         console.log("SearchTypes:")
-        searchTypes.forEach(function(type){
-            console.log(type.id + "=" + type.value)
-        });
+
         console.log("------")
         console.log("country-ID =" + formCountryId.value)
         console.log("Tags/Terms:" + tags.toString())
         console.log("php serialized = " + serialize(tags))
 
-        updateChart();
+
     }
 
 

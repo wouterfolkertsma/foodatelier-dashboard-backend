@@ -27,14 +27,10 @@ class TrendFilterSeeder extends Seeder
                 'description' => 'Query to test the GoogleTrends functionality',
                 'search_term' => $terms_str,
                 'country_id' => 1,
-                'standard_interval' => 'now -7 days',
-                'consider_web_search' => true,
-                'consider_image_search' => false,
-                'consider_news_search' => false,
-                'consider_youtube_search' => false,
-                'consider_shopping_search' => false,
-                'with_top_metric' => false,
-                'with_rising_metric' => false
+                'standard_interval_id' => 2,
+                'search_type' => 'Web-Search',
+                'with_top_metric' => true,
+                'with_rising_metric' => true
             ])
         ]);
     }

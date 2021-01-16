@@ -20,17 +20,14 @@ class CreateTrendFilterTable extends Migration
             $table->string('search_term');
             $table->bigInteger('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries');
-            $table->string('standard_interval');
-            $table->date('custom_interval_from');
-            $table->date('custom_interval_to');
+            $table->bigInteger('standard_interval_id')->unsigned()->default(2);
+            $table->foreign('standard_interval_id')->references('id')->on('trend_filter_intervals');
+            $table->date('custom_interval_from')->nullable($value = true);
+            $table->date('custom_interval_to')->nullable($value = true);
             $table->string('language');
-            $table->boolean('consider_web_search');
-            $table->boolean('consider_image_search');
-            $table->boolean('consider_news_search');
-            $table->boolean('consider_youtube_search');
-            $table->boolean('consider_shopping_search');
-            $table->boolean('with_top_metric');
-            $table->boolean('with_rising_metric');
+            $table->string('search_type')->default('Web-Search');
+            $table->boolean('with_top_metric')->nullable($value = true);;
+            $table->boolean('with_rising_metric')->nullable($value = true);
             $table->timestamps();
         });
     }

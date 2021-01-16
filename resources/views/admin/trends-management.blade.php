@@ -15,21 +15,21 @@
             <p>No Results.</p>
         </div>
         <!--TABLE-->
-        <table class="uk-table uk-table-striped" id="tableForm">
+        <div id="table-scroll" class="table-scroll">
+            <div class="table-wrap">
+
+        <table class="uk-table uk-table-striped main-table" id="tableForm">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Search Terms</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Location</th>
-                <th>Language</th>
-                <th>Web</th>
-                <th>Image</th>
-                <th>News</th>
-                <th>Youtube</th>
-                <th>Shopping</th>
+                <th class="fixed-side" scope="col">ID</th>
+                <th class="fixed-side last-fixed-side" scope="col">Name</th>
+                <th scope="col">Search Terms</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Location</th>
+                <th scope="col">Language</th>
+                <th scope="col">Search-Type</th>
+
 
                 <th>Date Created</th>
                 <th>Date Updated</th>
@@ -38,13 +38,13 @@
             </thead>
             <tbody id="resultsTable">
             @foreach($filters as $filter)
+
                 <tr>
-                    <td>{{ $filter->id }}</td>
-                    <td>{{ $filter->name }}</td>
+                    <td class="fixed-side">{{ $filter->id }}</td>
+                    <td class="fixed-side last-fixed-side"><a href="{{ route('filter.edit', ['id' => $filter->id]) }}">{{ $filter->name }}</a></td>
                     <td>
                         @foreach ($filter->search_term as $key => $value)
-
-                            <span uk-icon="icon: tag"></span>{{ $value }}
+                            {{ $value }}
                         @endforeach
                     </td>
                     @if($filter->standard_interval)
@@ -64,31 +64,18 @@
                     @else
                         <td>DEFAULT (US-ENG)</td>
                     @endif
-                    @if($filter->consider_web_search)
-                        <td><span uk-icon="icon: check"></span></td>
-                    @else
-                        <td><span uk-icon="icon: close"></span></td>
+                    @if($filter->search_type == "Web-Search")
+                        <td><span uk-icon="icon: world"></span></td>
+                    @elseif($filter->search_type == "Image-Search")
+                        <td><span uk-icon="icon: image"></span></td>
+                    @elseif($filter->search_type == "News-Search")
+                        <td><span uk-icon="icon: commenting"></span></td>
+                    @elseif($filter->search_type == "Youtube-Search")
+                        <td><span uk-icon="icon: youtube"></span></td>
+                    @elseif($filter->search_type == "Shopping-Search")
+                        <td><span uk-icon="icon: cart"></span></td>
                     @endif
-                    @if($filter->consider_image_search)
-                        <td><span uk-icon="icon: check"></span></td>
-                    @else
-                        <td><span uk-icon="icon: close"></span></td>
-                    @endif
-                    @if($filter->consider_news_search)
-                        <td><span uk-icon="icon: check"></span></td>
-                    @else
-                        <td><span uk-icon="icon: close"></span></td>
-                    @endif
-                    @if($filter->consider_youtube_search)
-                        <td><span uk-icon="icon: check"></span></td>
-                    @else
-                        <td><span uk-icon="icon: close"></span></td>
-                    @endif
-                    @if($filter->consider_shopping_search)
-                        <td><span uk-icon="icon: check"></span></td>
-                    @else
-                        <td><span uk-icon="icon: close"></span></td>
-                    @endif
+
 
                     <td>{{ $filter->created_at }}</td>
                     <td>{{ $filter->updated_at }}</td>
@@ -96,6 +83,7 @@
                         <a href="{{ route('filter.edit', ['id' => $filter->id]) }}">Edit</a>
                     </td>
                 </tr>
+
             @endforeach
             </tbody>
         </table>
@@ -105,5 +93,9 @@
         let arr2 = {!! json_encode($filter->search_term) !!};
 
         console.log(arr2)
+
+        jQuery(document).ready(function() {
+            jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
+        });
     </script>
 @endsection
