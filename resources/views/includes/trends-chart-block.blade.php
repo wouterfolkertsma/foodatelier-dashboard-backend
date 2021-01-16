@@ -1,3 +1,6 @@
+<div class="uk-button uk-button-secondary uk-width-1-1" onclick="updateChart()">
+    LOAD PREVIEW
+</div>
 <div class trendsValueChart >
     <canvas id="chart" width="100" height="50"></canvas>
 </div>

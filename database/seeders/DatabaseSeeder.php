@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySelectionSeeder::class);
         $this->call(TrendFiltersIntervalsSeeder::class);
         $this->call(TrendFilterSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(DataHaveCategorySeeder::class);
     }
 }

@@ -1,6 +1,6 @@
 
 
-    <div id="related-trends-button" class="uk-button uk-button-default uk-width-1-1" onclick="load()">
+    <div id="related-trends-button" class="uk-button uk-button-secondary uk-width-1-1" onclick="load()">
         LOAD RELATED TRENDS
     </div>
     <div id="loading_anim_container" style="display: table; margin: 0 auto;">

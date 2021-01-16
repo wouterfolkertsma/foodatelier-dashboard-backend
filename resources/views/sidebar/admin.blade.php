@@ -9,6 +9,10 @@
         <li tabindex="0" class="icon-dashboard"><span>Client Management</span></li>
     </a>
 
+    <a class="menu-link" href="{{ route('category-manager') }}">
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">Categories</span></li>
+    </a>
+
     <a class="menu-link" href="{{ route('dashboard-manager') }}">
         <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">Dashboard overview</span></li>
     </a>

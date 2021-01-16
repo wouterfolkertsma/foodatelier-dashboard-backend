@@ -89,8 +89,14 @@
                     </div>
                 </div>
                 <div class="sub2">
-
+                    @isset($filter)
+                        @isset($filter->standard_interval_id)
+                            <button id="searchType" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" type="button">{{$filter->standardInterval->name}}</button>
+                        @endif
+                    @else
                         <button id="timeInterval" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" type="button">Time</button>
+                    @endif
+
                         <div uk-dropdown="pos: bottom-left; mode: click">
                             <ul class="uk-nav uk-dropdown-nav">
                                 <li class="uk-active"><a href="#">Worldwide</a></li>
@@ -105,8 +111,11 @@
 
                 </div>
                 <div class="sub3">
-
+                    @isset($filter)
+                        <button id="searchType" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" type="button">{{$filter->search_type}}</button>
+                    @else
                         <button id="searchType" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" type="button">Search-Type</button>
+                    @endif
                         <div uk-dropdown="pos: bottom-left; mode: click">
                             <ul class="uk-nav uk-dropdown-nav">
                                 <li><a onclick="setSearchType('Web-Search')">Web-Search</a></li>
@@ -140,9 +149,7 @@
 
 <div class="graph "style="width: 95%; height: 60%; z-index: 0">
     <div class="uk-card-default uk-card-body"style="height: 100%; width: 100%;">
-        <div class="uk-button uk-button-secondary uk-width-1-1" onclick="updateChart()">
-            LOAD PREVIEW
-        </div>
+
         @include('includes/trends-chart-block')
     </div>
 </div>
