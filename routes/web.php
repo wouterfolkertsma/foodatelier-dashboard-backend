@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\MessengerController;
+use App\Http\Controllers\TrendController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,8 +66,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/files/upload', [DataController::class, 'fileUpload'])->name('file-upload');
     Route::get('/manage/files/delete', [DataController::class, 'fileDelete'])->name('file.delete');
 
+    Route::get('/manage/categories', [CategoryController::class, 'categoryManager'])->name('category-manager');
+    Route::get('/manage/new-categories', [CategoryController::class, 'newCategory'])->name('category.new');
+    Route::post('/manage/add-category', [CategoryController::class, 'saveCategory'])->name('category.save');
+    Route::get('/manage/{id}/category', [CategoryController::class, 'editCategory'])->name('category.edit');
 
-    Route::get('/manage/trends', [EmployeeController::class, 'trendsManager'])->name('trends-manager');
+    Route::get('/manage/trends', [TrendController::class, 'trendsManager'])->name('trends-manager');
+    Route::get('/manage/trends/filter', [TrendController::class, 'newFilter'])->name('filter.new');
+    Route::post('/manage/trends/add-filter', [TrendController::class, 'saveFilter'])->name('filter.save');
+    Route::get('/manage/trends/{id}/filter', [TrendController::class, 'editFilter'])->name('filter.edit');
+    Route::get('/manage/trends/load-filter', [TrendController::class, 'getTrendGraph'])->name('filter.get-saved-trend-graph');
+    Route::get('/manage/trends/filter/getTrendGraph', [TrendController::class, 'getTrendGraphPreview'])->name('filter.get-trend-graph');
+    Route::get('/manage/trends/filter/getRelatedTerms', [TrendController::class, 'getRelatedTermsPreview'])->name('filter.get-related-terms');
+    Route::post('/manage/trends/{id}/filter', [TrendController::class, 'updateFilter'])->name('filter.update');
 
     Route::get('/messenger', [MessengerController::class, 'messengerInbox'])->name('messenger-inbox');
     Route::get('/messenger/{id}', [MessengerController::class, 'messengerMessage'])->name('messenger-message');

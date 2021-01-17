@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Data\Data;
 use App\Models\Data\File;
+use App\Models\Data\TrendFilter;
 use App\Traits\HasDashboard;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -73,6 +74,21 @@ class ClientController extends Controller
      */
     public function trends(Request $request)
     {
-        return view('client.trends');
+        $filters = $this->getDashboard()->data->filter(function ($data) {
+            return $data->data_type === TrendFilter::class;
+        });
+
+
+        foreach ($filters as $filter) {
+            $test = $filter->load('data');
+
+            //dd(unserialize($filter->data->search_term));
+            $filter->data->search_term = unserialize($filter->data->search_term);
+        }
+
+
+        return view('client.trends', [
+            'filters' => $filters
+        ]);
     }
 }

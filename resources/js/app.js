@@ -13,6 +13,7 @@ window.Swal = Swal;
 import jsAlerts from "../js/components/alerts";
 window.jsAlerts = jsAlerts;
 import FileUpload from "../js/components/file-upload";
+window.UIkit = UIkit;
 
 new DashboardDataManager();
 let searchBar = new SearchBar();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFilesTable extends Migration
+class CreateCountryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('category_id')->unsigned()->default(1);;
-            $table->foreign('category_id')->references('id')->on('categories');
+        Schema::create('countries', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('country_name');
+            $table->string('alpha_2_code');
+            $table->string('alpha_3_code');
+            $table->string('numeric_code');
+            $table->string('iso_subdivision_code');
             $table->timestamps();
-            $table->string('name');
-            $table->string('file_path');
+
         });
     }
 
@@ -30,6 +32,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('data');
     }
 }
