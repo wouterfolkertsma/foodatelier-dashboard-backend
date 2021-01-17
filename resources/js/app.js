@@ -10,15 +10,18 @@ import Chart from 'chart.js/dist/Chart';
 import jsAlerts from "../js/components/alerts";
 import FileUpload from "../js/components/file-upload";
 import RssFeedUploader from '../js/components/rss-feed-manager'
-new Messenger();
+import AddToDashboard from "./components/add-to-dashboard";
+
 window.Swal = Swal;
 window.jsAlerts = jsAlerts;
 
+new Messenger();
+new AddToDashboard();
 new RssFeedUploader();
 new DashboardDataManager();
-let searchBar = new SearchBar();
-let fileUpload = new FileUpload(UIkit);
-let trendsValueChart = new TrendsValueChart(Chart);
+new SearchBar();
+new FileUpload(UIkit);
+new TrendsValueChart(Chart);
 
 // loads the Icon plugin
 UIkit.use(Icons);

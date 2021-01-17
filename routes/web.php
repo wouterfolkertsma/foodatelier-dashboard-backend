@@ -45,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage/{dashboard}/dashboards/{data}/add', [DashboardController::class, 'addDataToDashboard'])->name('dashboard.data.add');
     Route::get('/manage/{dashboard}/dashboards/{data}/remove', [DashboardController::class, 'removeDataFromDashboard'])->name('dashboard.data.remove');
 
+//    Route::get('/manage/dashboards/{data}/edit', [DashboardController::class, 'addToDashboard'])->name('dashboard.add');
+//    Route::post('/manage/dashboards/{data}/edit', [DashboardController::class, 'saveToDashboard'])->name('dashboard.add.save');
+
     Route::get('/manage/{id}/company', [CompanyController::class, 'editCompany'])->name('company.edit');
     Route::post('/manage/{id}/company', [CompanyController::class, 'updateCompany'])->name('company.update');
 

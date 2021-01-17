@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\RssFeedRepository;
 use App\Http\Requests\StoreRssFeed;
+use App\Models\Dashboard;
 use App\Models\Data\RssFeed;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -37,7 +38,8 @@ class RssFeedController extends Controller
     public function index()
     {
         return view('admin.rss.rss-feeds', [
-            'data' => RssFeed::all()
+            'data' => RssFeed::all(),
+            'dashboards' =>$dashboards = Dashboard::pluck( 'name', 'id')
         ]);
     }
 
@@ -159,7 +161,6 @@ class RssFeedController extends Controller
     public function preview(Request $request): JsonResponse
     {
         $rss = simplexml_load_file($request->url)->channel;
-
 
         $html = \Illuminate\Support\Facades\View::make('admin.rss.rss-preview', [
             'data' => $rss

@@ -34,6 +34,10 @@
                     <td>{{ $item->created_at }}</td>
                     <td>{{ $item->updated_at }}</td>
                     <td>
+                        <a class="uk-button uk-button-secondary uk-button-small js-add-to-dashboard"
+                           id="{{ $item->id }}"
+                           data-type="{{ get_class($item) }}"
+                           uk-toggle="target: #dashboards">Add to Dashboard</a>
                         <a class="uk-button uk-button-primary uk-button-small js-preview-rss" data-id="{{ $item->id }}" download>Preview</a>
                         @if (auth()->user()->isEmployee())
                             <a class="uk-button uk-button-secondary uk-button-small" href="{{ route('rss.edit', ['rssFeed' => $item->id]) }}">Edit</a>
@@ -45,4 +49,15 @@
         </table>
     </div>
     <div id="js-rss-preview-container"></div>
+
+    <!-- This is the modal -->
+    <div id="dashboards" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body uk-form-stacked">
+            <legend class="uk-legend">Add data to Dashboard</legend>
+            <div class="uk-margin">
+                {{ Form::select('dashboard', $dashboards, null, ['id' => 'dashboard', 'class' => 'uk-select uk-form-width-medium']) }}
+                <button id="js-add-to-dashboard" class="uk-button uk-button-secondary">Save</button>
+            </div>
+        </div>
+    </div>
 @endsection

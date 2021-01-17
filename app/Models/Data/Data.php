@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * Class Data
  *
  * @package App\Models
+ * @method static where(string $string, int $data)
  */
 class Data extends Model
 {
