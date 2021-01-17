@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * @method static factory()
  * @method static firstWhere(string $string, $company_id)
+ * @method static pluck(string $string, string $string1)
  * @property mixed|string name
  * @property mixed company_id
  */

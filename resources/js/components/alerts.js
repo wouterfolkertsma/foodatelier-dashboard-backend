@@ -6,9 +6,9 @@ window.jsAlertDeleteConfirm = function (confirmRoute) {
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonColor: '#2d2d2d',
+            cancelButtonColor: 'rgba(255,103,91)',
+            confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = confirmRoute;
@@ -31,6 +31,7 @@ window.jsAlertSuccessHTMLConfirm = function (htmlMessage, confirmRoute){
         title: 'SUCCESS',
         html: htmlMessage,
         showConfirmButton: true,
+        confirmButtonColor: '#2d2d2d',
         showCloseButton: false,
         showCancelButton: false,
     }).then((result) => {

@@ -2,11 +2,11 @@
 
 @section('links')
     <a class="menu-link" href="{{ route('employee-manager') }}">
-        <li tabindex="0" class="icon-dashboard"><span>Employee Management</span></li>
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">Employee Manager</span></li>
     </a>
 
     <a class="menu-link" href="{{ route('client-manager') }}">
-        <li tabindex="0" class="icon-dashboard"><span>Client Management</span></li>
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">Client Management</span></li>
     </a>
 
 
@@ -46,4 +46,7 @@
         <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">Categories</span></li>
     </a>
 
+    <a class="menu-link" href="{{ route('rss.index') }}">
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">RSS Feeds</span></li>
+    </a>
 @endsection

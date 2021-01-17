@@ -4,10 +4,12 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\MessengerController;
 use App\Http\Controllers\TrendController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RssFeedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +27,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->group(function () {
     Route::view('/', 'welcome')->name('home');
 
+    Route::get('/manage/{user}/user', [UserController::class, 'editUser'])->name('user.edit');
+    Route::get('/manage/{user}/user/settings', [UserController::class, 'editUserSettings'])->name('user.editSettings');
+//    Route::post('user', 'UserController@updateAvatar')->middleware('auth')->name('user.updateAvatar');
+    Route::post('/manage/{user}/user/upload', [UserController::class, 'updateAvatar'])->name('user.updateAvatar');
+    Route::post('/manage/{user}/user/changecontact', [UserController::class, 'updateContact'])->name('user.updateContact');
+    Route::post('/manage/{user}/user/changeName', [UserController::class, 'updateName'])->name('user.updateName');
+    Route::post('/manage/{user}/user/changedesc', [UserController::class, 'updateDesc'])->name('user.updateDesc');
+
     Route::get('/manage/employees', 'EmployeeController@employeesManager')->name('employee-manager');
     Route::get('/manage/clients', [EmployeeController::class, 'clientsManager'])->name('client-manager');
 
@@ -36,6 +46,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/{dashboard}/dashboards', [DashboardController::class, 'updateDashboard'])->name('dashboard.update');
     Route::get('/manage/{dashboard}/dashboards/{data}/add', [DashboardController::class, 'addDataToDashboard'])->name('dashboard.data.add');
     Route::get('/manage/{dashboard}/dashboards/{data}/remove', [DashboardController::class, 'removeDataFromDashboard'])->name('dashboard.data.remove');
+
+//    Route::get('/manage/dashboards/{data}/edit', [DashboardController::class, 'addToDashboard'])->name('dashboard.add');
+//    Route::post('/manage/dashboards/{data}/edit', [DashboardController::class, 'saveToDashboard'])->name('dashboard.add.save');
 
     Route::get('/manage/{id}/company', [CompanyController::class, 'editCompany'])->name('company.edit');
     Route::post('/manage/{id}/company', [CompanyController::class, 'updateCompany'])->name('company.update');
@@ -66,6 +79,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/files/upload', [DataController::class, 'fileUpload'])->name('file-upload');
     Route::get('/manage/files/delete', [DataController::class, 'fileDelete'])->name('file.delete');
 
+    Route::get('/manage/rss', [RssFeedController::class, 'index'])->name('rss.index');
+    Route::get('/manage/rss/{rssFeed}/edit', [RssFeedController::class, 'edit'])->name('rss.edit');
+    Route::post('/manage/rss/{rssFeed}/update', [RssFeedController::class, 'updateRssFeed'])->name('rss.update');
+    Route::get('/manage/rss/{rssFeed}/delete', [RssFeedController::class, 'delete'])->name('rss.delete');
+    Route::get('/manage/rss/new', [RssFeedController::class, 'new'])->name('rss.new');
+    Route::post('/manage/rss/new', [RssFeedController::class, 'saveNewRssFeed'])->name('rss.save');
+    Route::get('/manage/rss/preview', [RssFeedController::class, 'preview'])->name('rss.preview');
+    Route::get('/manage/rss/{rssFeed}/preview', [RssFeedController::class, 'previewExisting'])->name('rss.preview.existing');
     Route::get('/manage/categories', [CategoryController::class, 'categoryManager'])->name('category-manager');
     Route::get('/manage/new-categories', [CategoryController::class, 'newCategory'])->name('category.new');
     Route::post('/manage/add-category', [CategoryController::class, 'saveCategory'])->name('category.save');
@@ -84,7 +105,3 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/messenger/{id}', [MessengerController::class, 'messengerMessage'])->name('messenger-message');
     Route::post('/message', [MessengerController::class, 'sendMessage'])->name('send-message');
 });
-
-
-Route::get('/import','DataController@importFile');
-Route::post('/import','DataController@importExcel');

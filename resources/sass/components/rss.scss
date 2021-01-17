@@ -1,0 +1,27 @@
+.rss {
+  &-article {
+    h3 {
+      color: white;
+    }
+
+    .uk-divider-small {
+      margin: 0 0 10px 0;
+    }
+
+    margin: 10px;
+    width: calc(33% - 20px);
+    padding: 20px;
+    overflow: hidden;
+    word-break: break-word;
+    background-blend-mode: multiply;
+    background-position: 50%;
+    color: white;
+    background-color: #828282;
+    background-size: cover;
+  }
+
+  &-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

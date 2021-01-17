@@ -18,7 +18,6 @@ export default class FileUpload {
             url: '/manage/files/upload',
             multiple: true,
 
-
             beforeSend: function (environment) {
                 console.log('beforeSend', arguments);
 
@@ -26,7 +25,7 @@ export default class FileUpload {
             },
             beforeAll: function () {
                 console.log('beforeAll', arguments);
-                currentUploadedFiles = '<div><h4>Uploaded Files:</h4><ul class="uk-list uk-list-disc uk-list-primary">'
+                currentUploadedFiles = '<div><br><ul class="uk-list uk-list-disc">'
             },
             load: function () {
                 console.log('load', arguments);

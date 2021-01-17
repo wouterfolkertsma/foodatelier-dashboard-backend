@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin\Renderers\FileRenderer;
-use App\Blocks\File as FileBlock;
 use App\Models\Data\Data;
 use App\Models\Data\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Storage;
 use Validator;
 
@@ -90,8 +87,6 @@ class DataController extends Controller
 
         return redirect()->route('file-manager')->with('success', 'File deleted');
     }
-
-
 }
 
 

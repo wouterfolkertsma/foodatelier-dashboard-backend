@@ -128,7 +128,7 @@ class DashboardController extends Controller
             ->firstOrFail();
 
         $data = collect($dashboard->data);
-        $allData = Data::all();
+        $allData = Data::with('data')->get();
 
         $allData = $allData->filter(function ($item) use ($data) {
            return !$data->pluck('id')->contains($item->id);
