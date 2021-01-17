@@ -1,4 +1,6 @@
-
+<div class="uk-button uk-button-secondary uk-width-1-1" onclick="updateChart()">
+    LOAD PREVIEW
+</div>
 <div class trendsValueChart >
     <canvas id="chart" width="100" height="50"></canvas>
 </div>
@@ -50,25 +52,35 @@
         }
     });
 
-    let updateChart = function(id) {
+    var updateChart = function() {
         console.log("TrendRequest is send")
         $.ajax({
-            url: "{{ route('filter.get-saved-trend-graph') }}",
+            url: "{{ route('filter.get-trend-graph') }}",
             type: 'GET',
             dataType: 'json',
             data: {
-                filterId: id,
+                searchTerm: formSearchTerm.value,
+                countryId: formCountryId.value,
+                searchType: formSearchType.value,
+                standardIntervalId: formStandardIntervalId.value,
+                customIntervalFrom: formCustomIntervalFrom.value,
+                customIntervalTo: formCustomIntervalTo.value
+
+
             },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                //console.log('Data');
-                //console.log(data);
+                console.log('Data');
+                console.log(data);
                 let IOT = data.allResults;
                 let IOTLabels = IOT[0].results.map(a => a.interestAt)
                 console.log(data)
                 myChart.data.labels = IOTLabels;
+
+                //myChart.data.datasets[0].data = IOTValues;
+
 
                 let AllIOTResults = data.allResults;
                 var i;
@@ -80,7 +92,8 @@
                     console.log(IOTValues)
                 }
                 myChart.update();
-                
+
+
             },
             error: function(data){
                 console.log(data);

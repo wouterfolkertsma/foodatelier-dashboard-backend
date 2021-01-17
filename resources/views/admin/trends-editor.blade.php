@@ -29,18 +29,18 @@
     </div>
     </div>
         @isset($filter)
-    {{ Form::hidden('search_term', '', array('id' => 'form_search_term')) }}
-    {{ Form::hidden('country_id', $filter->country_id, array('id' => 'form_country_id')) }}
+            {{ Form::hidden('search_term', '', array('id' => 'form_search_term')) }}
+            {{ Form::hidden('country_id', $filter->country_id, array('id' => 'form_country_id')) }}
 
-    {{ Form::hidden('standard_interval', $filter->standard_interval_id, ['id' => 'form_standard_interval']) }}
-    {{ Form::hidden('custom_interval_from', $filter->custom_interval_from, array('id' => 'form_custom_interval_from')) }}
-    {{ Form::hidden('custom_interval_to', $filter->custom_interval_to, array('id' => 'form_custom_interval_to')) }}
+            {{ Form::hidden('standard_interval', $filter->standard_interval_id, ['id' => 'form_standard_interval']) }}
+            {{ Form::hidden('custom_interval_from', $filter->custom_interval_from, array('id' => 'form_custom_interval_from')) }}
+            {{ Form::hidden('custom_interval_to', $filter->custom_interval_to, array('id' => 'form_custom_interval_to')) }}
 
-    {{ Form::hidden('search_type', $filter->search_type, array('id' => 'form_search_type')) }}
+            {{ Form::hidden('search_type', $filter->search_type, array('id' => 'form_search_type')) }}
 
-    {{ Form::hidden('with_top_metric', true, array('id' => 'form_with_top_metric')) }}
-    {{ Form::hidden('with_rising_metric', true, array('id' => 'form_with_rising_metric')) }}
-    {{ Form::hidden('language', 'en-US', array('id' => 'form_language')) }}
+            {{ Form::hidden('with_top_metric', true, array('id' => 'form_with_top_metric')) }}
+            {{ Form::hidden('with_rising_metric', true, array('id' => 'form_with_rising_metric')) }}
+            {{ Form::hidden('language', 'en-US', array('id' => 'form_language')) }}
         @else
             {{ Form::hidden('search_term', '', array('id' => 'form_search_term')) }}
             {{ Form::hidden('country_id', '', array('id' => 'form_country_id')) }}
@@ -150,7 +150,7 @@
 <div class="graph "style="width: 95%; height: 60%; z-index: 0">
     <div class="uk-card-default uk-card-body"style="height: 100%; width: 100%;">
 
-        @include('includes/trends-chart-block')
+        @include('includes.trends-chart-preview-block')
     </div>
 </div>
 

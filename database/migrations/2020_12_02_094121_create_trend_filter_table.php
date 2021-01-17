@@ -18,6 +18,8 @@ class CreateTrendFilterTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('search_term');
+            $table->bigInteger('category_id')->unsigned()->default(1);;
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->bigInteger('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->bigInteger('standard_interval_id')->unsigned()->default(2);

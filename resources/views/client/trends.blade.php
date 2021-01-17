@@ -7,8 +7,7 @@
         <!--SEARCH-FILTER-->
     @include('includes/search-bar')
 
-    <!--ADD-BUTTON-->
-        <<a class="uk-button uk-button-primary uk-align-right" href="{{ route('filter.new') }}">New Filter</a>
+
 
         <!--ZERO-RESULTS-ALERT-->
         <div class="uk-alert-warning" uk-alert id="no-results-alert" style="display: none">
@@ -35,39 +34,39 @@
                     @foreach($filters as $filter)
 
                         <tr>
-                            <td class="fixed-side">{{ $filter->id }}</td>
-                            <td class="fixed-side last-fixed-side">{{ $filter->name }}</td>
+                            <td class="fixed-side">{{ $filter->data->id }}</td>
+                            <td class="fixed-side last-fixed-side"><a onclick="updateChart({{$filter->data->id}})">{{ $filter->data->name }}</a></td>
                             <td>
-                                @foreach ($filter->search_term as $key => $value)
+                                @foreach ($filter->data->search_term as $key => $value)
                                     {{ $value }}
                                 @endforeach
                             </td>
-                            @if($filter->standard_interval)
-                                <td>{{ $filter->standard_interval }}</td>
+                            @if($filter->data->standard_interval)
+                                <td>{{ $filter->data->standard_interval }}</td>
                                 <td>NOW</td>
                             @else
-                                <td>{{ $filter->custom_interval_from }}</td>
-                                <td>{{ $filter->custom_interval_to }}</td>
+                                <td>{{ $filter->data->custom_interval_from }}</td>
+                                <td>{{ $filter->data->custom_interval_to }}</td>
                             @endif
-                            @if($filter->location)
-                                <td>{{ $filter->location}}</td>
+                            @if($filter->data->location)
+                                <td>{{ $filter->data->location}}</td>
                             @else
                                 <td>DEFAULT (US)</td>
                             @endif
-                            @if($filter->language)
-                                <td>{{ $filter->language}}</td>
+                            @if($filter->data->language)
+                                <td>{{ $filter->data->language}}</td>
                             @else
                                 <td>DEFAULT (US-ENG)</td>
                             @endif
-                            @if($filter->search_type == "Web-Search")
+                            @if($filter->data->search_type == "Web-Search")
                                 <td><span uk-icon="icon: world"></span></td>
-                            @elseif($filter->search_type == "Image-Search")
+                            @elseif($filter->data->search_type == "Image-Search")
                                 <td><span uk-icon="icon: image"></span></td>
-                            @elseif($filter->search_type == "News-Search")
+                            @elseif($filter->data->search_type == "News-Search")
                                 <td><span uk-icon="icon: commenting"></span></td>
-                            @elseif($filter->search_type == "Youtube-Search")
+                            @elseif($filter->data->search_type == "Youtube-Search")
                                 <td><span uk-icon="icon: youtube"></span></td>
-                            @elseif($filter->search_type == "Shopping-Search")
+                            @elseif($filter->data->search_type == "Shopping-Search")
                                 <td><span uk-icon="icon: cart"></span></td>
                             @endif
                         </tr>
@@ -78,6 +77,14 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <div class="graph "style="width: 95%; height: 60%; z-index: 0">
+        <div class="uk-card-default uk-card-body"style="height: 100%; width: 100%;">
+            @include('includes.trends-chart-block')
+        </div>
+    </div>
+
+
 
     <script>
 

@@ -49,7 +49,9 @@ class TrendController extends Controller
 
         $filters = TrendFilter::all();
         $countries = Country::all();
-        foreach ($filters as &$filter) {
+
+
+        foreach ($filters as $filter) {
             $filter->search_term = unserialize($filter->search_term);
         }
 
@@ -227,7 +229,8 @@ class TrendController extends Controller
     }
 
 
-    public function getTrend(Request $request, int $filterId){
+    public function getTrendGraph(Request $request){
+        $filterId = $request->input( 'filterId' );
         $filter = TrendFilter::where('id', $filterId)
             ->firstOrFail();
 
@@ -235,7 +238,17 @@ class TrendController extends Controller
         $location = str_replace(' ', '', $location);
 
         $searchTerms = unserialize($filter->search_term);
+        //get SearchType----------------------------------------------
+        $searchType = $filter->search_type;
+        //get TimeInterval----------------------------------------------
+        $standardIntervalId = $filter->standard_interval_id;
+        if($standardIntervalId > 0)
+            $standardInterval = TrendFilterInterval::where('id', $standardIntervalId)
+                ->firstOrFail();
+        $from = $standardInterval->from;
+        $to = $standardInterval->to;
 
+        //Results
         $allResultsIOTS = array();
         for($i = 0; $i < count((array)$searchTerms);$i++) {
 
@@ -244,31 +257,37 @@ class TrendController extends Controller
             ->withSearchTerm($searchTerms[$i])
             ->withLocation($location)
             ->withinInterval(
-                new DateTimeImmutable('now -30 days'),
-                new DateTimeImmutable('now')
+                new DateTimeImmutable($from),
+                new DateTimeImmutable($to)
             )
-            ->withLanguage('en-US')
-            ->considerWebSearch()
-            # ->considerImageSearch() // Consider only image search
-            # ->considerNewsSearch() // Consider only news search
-            # ->considerYoutubeSearch() // Consider only youtube search
-            # ->considerGoogleShoppingSearch() // Consider only Google Shopping search
-            ->withTopMetrics()
-            ->withRisingMetrics();
+            ->withLanguage('en-US');
+            if($searchType=="Image-Search"){
+                $searchFilter =  $searchFilter->considerImageSearch();
+            }elseif($searchType=="News-Search"){
+                $searchFilter =  $searchFilter->considerNewsSearch();
+            }elseif($searchType=="Youtube-Search"){
+                $searchFilter =  $searchFilter->considerYoutubeSearch();
+            }elseif($searchType=="Shopping-Search"){
+                $searchFilter =  $searchFilter->considerGoogleShoppingSearch();
+            }else{
+                $searchFilter =  $searchFilter->considerWebSearch(); //DEFAULT
+            }
+            #if($filter->with_top_metric==true){
+            $searchFilter =  $searchFilter->withTopMetrics();
+            #};
+            #if($filter->with_rising_metric==true){
+            $searchFilter =  $searchFilter->withTopMetrics();
+            # };
 
-        $resultRQS = (new RelatedQueriesSearch())
-            ->search($searchFilter)
-            ->jsonSerialize();
-        $resultIOTS = (new InterestOverTimeSearch())
-            ->search($searchFilter)
-            ->jsonSerialize();
+
+            //Results--------------------------------------------------------------
+            $resultIOTS = (new InterestOverTimeSearch())
+                ->search($searchFilter)
+                ->jsonSerialize();
             array_push($allResultsIOTS, $resultIOTS);
-        $resultIBRS = (new InterestByRegionSearch())
-            ->search($searchFilter)
-            ->jsonSerialize();
         }
 
-        return response(['RelatedQueries' => $resultRQS, 'InterestOverTime' => $resultIOTS, 'InterestByRegion' => $resultIBRS, 'all' => $allResultsIOTS, 'terms' =>$searchTerms]);
+        return response(['allResults' => $allResultsIOTS, 'searchTerms' =>$searchTerms]);
 
     }
 

@@ -3,24 +3,27 @@
 @section('title', 'Trends Management')
 
 @section('content')
+    <!--ADD-BUTTON-->
+    <div class="uk-card-default-small uk-card-body">
+        {{ Form::open(['route' => ['category.save'], 'class' => 'uk-form-stacked']) }}
+        <fieldset class="uk-fieldset">
+            <legend class="uk-legend">New category</legend>
+            <div class="uk-margin">
+                {{ Form::label('name', 'Category-Name', ['class' => 'uk-form-label']) }}
+                {{ Form::text('name', '', ['class' => 'uk-input uk-form-width-large']) }}
+            </div>
+
+            {{ Form::submit('Save New Category', ['class' => 'uk-button uk-button-secondary']) }}
+        </fieldset>
+        {{ Form::close() }}
+    </div>
+
+
     <div class="uk-card-default uk-card-body">
         <!--SEARCH-FILTER-->
     @include('includes/search-bar')
 
-    <!--ADD-BUTTON-->
-        <div class="uk-card-default-small uk-card-body">
-            {{ Form::open(['route' => ['category.save'], 'class' => 'uk-form-stacked']) }}
-            <fieldset class="uk-fieldset">
-                <legend class="uk-legend">New category</legend>
-                <div class="uk-margin">
-                    {{ Form::label('name', 'Category-Name', ['class' => 'uk-form-label']) }}
-                    {{ Form::text('name', '', ['class' => 'uk-input uk-form-width-large']) }}
-                </div>
 
-                {{ Form::submit('Save New Category', ['class' => 'uk-button uk-button-secondary']) }}
-            </fieldset>
-            {{ Form::close() }}
-        </div>
 
 
         <!--ZERO-RESULTS-ALERT-->
@@ -43,8 +46,8 @@
                 <tr>
                     <td>{{ $category->id }}</td>
                     <td data-type="name">{{ $category->name }}</td>
-                    <td>{{ $company->created_at }}</td>
-                    <td>{{ $company->updated_at }}</td>
+                    <td>{{ $category->created_at }}</td>
+                    <td>{{ $category->updated_at }}</td>
                     <td>
                         <a href="{{ route('category.edit', ['id' => $category->id]) }}">Edit</a>
                     </td>

@@ -26,6 +26,7 @@ class TrendFilterSeeder extends Seeder
                 'name' => 'TestFoodTrend',
                 'description' => 'Query to test the GoogleTrends functionality',
                 'search_term' => $terms_str,
+                'category_id' => 2,
                 'country_id' => 1,
                 'standard_interval_id' => 2,
                 'search_type' => 'Web-Search',
