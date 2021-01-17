@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\RssFeedRepository;
 use App\Http\Requests\StoreRssFeed;
+use App\Models\Category;
 use App\Models\Dashboard;
 use App\Models\Data\RssFeed;
 use Exception;
@@ -39,6 +40,20 @@ class RssFeedController extends Controller
     {
         return view('admin.rss.rss-feeds', [
             'data' => RssFeed::all(),
+            'dashboards' =>$dashboards = Dashboard::pluck( 'name', 'id')
+        ]);
+    }
+
+    /**
+     * @param $categoryId
+     * @return Application|Factory|View
+     */
+    public function categoryIndex($categoryId)
+    {
+        $rssFeeds = RssFeed::where('category_id', $categoryId)
+            ->get();
+        return view('admin.rss.rss-feeds', [
+            'data' => $rssFeeds,
             'dashboards' =>$dashboards = Dashboard::pluck( 'name', 'id')
         ]);
     }
@@ -83,7 +98,8 @@ class RssFeedController extends Controller
     public function new()
     {
         return view('admin.rss.new-rss', [
-            'data' => RssFeed::all()
+            'data' => RssFeed::all(),
+            'categories' => Category::all()
         ]);
     }
 

@@ -80,7 +80,7 @@
                     console.log(IOTValues)
                 }
                 myChart.update();
-                
+
             },
             error: function(data){
                 console.log(data);

@@ -2,6 +2,7 @@
 
 namespace App\Models\Data;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -19,6 +20,13 @@ class File extends Data
     public function data()
     {
         return $this->morphToMany(Data::class, 'data');
+    }
+    /**
+     * @return false|int
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     /**
