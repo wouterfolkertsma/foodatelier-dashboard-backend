@@ -24,7 +24,8 @@ class StoreUser extends FormRequest
             'email' => ['required', 'email'],
             'last_name' => 'required|string|min:2|max:191',
             'avatar_url' => 'nullable|string|min:2|max:191',
-            'role_id' => 'required|exists:roles,id'
+            'role_id' => 'required|exists:roles,id',
+            'password' => 'nullable'
         ];
 
         $rules['email'][] = Rule::unique('users', 'email');

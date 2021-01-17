@@ -20,6 +20,7 @@
                 {{ Form::email('email', $employee->user->email, ['class' => 'uk-input uk-form-width-large']) }}
             </div>
 
+
             <!--JOB-INFORMATIONS-->
             <!--consulting_phone-->
             <div class="uk-margin">
@@ -41,19 +42,14 @@
                 <div class="save_button">
                     {{ Form::submit('Save', ['class' => 'uk-button uk-button-default']) }}
                 </div>
-                <div class="flash-message">
-                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                        @if(Session::has('alert-' . $msg))
-                            <p class="alert uk-alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-                        @endif
-                    @endforeach
-                </div> <!-- end .flash-message -->
             </div>
             <!--DELETE-BUTTON-->
-            <a class="uk-button uk-button-danger" onclick="return confirm('Are you sure? This can not be undone')"
-               href="{{ route('employee.delete', ['id' => $employee->id]) }}">Delete user
+            <a class="uk-button uk-button-danger"   onclick="window.jsAlertDeleteConfirm('{{ route('employee.delete', ['id' => $employee->id]) }}')">Delete Employee-Account
             </a>
+
         </fieldset>
         {{ Form::close() }}
     </div>
+
+
 @endsection

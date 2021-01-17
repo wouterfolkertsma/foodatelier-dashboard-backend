@@ -1,0 +1,111 @@
+.messenger-inbox {
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    hr{
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .user-wrapper, .message-wrapper{
+        border: 1px solid #dddddd;
+        overflow-y: auto;
+    }
+
+    .user-wrapper {
+        height: 600px;
+    }
+
+    .user{
+        margin: 0 auto;
+        cursor: pointer;
+        padding: 5px 0px 15px 0px;
+        position: relative;
+
+    }
+    .user:hover {
+        background: white;
+    }
+
+    .pending {
+        position: absolute;
+        left: 13px;
+        top: 9px;
+        background: #b600ff;
+        margin: 0;
+        border-radius: 50%;
+        width: 18px;
+        height:18px;
+        line-height: 18px;
+        padding-left: 5px;
+        color: #ffffff;
+        font-size: 12px;
+    }
+
+    .media-left {
+        margin: 0 10px;
+        display: inline-block;
+        float: left;
+    }
+
+    .media-left img{
+        width: 64px;
+        border-radius: 64px;
+    }
+
+    .media-body p {
+        margin: 6px 0;
+    }
+
+    .message-wrapper{
+        padding: 10px;
+        height: 536px;
+        background: white;
+    }
+    .messages{
+        .message{
+            margin-top: 5px;
+            display: grid;
+        }
+    }
+
+    .messages .message:last-child{
+        margin-bottom: 0;
+    }
+    .received, .sent {
+        width: 75%;
+        padding: 3px 10px;
+        border-radius: 10px;
+
+    }
+    .received {
+        background: #db4232;
+    }
+
+    .sent {
+        background: #4a5568;
+        float: right;
+        margin-left: 25%;
+        text-align: right;
+    }
+
+    .message p {
+        margin: 5px 0;
+    }
+    .date {
+        color: #28a745;
+        font-size: 12px;
+    }
+
+    .submit{
+        width: 500px;
+    }
+}
+

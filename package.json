@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "chart.js": "^2.9.4",
+        "sweetalert2": "^10.12.3",
         "uikit": "^3.5.9-dev.4d5485e24"
     }
 }

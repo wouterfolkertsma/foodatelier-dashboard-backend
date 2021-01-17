@@ -3,19 +3,34 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Repositories\DashboardRepository;
 use App\Models\Dashboard;
 use App\Models\Data\Data;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Request;
-use PhpParser\Node\Stmt\DeclareDeclare;
-use Psy\Util\Json;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Throwable;
 
 class DashboardController extends Controller
 {
+    /** @var DashboardRepository */
+    private $dashboardRepository;
+
+    /**
+     * DashboardController constructor.
+     *
+     * @param DashboardRepository $dashboardRepository
+     */
+    public function __construct(
+        DashboardRepository $dashboardRepository
+    ) {
+        $this->dashboardRepository = $dashboardRepository;
+    }
+
     /**
      * @param Request $request
      * @return Application|Factory|View
@@ -27,10 +42,19 @@ class DashboardController extends Controller
 
     /**
      * @param Request $request
+     * @param Dashboard $dashboard
+     * @return RedirectResponse
+     * @throws Throwable
      */
-    public function updateDashboard(Request $request)
+    public function updateDashboard(Request $request, Dashboard $dashboard): RedirectResponse
     {
-        dd($request);
+        try {
+            $this->dashboardRepository->save($request->all(), $dashboard);
+        } catch (Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+
+        return redirect()->back()->with('success', 'Dashboard geupdate');
     }
 
     /**
@@ -59,7 +83,7 @@ class DashboardController extends Controller
                 'success' => 'true',
                 'data' => $data->load('data')->toArray()
             ]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return new JsonResponse([
                 'success' => 'false',
                 'data' => 'Something went wrong'
@@ -73,7 +97,7 @@ class DashboardController extends Controller
      * @param Data $data
      * @return JsonResponse
      */
-    public function removeDataFromDashboard(Request $request, Dashboard $dashboard, Data $data)
+    public function removeDataFromDashboard(Request $request, Dashboard $dashboard, Data $data): JsonResponse
     {
         try {
             if ($dashboard->data->contains($data)) {
@@ -85,7 +109,7 @@ class DashboardController extends Controller
                 'success' => 'true',
                 'data' => $data->load('data')->toArray()
             ]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return new JsonResponse([
                 'success' => 'false',
                 'data' => 'Something went wrong'

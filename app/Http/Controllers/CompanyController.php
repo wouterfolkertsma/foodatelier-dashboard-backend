@@ -93,16 +93,18 @@ class CompanyController extends Controller
         try {
             $this->clientRepository->delete($client);
         } catch (Exception $exception) {
+            redirect()->back()->with('error', 'Something went wrong');
             dd($exception);
+
         }
 
-        return redirect()->route('company.edit', ['id' => $companyId]);
+        return redirect()->route('company.edit', ['id' => $companyId])->with('success', 'Client-Account deleted');
     }
 
     /**
      * @param Request $request
      * @param int $clientId
-     * @return Application|Factory|View
+     * @return RedirectResponse
      * @throws Throwable
      */
     public function updateClient(Request $request, int $clientId)
@@ -112,10 +114,7 @@ class CompanyController extends Controller
             ->firstOrFail();
 
         $this->clientRepository->save($request->all(), $client);
-        $request->session()->flash('alert-success', 'Client was successful updated!');
-        return view('admin.edit-client', [
-            'client' => $client,
-        ]);
+        return redirect()->route('client.edit', ['id' => $client->id])->with('success', 'Client-Account updated');
     }
 
     /**
@@ -130,7 +129,7 @@ class CompanyController extends Controller
         return view('admin.new-client', [
             'role' => $role,
             'companyId' => $companyId
-        ]);
+        ])->with('success', 'Client-Account created');;
     }
 
     /**
@@ -143,13 +142,13 @@ class CompanyController extends Controller
         try {
             $success = $this->clientRepository->save($request->all());
         } catch (Exception $exception) {
-            dd($exception);
+            redirect()->back()->with('error', 'Something went wrong');
         }
 
         if ($success) {
             $this->passwordResetLinkController->store($request);
 
-            return redirect()->route('company.edit', ['id' => $request->input('company_id')]);
+            return redirect()->route('company.edit', ['id' => $request->input('company_id')])->with('success', 'Client-Account created');
         }
     }
 
@@ -180,7 +179,7 @@ class CompanyController extends Controller
             $successDashboard = $this->companyRepository->createDashboard($company);
 
             if ($successDashboard) {
-                return redirect()->route('company.edit', ['id' => $company->id]);
+                return redirect()->route('company.edit', ['id' => $company->id])->with('success', 'Client created');
             }
         }
     }
@@ -188,7 +187,7 @@ class CompanyController extends Controller
     /**
      * @param Request $request
      * @param int $id
-     * @return Application|Factory|View
+     * @return RedirectResponse
      * @throws Throwable
      */
     public function updateCompany(Request $request, int $id)
@@ -205,10 +204,7 @@ class CompanyController extends Controller
         /** @var User[] $users */
         $users = $this->companyRepository->getUsers($company);
 
-        return view('admin.edit-company', [
-            'users' => $users,
-            'company' => $company
-        ]);
+        return redirect()->route('company.edit', ['id' => $company->id])->with('success', 'Client updated');
     }
 
     /**

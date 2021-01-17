@@ -4,6 +4,8 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\MessengerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/manage/dashboards', 'DashboardController@dashboardsManager')->name('dashboard-manager');
     Route::get('/manage/{id}/dashboards', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
-    Route::post('/manage/{id}/dashboards', [DashboardController::class, 'updateDashboard'])->name('dashboard.update');
+    Route::post('/manage/{dashboard}/dashboards', [DashboardController::class, 'updateDashboard'])->name('dashboard.update');
     Route::get('/manage/{dashboard}/dashboards/{data}/add', [DashboardController::class, 'addDataToDashboard'])->name('dashboard.data.add');
     Route::get('/manage/{dashboard}/dashboards/{data}/remove', [DashboardController::class, 'removeDataFromDashboard'])->name('dashboard.data.remove');
 
@@ -57,8 +59,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/newsfeed', 'ClientController@newsfeed')->name('client-newsfeed');
 
     Route::get('/files', [ClientController::class, 'files'])->name('client-files');
+
+    Route::get('/manage/files', [EmployeeController::class, 'fileManager'])->name('file-manager');
+    Route::post('/manage/files/upload', [DataController::class, 'fileUpload'])->name('file-upload');
+    Route::get('/manage/files/delete', [DataController::class, 'fileDelete'])->name('file.delete');
+
+
+    Route::get('/manage/trends', [EmployeeController::class, 'trendsManager'])->name('trends-manager');
+
+    Route::get('/messenger', [MessengerController::class, 'messengerInbox'])->name('messenger-inbox');
+    Route::get('/messenger/{id}', [MessengerController::class, 'messengerMessage'])->name('messenger-message');
+    Route::post('/message', [MessengerController::class, 'sendMessage'])->name('send-message');
 });
 
 
-Route::get('/import','ImportController@importFile');
-Route::post('/import','ImportController@importExcel');
+Route::get('/import','DataController@importFile');
+Route::post('/import','DataController@importExcel');

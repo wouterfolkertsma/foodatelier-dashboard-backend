@@ -25,7 +25,7 @@
                 <li class ="sublink" tabindex="0" class="icon-dashboard"><span>Newsfeed</span></li>
             </a>
 
-            <a class="menu-link" href="{{ route('client-manager') }}">
+            <a class="menu-link" href="{{ route('trends-manager') }}">
                 <li class ="sublink" tabindex="0" class="icon-dashboard"><span>Trends</span></li>
             </a>
 
@@ -35,8 +35,9 @@
         </ul>
         </li>
     </a>
-    <a class="menu-link" href="{{ route('employee-manager') }}">
-        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">Insights Editor</span></li>
+
+    <a class="menu-link" href="{{ route('file-manager') }}">
+        <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-editor.svg">File Management</span></li>
     </a>
 
 @endsection

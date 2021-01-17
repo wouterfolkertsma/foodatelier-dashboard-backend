@@ -2,29 +2,25 @@
 
 namespace App\Http\Repositories;
 
-use App\Models\Client;
-use App\Models\Company;
 use App\Models\Dashboard;
-use App\Models\User;
-use App\Traits\CreatesUsers;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use RuntimeException;
 
 /**
- * Class CompanyRepository
+ * Class DashboardRepository
  *
  * @package App\Http\Repositories
  */
-class CompanyRepository extends Repository
+class DashboardRepository extends Repository
 {
     /**
      * CompanyRepository constructor.
      *
-     * @param Company $model
+     * @param Dashboard $model
      */
-    public function __construct(Company $model)
+    public function __construct(Dashboard $model)
     {
         parent::__construct($model);
     }
@@ -46,18 +42,10 @@ class CompanyRepository extends Repository
     protected function fill(array $data, Model $model = null): bool
     {
         if (is_null($model)) {
-            return $this->createNewCompany($data);
+            return $this->createNewDashboard($data);
         }
 
         return $model->update($data);
-    }
-
-    /**
-     * @param Company $company
-     */
-    public function getUsers(Company $company)
-    {
-        return $company->users()->with('user')->get();
     }
 
     /**
@@ -71,7 +59,7 @@ class CompanyRepository extends Repository
         $success = (bool) $model->delete();
 
         if (!$success) {
-            throw new RuntimeException('Invalid state: could not delete a company object');
+            throw new RuntimeException('Invalid state: could not delete a dashboard object');
         }
 
         return $model->delete();
@@ -81,21 +69,8 @@ class CompanyRepository extends Repository
      * @param array $data
      * @return bool
      */
-    private function createNewCompany(array $data)
+    private function createNewDashboard(array $data): bool
     {
         return $this->getModel()->newInstance($data)->save();
-    }
-
-    /**
-     * @param Company $company
-     * @return bool
-     */
-    public function createDashboard(Company $company)
-    {
-       $dashBoard = new Dashboard();
-       $dashBoard->company_id = $company->id;
-       $dashBoard->name = $company->name . ' Dashboard';
-
-       return $dashBoard->save();
     }
 }
