@@ -8,9 +8,11 @@ use App\Http\Repositories\ClientRepository;
 use App\Http\Repositories\CompanyRepository;
 use App\Http\Repositories\EmployeeRepository;
 use App\Http\Requests\StoreEmployee;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\Dashboard;
 use App\Models\Data\File;
+use App\Models\Data\RssFeed;
 use App\Models\Employee;
 use App\Models\Role;
 use http\Exception;
@@ -18,6 +20,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 use Throwable;
@@ -59,6 +62,27 @@ class EmployeeController extends Controller
         $this->passwordResetLinkController = $passwordResetLinkController;
     }
 
+    public function getMenuCategories(Request $request){
+
+
+        $rss = DB::table('rss_feeds')->select('category_id')
+            ->distinct()
+            ->join('categories', 'categories.id', '=', 'category_id')
+            ->select('categories.id', 'categories.name')
+            ->get();
+        $filters = DB::table('trend_filters')->select('category_id')
+            ->distinct()
+            ->join('categories', 'categories.id', '=', 'category_id')
+            ->select('categories.id', 'categories.name')
+            ->get();
+        $files = DB::table('files')->select('category_id')
+            ->distinct()
+            ->join('categories', 'categories.id', '=', 'category_id')
+            ->select('categories.id', 'categories.name')
+            ->get();
+        return response(['rss' => $rss, 'filters' =>$filters, 'files' =>$files]);
+    }
+
     /**
      * @param Request $request
      * @return Application|Factory|View
@@ -66,6 +90,24 @@ class EmployeeController extends Controller
     public function fileManager(Request $request)
     {
         $allData = File::all();
+        $categories = Category::pluck( 'name', 'id');
+        $dashboards = Dashboard::pluck( 'name', 'id');
+
+        return view('admin.file-management', [
+            'data' => $allData,
+            'categories' => $categories,
+            'dashboards' => $dashboards
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function categoryFileManager(Request $request, $categoryId)
+    {
+        $allData = File::where('category_id', $categoryId)
+            ->get();
         $dashboards = Dashboard::pluck( 'name', 'id');
 
         return view('admin.file-management', [

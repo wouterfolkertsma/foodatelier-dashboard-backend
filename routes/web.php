@@ -35,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/{user}/user/changeName', [UserController::class, 'updateName'])->name('user.updateName');
     Route::post('/manage/{user}/user/changedesc', [UserController::class, 'updateDesc'])->name('user.updateDesc');
 
+    Route::get('/menu/employees/load-menu-categories', [EmployeeController::class, 'getMenuCategories'])->name('employee.get-menu-categories');
+
     Route::get('/manage/employees', 'EmployeeController@employeesManager')->name('employee-manager');
     Route::get('/manage/clients', [EmployeeController::class, 'clientsManager'])->name('client-manager');
 
@@ -76,10 +78,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/files', [ClientController::class, 'files'])->name('client-files');
 
     Route::get('/manage/files', [EmployeeController::class, 'fileManager'])->name('file-manager');
+    Route::get('/manage/{id}/files', [EmployeeController::class, 'categoryFileManager'])->name('file.category-manager');
     Route::post('/manage/files/upload', [DataController::class, 'fileUpload'])->name('file-upload');
     Route::get('/manage/files/delete', [DataController::class, 'fileDelete'])->name('file.delete');
 
     Route::get('/manage/rss', [RssFeedController::class, 'index'])->name('rss.index');
+    Route::get('/manage/{id}/rss', [RssFeedController::class, 'categoryIndex'])->name('rss.category-index');
     Route::get('/manage/rss/{rssFeed}/edit', [RssFeedController::class, 'edit'])->name('rss.edit');
     Route::post('/manage/rss/{rssFeed}/update', [RssFeedController::class, 'updateRssFeed'])->name('rss.update');
     Route::get('/manage/rss/{rssFeed}/delete', [RssFeedController::class, 'delete'])->name('rss.delete');
@@ -87,12 +91,15 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/rss/new', [RssFeedController::class, 'saveNewRssFeed'])->name('rss.save');
     Route::get('/manage/rss/preview', [RssFeedController::class, 'preview'])->name('rss.preview');
     Route::get('/manage/rss/{rssFeed}/preview', [RssFeedController::class, 'previewExisting'])->name('rss.preview.existing');
+
     Route::get('/manage/categories', [CategoryController::class, 'categoryManager'])->name('category-manager');
     Route::get('/manage/new-categories', [CategoryController::class, 'newCategory'])->name('category.new');
     Route::post('/manage/add-category', [CategoryController::class, 'saveCategory'])->name('category.save');
     Route::get('/manage/{id}/category', [CategoryController::class, 'editCategory'])->name('category.edit');
 
     Route::get('/manage/trends', [TrendController::class, 'trendsManager'])->name('trends-manager');
+    Route::get('/manage/{id}/trends', [TrendController::class, 'categoryTrendsManager'])->name('category.trends-manager');
+
     Route::get('/manage/trends/filter', [TrendController::class, 'newFilter'])->name('filter.new');
     Route::post('/manage/trends/add-filter', [TrendController::class, 'saveFilter'])->name('filter.save');
     Route::get('/manage/trends/{id}/filter', [TrendController::class, 'editFilter'])->name('filter.edit');

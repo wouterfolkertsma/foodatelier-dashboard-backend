@@ -90,9 +90,7 @@
     </div>
 
     <script>
-        let arr2 = {!! json_encode($filter->search_term) !!};
 
-        console.log(arr2)
 
         jQuery(document).ready(function() {
             jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');

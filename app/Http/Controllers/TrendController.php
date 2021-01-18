@@ -45,6 +45,10 @@ class TrendController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function trendsManager(Request $request){
 
         $filters = TrendFilter::all();
@@ -61,6 +65,32 @@ class TrendController extends Controller
             'countries' => $countries
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param int $categoryId
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function categoryTrendsManager(Request $request, int $categoryId){
+
+        $filters = TrendFilter::where('category_id', $categoryId)
+            ->get();
+        $countries = Country::all();
+
+        foreach ($filters as $filter) {
+            $filter->search_term = unserialize($filter->search_term);
+        }
+
+        return view('admin.trends-management', [
+            'filters' => $filters,
+            'countries' => $countries
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function newFilter(Request $request){
         $countries = Country::all();
         $filter_intervals = TrendFilterInterval::all();
@@ -69,6 +99,12 @@ class TrendController extends Controller
             'countries' => $countries
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param int $trendFilterId
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function editFilter(Request $request, int  $trendFilterId){
         $countries = Country::all();
         $filter_intervals = TrendFilterInterval::all();
@@ -86,6 +122,12 @@ class TrendController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int $filterId
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
+     */
     public function updateFilter(\Illuminate\Http\Request $request, int $filterId)
     {
 
@@ -104,6 +146,12 @@ class TrendController extends Controller
         }
 
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \GSoares\GoogleTrends\Error\GoogleTrendsException
+     */
     public function getRelatedTermsPreview(Request $request){
 
         //get Country Alpha 2 Code------------------------------------
@@ -166,6 +214,11 @@ class TrendController extends Controller
         return response(['allResults' => $allResultsRQS, 'searchTerms' =>$searchTerms, 'request' =>$standardIntervalId]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \GSoares\GoogleTrends\Error\GoogleTrendsException
+     */
     public function getTrendGraphPreview(Request $request){
 
         //get Country Alpha 2 Code------------------------------------
@@ -229,6 +282,11 @@ class TrendController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \GSoares\GoogleTrends\Error\GoogleTrendsException
+     */
     public function getTrendGraph(Request $request){
         $filterId = $request->input( 'filterId' );
         $filter = TrendFilter::where('id', $filterId)
@@ -291,6 +349,11 @@ class TrendController extends Controller
 
     }
 
+    /**
+     * @param StoreFilter $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
+     */
     public function saveFilter(StoreFilter $request)
     {
         try {
