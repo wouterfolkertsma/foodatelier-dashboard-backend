@@ -39,16 +39,17 @@ class DataController extends Controller
 
     /**
      * @param Request $request
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function fileUpload(Request $request){
+    public function fileUpload(Request $request) {
         $files = $request->file('files');
+        $categoryId = $request->input('category');
 
-        foreach ((array)$files as $file){
-
+        foreach ((array)$files as $file) {
             $newFile = new File();
             $newFile->name = $file->getClientOriginalName();
             $newFile->file_path = Storage::putFile('storage', $file);
+            $newFile->category_id = $categoryId;
             $newFile->save();
 
             $newData = new Data();
