@@ -62,6 +62,10 @@ class EmployeeController extends Controller
         $this->passwordResetLinkController = $passwordResetLinkController;
     }
 
+    /**
+     * @param Request $request
+     * @return Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function getMenuCategories(Request $request){
 
 
@@ -108,10 +112,12 @@ class EmployeeController extends Controller
     {
         $allData = File::where('category_id', $categoryId)
             ->get();
+        $categories = Category::pluck( 'name', 'id');
         $dashboards = Dashboard::pluck( 'name', 'id');
 
         return view('admin.file-management', [
             'data' => $allData,
+            'categories' => $categories,
             'dashboards' => $dashboards
         ]);
     }

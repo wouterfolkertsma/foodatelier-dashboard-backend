@@ -128,7 +128,8 @@ class RssFeedController extends Controller
     public function edit(Request $request, RssFeed $rssFeed)
     {
         return view('admin.rss.edit-rss', [
-            'rssFeed' => $rssFeed
+            'rssFeed' => $rssFeed,
+            'categories' => Category::all()
         ]);
     }
 

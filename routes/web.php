@@ -74,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/socialmedia', 'ClientController@socialmedia')->name('client-social-media');
     Route::get('/trends', 'ClientController@trends')->name('client-trends');
     Route::get('/newsfeed', 'ClientController@newsfeed')->name('client-newsfeed');
+    Route::get('/menu/client/load-menu-categories', [ClientController::class, 'getMenuCategories'])->name('client.get-menu-categories');
 
     Route::get('/files', [ClientController::class, 'files'])->name('client-files');
 

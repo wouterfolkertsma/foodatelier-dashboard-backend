@@ -39,6 +39,7 @@
                 </div>
             </div>
         </div>
+        {{ Form::hidden('category_id', '', array('id' => 'form_country_id')) }}
 
         <div class="button_area">
             <div class="save_button">
