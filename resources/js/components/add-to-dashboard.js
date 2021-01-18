@@ -6,10 +6,7 @@ export default class AddToDashboard {
         this.currentId = '';
 
         if (this.addButtons && this.submitButton) {
-
             [...this.addButtons].forEach((button) => {
-                console.log('HIEerrroooooooooo');
-
                 button.addEventListener('click', (e) => {
                     this.currentType = button.getAttribute('data-type');
                     this.currentId = button.id;
