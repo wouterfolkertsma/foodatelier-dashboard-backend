@@ -36,8 +36,9 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Date Created</th>
-                <th>Date Updated</th>
+                <th>Trend-Filters</th>
+                <th>RSS-Feeds</th>
+                <th>Files</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -46,8 +47,9 @@
                 <tr>
                     <td>{{ $category->id }}</td>
                     <td data-type="name">{{ $category->name }}</td>
-                    <td>{{ $category->created_at }}</td>
-                    <td>{{ $category->updated_at }}</td>
+                    <td>{{ $category->trendFilterMembersCount() }} members</td>
+                    <td>{{ $category->rssMembersCount() }} members</td>
+                    <td>{{ $category->fileMembersCount() }} members</td>
                     <td>
                         <a href="{{ route('category.edit', ['id' => $category->id]) }}">Edit</a>
                     </td>
