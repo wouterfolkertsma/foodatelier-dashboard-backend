@@ -72,11 +72,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'ClientController@dashboard')->name('client-dashboard');
     Route::get('/personalinsights', 'ClientController@personalinsights')->name('client-personal-insights');
     Route::get('/socialmedia', 'ClientController@socialmedia')->name('client-social-media');
-    Route::get('/trends', 'ClientController@trends')->name('client-trends');
-    Route::get('/newsfeed', 'ClientController@newsfeed')->name('client-newsfeed');
-    Route::get('/menu/client/load-menu-categories', [ClientController::class, 'getMenuCategories'])->name('client.get-menu-categories');
 
+    Route::get('/trends', [ClientController::class, 'trends'])->name('client-trends');
+    Route::get('/{id}/trends', [ClientController::class, 'categoryTrends'])->name('client-trends-category');
+    Route::get('/newsfeed', [ClientController::class, 'newsfeed'])->name('client-newsfeed');
+    Route::get('/{id}/newsfeed', [ClientController::class, 'categoryNewsfeed'])->name('client-newsfeed-category');
     Route::get('/files', [ClientController::class, 'files'])->name('client-files');
+    Route::get('/{id}/files', [ClientController::class, 'categoryFiles'])->name('client-files-category');
+    Route::get('/menu/client/load-menu-categories', [ClientController::class, 'getMenuCategories'])->name('client.get-menu-categories');
 
     Route::get('/manage/files', [EmployeeController::class, 'fileManager'])->name('file-manager');
     Route::get('/manage/{id}/files', [EmployeeController::class, 'categoryFileManager'])->name('file.category-manager');

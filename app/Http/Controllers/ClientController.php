@@ -87,6 +87,27 @@ class ClientController extends Controller
         ]);
     }
 
+    public function categoryFiles(Request $request, $categoryId)
+    {
+
+        $selectedFiles = [];
+        $allFiles = $this->getDashboard()->data->filter(function ($data) {
+            return $data->data_type === File::class;
+        });
+
+        foreach ($allFiles as $file) {
+            //$test = $file->load('data');
+            if($file->data->category_id == $categoryId){
+                array_push($selectedFiles, $file);
+            }
+
+        }
+
+        return view('client.files', [
+            'files' => $selectedFiles
+        ]);
+    }
+
     /**
      * @param Request $request
      * @return Application|Factory|View
@@ -135,6 +156,25 @@ class ClientController extends Controller
 
         return view('client.trends', [
             'filters' => $filters
+        ]);
+    }
+    public function categoryTrends(Request $request, $categoryId)
+    {
+        $allFilters = $this->getDashboard()->data->filter(function ($data) {
+            return $data->data_type === TrendFilter::class;
+        });
+        $selectedFilters = [];
+
+        foreach ($allFilters as $filter) {
+            $test = $filter->load('data');
+            if($filter->data->category_id == $categoryId){
+                $filter->data->search_term = unserialize($filter->data->search_term);
+                array_push($selectedFilters, $filter);
+            }
+        }
+
+        return view('client.trends', [
+            'filters' => $selectedFilters
         ]);
     }
 }

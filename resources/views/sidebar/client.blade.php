@@ -97,15 +97,15 @@
                 //LinkBinding-------------------------------------------
                 $( ".rss-category" ).bind( "click", function() {
                     let id = $( this ).attr('data');
-                    location.href = "/manage/" + id + "/rss";
+                    location.href = "/" + id + "/rss";
                 });
                 $( ".trend-category" ).bind( "click", function() {
                     let id = $( this ).attr('data');
-                    location.href = "/manage/" + id + "/trends";
+                    location.href = "/" + id + "/trends";
                 });
                 $( ".file-category" ).bind( "click", function() {
                     let id = $( this ).attr('data');
-                    location.href = "/manage/" + id + "/files";
+                    location.href = "/" + id + "/files";
                 });
             },
             error: function(data){
