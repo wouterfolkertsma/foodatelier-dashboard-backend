@@ -5,6 +5,10 @@ export default class FileUpload {
             categorySelector = document.getElementById('category_id'),
             token, currentUploadedFiles;
 
+        if (!categorySelector) {
+            return;
+        }
+
         this.category = categorySelector.value;
 
         if (tokenElement) {
@@ -12,6 +16,7 @@ export default class FileUpload {
         } else {
             console.error('CSRF token not found!');
         }
+
 
         categorySelector.addEventListener('change', (e) => {
             this.category = categorySelector.value;
