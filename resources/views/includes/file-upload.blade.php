@@ -14,3 +14,12 @@
 <div class="uk-progress-margin">
     <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
 </div>
+
+<!-- CategorySelection -->
+<div id="category-selection">
+    <legend class="uk-legend">Select Category for uploaded Files</legend>
+        <div class="uk-margin">
+            {{ Form::select('category', $categories, null, ['id' => 'category_id', 'class' => 'uk-select uk-form-width-medium']) }}
+        <button id="js-select-category" class="uk-button uk-button-secondary">Select</button>
+        </div>
+</div>

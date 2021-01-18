@@ -8,6 +8,7 @@ use App\Http\Repositories\ClientRepository;
 use App\Http\Repositories\CompanyRepository;
 use App\Http\Repositories\EmployeeRepository;
 use App\Http\Requests\StoreEmployee;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\Dashboard;
 use App\Models\Data\File;
@@ -89,10 +90,12 @@ class EmployeeController extends Controller
     public function fileManager(Request $request)
     {
         $allData = File::all();
+        $categories = Category::pluck( 'name', 'id');
         $dashboards = Dashboard::pluck( 'name', 'id');
 
         return view('admin.file-management', [
             'data' => $allData,
+            'categories' => $categories,
             'dashboards' => $dashboards
         ]);
     }

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
  * Class Data
  *
  * @package App\Models
+ * @method static pluck(string $string, string $string1)
  */
 class Category extends Model
 {
