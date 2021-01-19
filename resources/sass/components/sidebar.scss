@@ -24,6 +24,8 @@ $menu-width-smartphone: 230px;
 
         img {
             width: 100px;
+            height: 100px;
+            object-fit: cover;
             border-radius: 50%;
             overflow: hidden;
             border: 4px solid $color-sidebar;
