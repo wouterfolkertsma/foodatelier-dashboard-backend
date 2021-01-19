@@ -133,16 +133,19 @@
 {{--    <div>--}}
 
         <form id="changeContact" enctype="multipart/form-data" action="{{ route('user.updateContact', $user->id) }}" method="POST">
+            @csrf
             <input id="phoneSend" type="text" name="phone">
             <input id="emailSend" type="text" name="email">
             <input id="changeContactBtn" type="submit" class="pull-right btn btn-sm btn-primary">
         </form>
         <form id="changeName" enctype="multipart/form-data" action="{{ route('user.updateName', $user->id) }}" method="POST">
+            @csrf
             <input id="firstSend" type="text" name="first">
             <input id="lastSend" type="text" name="last">
             <input id="changeNameBtn" type="submit" class="pull-right btn btn-sm btn-primary">
         </form>
         <form id="changeDesc" enctype="multipart/form-data" action="{{ route('user.updateDesc', $user->id) }}" method="POST">
+            @csrf
             <input id="descSend" type="text" name="desc">
             <input id="changeDescBtn" type="submit" class="pull-right btn btn-sm btn-primary">
         </form>
