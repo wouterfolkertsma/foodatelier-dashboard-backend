@@ -7,6 +7,6 @@
    <p>
       {{ $item->description }}
    </p>
-   <a class="uk-button uk-button-primary-inverse" href="{{ $item->link }}">Bekijk</a>
+   <a class="uk-button uk-button-primary-inverse" href="{{ $item->link }}">View</a>
 </div>
 @endforeach

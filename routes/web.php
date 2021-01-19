@@ -74,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/socialmedia', 'ClientController@socialmedia')->name('client-social-media');
 
     Route::get('/trends', [ClientController::class, 'trends'])->name('client-trends');
+    Route::get('/rss', [ClientController::class, 'rssFeeds'])->name('client.rss.index');
     Route::get('/{id}/trends', [ClientController::class, 'categoryTrends'])->name('client-trends-category');
     Route::get('/newsfeed', [ClientController::class, 'newsfeed'])->name('client-newsfeed');
     Route::get('/{id}/newsfeed', [ClientController::class, 'categoryNewsfeed'])->name('client-newsfeed-category');

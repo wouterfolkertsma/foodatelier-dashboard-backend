@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Dashboard;
 use App\Models\Data\Data;
 use App\Models\Data\File;
 use App\Models\Data\RssFeed;
@@ -70,6 +71,24 @@ class ClientController extends Controller
     public function dashboard(Request $request)
     {
         return view('client.dashboard');
+    }
+
+    /**
+     *
+     */
+    public function rssFeeds()
+    {
+        $rssFeeds = $this->getDashboard()->data->filter(function ($data) {
+            return $data->data_type === RssFeed::class;
+        });
+
+        foreach ($rssFeeds as $rssFeed) {
+            $rssFeed->load('data');
+        }
+
+        return view('client.rss-feeds', [
+            'data' => $rssFeeds
+        ]);
     }
 
     /**

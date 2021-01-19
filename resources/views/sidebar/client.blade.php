@@ -6,30 +6,23 @@
         <a class="menu-link" href="{{ route('client-trends') }}">
             <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-dashboard.svg">Trends</span>
         </a>
-        <ul id="trend-categories">
-
-        </ul>
+        <ul id="trend-categories"></ul>
         </li>
     </a>
 
     <a class="menu-submenu" >
-        <a class="menu-link" href="{{ route('rss.index') }}">
+        <a class="menu-link" href="{{ route('client.rss.index') }}">
             <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-dashboard.svg">RSS Feeds</span>
         </a>
-        <ul id="rss-categories">
-
-        </ul>
+        <ul id="rss-categories"></ul>
         </li>
-
     </a>
 
     <a class="menu-submenu" >
         <a class="menu-link" href="{{ route('client-files') }}">
             <li tabindex="0" class="icon-dashboard"><span><img src="/../images/icons/icon-dashboard.svg">Local Files</span>
         </a>
-        <ul id="file-categories">
-
-        </ul>
+        <ul id="file-categories"></ul>
         </li>
     </a>
 
