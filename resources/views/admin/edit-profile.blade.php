@@ -52,7 +52,7 @@
                                     <input type="submit" class="pull-right btn btn-sm btn-primary">
                                 </form>
         {{--                        <img src="/uploads/avatars/{{ $user->avatar_url }}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">--}}
-                                <h2 class="header-bg"><!--{{ $user->first_name }}'s--> Profilephoto <button class="uk-button-primary" style="font-size: 1.5rem; height: 1.75em; float: right;" onclick="showPicUpload()">Edit</button></h2>
+                                <h2 class="header-bg"><!--{{ $user->first_name }}'s--> Profilephoto <button class="uk-button-primary" style="display:inline-block; font-size: 1.5rem; height: 1.75em; float: right;" onclick="showPicUpload()">Edit</button></h2>
                                 <img src="/{{ $user->avatar_url }}" style="border-radius:50%; margin-right:25px;">
 {{--                                style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;--}}
 
@@ -98,7 +98,7 @@
                     </div>
 
                 </div>
-                <div class="single-div" style="transform: translate(150%, -31.5em);">
+                <div class="single-div" style="transform: translate(50%, 0em);">
                     {{--                    BLOCK JOB DESCRIPTION--}}
                     <h2 class="header-bg">Description:  <button class="uk-button-primary" style="font-size: 1.5rem; height: 1.75em; float: right;" onclick="triggerchangeDesc()">Edit</button></h2>
                     <div class="uk-margin">
