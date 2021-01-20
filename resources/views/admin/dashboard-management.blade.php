@@ -5,7 +5,8 @@
 @section('content')
 
 {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
-<script src="replace"> </script>
+<script src="https://foot-test1412-site43245.000webhostapp.com/filters.js"> </script>
+{{--    {!! Html::script('resources/js/filters.js') !!}--}}
     <style>
         .filter{
             position: absolute;

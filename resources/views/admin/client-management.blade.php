@@ -7,6 +7,8 @@
         <!--SEARCH-FILTER-->
         @include('includes/search-bar')
 
+
+        <script src="https://foot-test1412-site43245.000webhostapp.com/filters.js"> </script>
         <style>
             .filter{
                 position: absolute;

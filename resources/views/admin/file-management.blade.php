@@ -5,6 +5,9 @@
 
 @section('content')
     @include('includes.file-upload')
+
+
+    <script src="https://foot-test1412-site43245.000webhostapp.com/filters.js"> </script>
     <style>.filter{
             position: absolute;
             border: solid black 1px;
