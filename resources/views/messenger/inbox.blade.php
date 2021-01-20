@@ -18,7 +18,7 @@
 
                             <div class="media">
                                 <div class="media-left">
-                                    <img src="https://via.placeholder.com/150" alt="" class="media-object">
+                                    <img src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="" class="media-object">
                                 </div>
 
                                 <div class="media-body">

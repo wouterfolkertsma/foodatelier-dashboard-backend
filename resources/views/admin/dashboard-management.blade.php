@@ -3,6 +3,20 @@
 @section('title', 'Dashboard Management')
 
 @section('content')
+
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
+<script src="replace"> </script>
+    <style>
+        .filter{
+            position: absolute;
+            border: solid black 1px;
+            border-radius: 2px;
+            background-color : white;
+            padding: 8px;
+            display:none;
+        }
+    </style>
+
     <div class="uk-card-default uk-card-body">
         <!--SEARCH-FILTER-->
         @include('includes/search-bar')
@@ -15,14 +29,14 @@
             <p>No Results.</p>
         </div>
         <!--TABLE-->
-        <table class="uk-table uk-table-striped" id="tableForm">
+        <table class="filterTable uk-table uk-table-striped" id="tableForm">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Date Created</th>
-                <th>Date Updated</th>
-                <th>Action</th>
+                <th >ID<div class="filter"></div></th>
+                <th class="filterButton" index=1>Name<div class="filter"></div></th>
+                <th class="filterButton" index=2>Date Created<div class="filter"></div></th>
+                <th class="filterButton" index=3>Date Updated<div class="filter"></div></thindex>
+                <th ><!--class="filterButton" index=4-->Action<div class="filter"></div></th>
             </tr>
             </thead>
             <tbody id="resultsTable">
