@@ -68,7 +68,7 @@ class UserController extends Controller
         $user->avatar_url = Storage::putFile('storage/avatars', $request->file('avatar'));
         $user->save();
 
-        return view('profile', ['user' => Auth::user()] );
+        return view('admin.edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateContact(Request $request, User $user) {
@@ -83,7 +83,7 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('client.dashboard', ['user' => Auth::user()] );
+        return view('admin.edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateName(Request $request, User $user){
@@ -98,7 +98,7 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('client.dashboard', ['user' => Auth::user()] );
+        return view('admin.edit-profile', ['user' => Auth::user()] );
     }
 
     public function updateDesc(Request $request, User $user){
@@ -113,7 +113,7 @@ class UserController extends Controller
         $user->save();
 
         // Return to home
-        return view('client.dashboard', ['user' => Auth::user()] );
+        return view('admin.edit-profile', ['user' => Auth::user()] );
     }
 
 

@@ -5,15 +5,28 @@
 
 @section('content')
     @include('includes.file-upload')
+
+
+    <script src="https://foot-test1412-site43245.000webhostapp.com/filters.js"> </script>
+    <style>.filter{
+            position: absolute;
+            border: solid black 1px;
+            border-radius: 2px;
+            background-color : white;
+            padding: 8px;
+            display:none;
+        }
+    </style>
+
     <hr class="uk-divider-icon">
     <div class="uk-card-default uk-card-body">
         <h3>Available data</h3>
-        <table class="uk-table uk-table-striped" id="tableForm">
+        <table class="filterTable uk-table uk-table-striped" id="tableForm">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Date Updated</th>
+                <th class="filterButton" index=1>Name</th>
+                <th class="filterButton" index=2>Date Updated</th>
                 <th>Action</th>
             </tr>
             </thead>

@@ -7,6 +7,19 @@
         <!--SEARCH-FILTER-->
         @include('includes/search-bar')
 
+
+        <script src="https://foot-test1412-site43245.000webhostapp.com/filters.js"> </script>
+        <style>
+            .filter{
+                position: absolute;
+                border: solid black 1px;
+                border-radius: 2px;
+                background-color : white;
+                padding: 8px;
+                display:none;
+            }
+        </style>
+
         <!--ADD-BUTTON-->
         <a class="uk-button uk-button-primary uk-align-right" href="{{ route('company.new') }}">New company</a>
 
@@ -15,13 +28,13 @@
             <p>No Results.</p>
         </div>
         <!--TABLE-->
-        <table class="uk-table uk-table-striped" id="tableForm">
+        <table class="filterTable uk-table uk-table-striped" id="tableForm">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Date Created</th>
-                <th>Date Updated</th>
+                <th class="filterButton" index=1>Name</th>
+                <th class="filterButton" index=2>Date Created</th>
+                <th class="filterButton" index=3>Date Updated</th>
                 <th>Action</th>
             </tr>
             </thead>
