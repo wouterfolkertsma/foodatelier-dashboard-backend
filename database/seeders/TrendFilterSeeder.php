@@ -27,7 +27,7 @@ class TrendFilterSeeder extends Seeder
                 'description' => 'Query to test the GoogleTrends functionality',
                 'search_term' => $terms_str,
                 'category_id' => 2,
-                'country_id' => 1,
+                'country_id' => 157,
                 'standard_interval_id' => 2,
                 'search_type' => 'Web-Search',
                 'with_top_metric' => true,

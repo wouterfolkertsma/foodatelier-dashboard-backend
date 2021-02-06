@@ -73,13 +73,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/personalinsights', 'ClientController@personalinsights')->name('client-personal-insights');
     Route::get('/socialmedia', 'ClientController@socialmedia')->name('client-social-media');
 
+
+
     Route::get('/trends', [ClientController::class, 'trends'])->name('client-trends');
     Route::get('/rss', [ClientController::class, 'rssFeeds'])->name('client.rss.index');
-    Route::get('/{id}/trends', [ClientController::class, 'categoryTrends'])->name('client-trends-category');
+    Route::get('category/{id}/trends', [ClientController::class, 'categoryTrends'])->name('client-trends-category');
     Route::get('/newsfeed', [ClientController::class, 'newsfeed'])->name('client-newsfeed');
-    Route::get('/{id}/newsfeed', [ClientController::class, 'categoryNewsfeed'])->name('client-newsfeed-category');
+    Route::get('category/{id}/newsfeed', [ClientController::class, 'categoryNewsfeed'])->name('client-newsfeed-category');
     Route::get('/files', [ClientController::class, 'files'])->name('client-files');
-    Route::get('/{id}/files', [ClientController::class, 'categoryFiles'])->name('client-files-category');
+    Route::get('category/{id}/files', [ClientController::class, 'categoryFiles'])->name('client-files-category');
     Route::get('/menu/client/load-menu-categories', [ClientController::class, 'getMenuCategories'])->name('client.get-menu-categories');
 
     Route::get('/manage/files', [EmployeeController::class, 'fileManager'])->name('file-manager');
@@ -102,7 +104,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/manage/add-category', [CategoryController::class, 'saveCategory'])->name('category.save');
     Route::get('/manage/{id}/category', [CategoryController::class, 'editCategory'])->name('category.edit');
 
-    Route::get('/manage/trends', [TrendController::class, 'trendsManager'])->name('trends-manager');
+    Route::get('/manage/trends', 'TrendController@trendsManager')->name('trends-manager');
     Route::get('/manage/{id}/trends', [TrendController::class, 'categoryTrendsManager'])->name('category.trends-manager');
 
     Route::get('/manage/trends/filter', [TrendController::class, 'newFilter'])->name('filter.new');
