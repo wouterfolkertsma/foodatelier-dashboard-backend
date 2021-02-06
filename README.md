@@ -92,3 +92,34 @@ Now you can run:
 ```shell script
 ./reseed.sh
 ```
+
+####Mailtrap:
+If you want to intercept all emails that leave the system (invitation / password reset ...) to view the content, you can use the smtp-test-service 
+https://mailtrap.io/
+
+you have to insert the access data in the env. file
+
+####Pusher:
+if you want to use real-time notifications, you can use the Pusher - Channels service:
+https://pusher.com/docs/channels/using_channels/channels
+(currently used to report incoming messages)
+
+you have to insert the access data in the env. file
+
+###API´s
+####ChartJS
+The API ChartJS is used to display results in the form of a graph. Instructions and information can be found here:
+https://www.chartjs.org/
+####SweetAlert
+Sweetalert2 is currently used to generate modern popup messages. Instructions and information can be found here:
+https://sweetalert2.github.io/
+####GoogleTrends 
+Currently the API GoogleTrends by gabrielfs is used to query GoogleTrends. There is no official Trends API. Instructions and information can be found here:
+https://github.com/gabrielfs7/google-trends
+
+###Frontend-Framework
+The front-end framework UI-KIT is integrated into this project:
+Instructions and information can be found here:
+https://getuikit.com/
+
+
