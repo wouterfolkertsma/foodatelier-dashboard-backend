@@ -9,7 +9,8 @@
 * Composer
 * Node
 * NPM
-* Mysql
+* Mysql > 8.0
+* Redis
 
 ## Setup
 
@@ -82,15 +83,25 @@ something you want for production environments. This commando should only be run
 
 ### Tools
 
-Sometimes edits to the database are needed, and you need to reset your database. The following .sh command runs everythin needed for that. It wipes the db, migrates, seeds and creates a new admin account.
+Sometimes edits to the database are needed, and you need to reset your database. The following .sh command runs everything needed for that. It wipes the db, migrates, seeds and creates a new admin account.
 
 If are running this command for the first time, make sure the the file is executable:
 ```shell script
 chmod +x reseed.sh 
 ```
 Now you can run:
+
+`NOTE: ONLY RUN THIS WHEN ALL CURRENT DATA CAN BE ERASED`
+
 ```shell script
 ./reseed.sh
+```
+
+###Redis
+We use redis as a caching engines to speed up te loading of RSS feeds in the project. If you want to clear the cache from redis you can run the following command:
+
+```shell script
+redis-cli flushall
 ```
 
 ####Mailtrap:
